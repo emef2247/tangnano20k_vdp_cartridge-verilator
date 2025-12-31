@@ -1,5 +1,17 @@
 // src/verilator/RTL/wrapper_top.sv
 // slot_bridge + wrapper_top in one file to ensure wrapper_top exists for verilator
+//
+// Updated: expose slot_clk as an explicit top-level input so the C++ wrapper
+// (vdp_cartridge_wrapper.cpp) can drive it and it will be included in the single
+// VCD trace produced by Verilator. This keeps the DUT and CPU/slot clocks in the
+// same trace file while avoiding changes to internal DUT RTL.
+//
+// Note: slot_clk is an input here and is NOT driven inside this RTL file.
+// The C++ wrapper will set the corresponding port on the Verilated model so the
+// signal appears in the main VCD. If the DUT (tangnano20k_vdp_cartridge)
+// actually has a slot_clk port and you want the signal connected into the DUT,
+// add the connection in the instantiation below (e.g. .slot_clk(slot_clk)).
+
 
 // bridge: CPU-side drive -> slot_d
 module slot_bridge (
@@ -16,6 +28,13 @@ endmodule
 module wrapper_top (
     input            clk,
     input            clk14m,
+
+    // NEW: expose slot_clk so the C++ wrapper can drive it and it will be traced.
+    // This is intentionally an input and currently left unconnected to internals
+    // to avoid touching DUT RTL. If you want the DUT to receive slot_clk, connect
+    // it in the DUT instantiation below (only if the DUT has such a port).
+    input            slot_clk,
+
     input            slot_reset_n,
     input            slot_iorq_n,
     input            slot_rd_n,
@@ -53,6 +72,10 @@ module wrapper_top (
 );
 
     // Instantiate original DUT (connect slot_d to the same inout)
+    // NOTE: Do NOT modify internal DUT ports here unless you are sure they exist.
+    // If the DUT has a slot_clk input and you want to pass this top-level slot_clk
+    // into it, add: .slot_clk (slot_clk),
+    // in the port list below. That would connect the driver-provided slot_clk into DUT.
     tangnano20k_vdp_cartridge u_dut (
         .clk                (clk),
         .clk14m             (clk14m),
@@ -93,5 +116,14 @@ module wrapper_top (
         .cpu_ff_slot_data   (cpu_ff_slot_data),
         .cpu_drive_en       (cpu_drive_en)
     );
+
+    // Note:
+    // - slot_clk is intentionally not connected into this wrapper unless the DUT
+    //   requires it. It is exposed as a top-level input so the Verilated model
+    //   has the signal and it will appear in the single VCD file when tracing.
+    // - If you want to connect it into the DUT and the DUT has a port named
+    //   slot_clk, modify the instantiation above to include:
+    //     .slot_clk(slot_clk)
+    //   Be sure to re-run Verilator so the generated model matches the RTL.
 
 endmodule
