@@ -1,8 +1,9 @@
 // src/verilator/vdp_cartridge_wrapper.cpp
-// Reworked wrapper: single VCD, DUT primary clock, slot_clk derived by integer division.
-// - slot_clk is derived as DUT_halfcycle_count / SLOT_HALF_COUNT (SLOT_HALF_COUNT = 12).
-// - All signals (including slot_clk) are written into the single trace g_tfp.
-// - MARK logs are added and controlled by g_mark_enabled for automatic mapping.
+// Centralized clock/timing model for vdp_cartridge wrapper with diagnostic tick logging.
+// - All time advances and eval+trace dumps are centralized in vdp_cartridge_halfcycle_tick()
+// - Diagnostic TICK/HALF_TICK logs are emitted when g_debug_enabled is set.
+// - slot_clk handling has been removed (per request).
+// - Includes configurable reset cycle count via vdp_cartridge_set_reset_cycles().
 
 #include "vdp_cartridge_wrapper.h"
 #include "Vwrapper_top.h"
@@ -10,6 +11,7 @@
 #include "verilated_vcd_c.h"
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 #include <assert.h>
@@ -33,25 +35,18 @@ static uint8_t g_clk14m = 0;
 static const uint64_t MAIN_CYCLE_PS = 23270ULL;   /* 23.270 ns -> 23270 ps */
 static const uint64_t HALF_CYCLE_PS = (MAIN_CYCLE_PS / 2ULL); /* 11635 ps */
 
-/* half-cycle counting for slot_clk derivation */
-static int64_t g_halfcycle_count = 0;
-static const int SLOT_HALF_COUNT = 12; /* main half-cycles per slot half-period */
-
-/* slot_clk state (exposed to top module; requires top-level port) */
-static uint8_t g_slot_clk = 0;
-
 /* global sim time in ps */
 static uint64_t g_time_ps = 0;
 static uint64_t last_dump_ps = (uint64_t)(-1);
 
-/* phase tracking */
-static int g_phase = 0; /* 0=init, 1=last posedge, -1=last negedge */
+/* phase tracking: last edge type (1 == last was posedge, -1 == last was negedge) */
+static int g_phase = 0; /* 0=init (no edges yet), 1=last posedge, -1=last negedge */
 
 /* end-align control (option) */
 static int g_end_align_enabled = 1;
 
 /* logging controls */
-static int g_debug_enabled = 0;   /* verbose debug */
+static int g_debug_enabled = 0;   /* verbose debug (diagnostic tick logging) */
 static int g_mark_enabled = 1;    /* MARK logs for mapping (on by default) */
 
 /* SDRAM bus cache (simplified) */
@@ -63,6 +58,15 @@ static uint8_t prev_bus_wdata_mask = 0;
 
 /* write mode */
 static int g_write_on_posedge = 0;
+
+/* configurable reset cycles (default 8) */
+static int g_reset_cycles = 8;
+
+/* diagnostic tick counter */
+static uint64_t g_tick_count = 0;
+
+/* posedge diagnostic (last posedge time) */
+static uint64_t g_last_posedge_time = (uint64_t)(-1);
 
 /* -------------------------------------------------------------------------
  * Helpers
@@ -89,24 +93,54 @@ static inline void vdp_cartridge_eval_and_dump_current_time(void) {
 #endif
 }
 
-/* Slot clock derivation: increment half-cycle count and toggle slot_clk
-   when threshold reached. This ties slot_clk to DUT main clock (integer ratio).
-   slot_clk is written into DUT port g_top->slot_clk so it appears in main VCD.
-*/
-static inline void slot_clock_halfcycle_advance_and_maybe_toggle(void)
+/* Centralized half-cycle tick:
+ * - Sets clk/clk14m to 'level' (0 or 1)
+ * - Evaluates and dumps at current g_time_ps (represents the moment of the edge)
+ * - Advances g_time_ps by HALF_CYCLE_PS
+ *
+ * Diagnostic logging is emitted around the dump when g_debug_enabled is set.
+ */
+static inline void vdp_cartridge_halfcycle_tick(int level)
 {
-    g_halfcycle_count++;
-    if (g_halfcycle_count >= SLOT_HALF_COUNT) {
-        g_halfcycle_count = 0;
-        g_slot_clk = g_slot_clk ? 0 : 1;
-        if (g_top) {
-            g_top->slot_clk = g_slot_clk;
+    if (!g_top) return;
+
+    /* set clocks */
+    g_clk = (level ? 1 : 0);
+    g_clk14m = g_clk;
+    g_top->clk = g_clk;
+    g_top->clk14m = g_clk14m;
+
+    /* Diagnostic: note we are about to eval/dump at current time */
+    if (g_debug_enabled) {
+        fprintf(stderr, "HALF_TICK: level=%d BEFORE dump at time=%" PRIu64 " tick=%" PRIu64 "\n",
+                level, g_time_ps, g_tick_count);
+    }
+
+    /* eval + trace current time (this records the edge) */
+    vdp_cartridge_eval_and_dump_current_time();
+
+    if (g_debug_enabled) {
+        fprintf(stderr, "HALF_TICK: level=%d AFTER dump at time=%" PRIu64 " tick=%" PRIu64 "\n",
+                level, g_time_ps, g_tick_count);
+    }
+
+    /* advance time to after this half-cycle */
+    g_time_ps += HALF_CYCLE_PS;
+}
+
+/* Diagnostic: check posedge intervals when debug enabled */
+static void vdp_cartridge_check_posedge_duty(void)
+{
+    if (!g_debug_enabled) return;
+    if (g_phase == 1) {
+        if (g_last_posedge_time != (uint64_t)(-1)) {
+            uint64_t delta = g_time_ps - g_last_posedge_time;
+            if (delta != MAIN_CYCLE_PS) {
+                fprintf(stderr, "WARN: posedge interval mismatch: %" PRIu64 " ps (expected %" PRIu64 ")\n",
+                        delta, MAIN_CYCLE_PS);
+            }
         }
-        if (g_mark_enabled) {
-            fprintf(stderr, "DERIVED slot_clk toggle -> %d at sim_time=%" PRIu64 "\n", g_slot_clk, g_time_ps);
-        } else if (g_debug_enabled) {
-            fprintf(stderr, "DERIVED slot_clk toggled (debug) -> %d at %" PRIu64 "\n", g_slot_clk, g_time_ps);
-        }
+        g_last_posedge_time = g_time_ps;
     }
 }
 
@@ -120,8 +154,6 @@ void vdp_cartridge_init(void) {
     /* initialize top ports/state expected by wrapper */
     g_top->clk = 0;
     g_top->clk14m = 0;
-    /* slot_clk port must exist in top Verilog and in generated model */
-    g_top->slot_clk = 0;
 
     g_top->slot_reset_n = 0;
     g_top->slot_iorq_n = 1;
@@ -132,9 +164,6 @@ void vdp_cartridge_init(void) {
     g_top->dipsw = 0;
     g_top->button = 0;
 
-    g_halfcycle_count = 0;
-    g_slot_clk = 0;
-
     g_time_ps = 0;
     last_dump_ps = (uint64_t)(-1);
     g_phase = -1; /* assume we've just had negedge at time 0 (clk==0) */
@@ -142,10 +171,12 @@ void vdp_cartridge_init(void) {
     g_debug_enabled = 0;
     g_mark_enabled = 1;
     g_end_align_enabled = 1;
+    g_last_posedge_time = (uint64_t)(-1);
+    g_tick_count = 0;
 
     /* initial eval/dump */
     vdp_cartridge_eval_and_dump_current_time();
-    if (g_mark_enabled) fprintf(stderr, "MARK: INIT time=%" PRIu64 " clk=%d slot_clk=%d\n", g_time_ps, g_clk, g_slot_clk);
+    if (g_mark_enabled) fprintf(stderr, "MARK: INIT time=%" PRIu64 " clk=%d\n", g_time_ps, g_clk);
 }
 
 void vdp_cartridge_release(void) {
@@ -155,72 +186,98 @@ void vdp_cartridge_release(void) {
     g_top = nullptr;
 }
 
-/* Simple reset sequence: pulse slot_reset_n low for several cycles */
+/* Simple reset sequence: pulse slot_reset_n low for configurable number of cycles
+ * Uses the centralized tick function so timing stays consistent.
+ */
 void vdp_cartridge_reset(void)
 {
     if (!g_top) return;
 
+    if (g_mark_enabled) fprintf(stderr, "MARK: RESET_BEGIN cycles=%d time=%" PRIu64 "\n", g_reset_cycles, g_time_ps);
+
     /* Assert reset (active low) */
     g_top->slot_reset_n = 0;
-    for (int i = 0; i < 8; ++i) {
-        vdp_cartridge_step_clk_posedge();
-        vdp_cartridge_step_clk_negedge();
+    for (int i = 0; i < g_reset_cycles; ++i) {
+        if (g_debug_enabled) fprintf(stderr, "TICK[%06" PRIu64 "] reset posedge before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+        g_tick_count++;
+        vdp_cartridge_halfcycle_tick(1);
+        g_phase = 1;
+
+        if (g_debug_enabled) fprintf(stderr, "TICK[%06" PRIu64 "] reset negedge before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+        g_tick_count++;
+        vdp_cartridge_halfcycle_tick(0);
+        g_phase = -1;
     }
 
-    /* Deassert reset and run a few cycles to stabilize */
+    /* Deassert reset and run stabilization cycles */
     g_top->slot_reset_n = 1;
-    for (int i = 0; i < 8; ++i) {
-        vdp_cartridge_step_clk_posedge();
-        vdp_cartridge_step_clk_negedge();
+    for (int i = 0; i < g_reset_cycles; ++i) {
+        if (g_debug_enabled) fprintf(stderr, "TICK[%06" PRIu64 "] post-reset posedge before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+        g_tick_count++;
+        vdp_cartridge_halfcycle_tick(1);
+        g_phase = 1;
+
+        if (g_debug_enabled) fprintf(stderr, "TICK[%06" PRIu64 "] post-reset negedge before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+        g_tick_count++;
+        vdp_cartridge_halfcycle_tick(0);
+        g_phase = -1;
     }
+
+    if (g_mark_enabled) fprintf(stderr, "MARK: RESET_END time=%" PRIu64 "\n", g_time_ps);
 }
 
-/* Step helpers: emit MARK logs when enabled */
+/* Step helpers: now use centralized halfcycle tick to avoid scattered time progression.
+ * Diagnostic TICK logs are emitted when g_debug_enabled is set.
+ */
 void vdp_cartridge_step_clk_posedge(void) {
     if (!g_top) return;
-    if (g_mark_enabled) fprintf(stderr, "MARK: POS_ENTRY time=%" PRIu64 " clk=%d phase=%d slot_clk=%d\n", g_time_ps, g_clk, g_phase, g_slot_clk);
+    if (g_mark_enabled) fprintf(stderr, "MARK: POS_ENTRY time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
 
     if (g_phase == 1) {
         if (g_debug_enabled) fprintf(stderr, "WARN: posedge called twice in a row (g_time_ps=%" PRIu64 ")\n", g_time_ps);
     }
     g_phase = 1;
 
-    g_clk = 1;
-    g_clk14m = 1;
-    g_top->clk = g_clk;
-    g_top->clk14m = g_clk14m;
+    /* diagnostic: log tick about to happen */
+    if (g_debug_enabled) {
+        fprintf(stderr, "TICK[%06" PRIu64 "] POS before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+    }
+    g_tick_count++;
 
-    /* Advance derived slot clock counter BEFORE eval so toggles at same timestamp */
-    slot_clock_halfcycle_advance_and_maybe_toggle();
+    /* perform the half-cycle tick: set clk high, eval/dump, advance time */
+    vdp_cartridge_halfcycle_tick(1);
 
-    vdp_cartridge_eval_and_dump_current_time();
+    if (g_debug_enabled) {
+        fprintf(stderr, "TICK[%06" PRIu64 "] POS after_time=%" PRIu64 "\n", (g_tick_count-1), g_time_ps);
+    }
 
-    g_time_ps += HALF_CYCLE_PS;
+    if (g_mark_enabled) fprintf(stderr, "MARK: POS_EXIT time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
 
-    if (g_mark_enabled) fprintf(stderr, "MARK: POS_EXIT time=%" PRIu64 " clk=%d phase=%d slot_clk=%d\n", g_time_ps, g_clk, g_phase, g_slot_clk);
+    /* diagnostics */
+    vdp_cartridge_check_posedge_duty();
 }
 
 void vdp_cartridge_step_clk_negedge(void) {
     if (!g_top) return;
-    if (g_mark_enabled) fprintf(stderr, "MARK: NEG_ENTRY time=%" PRIu64 " clk=%d phase=%d slot_clk=%d\n", g_time_ps, g_clk, g_phase, g_slot_clk);
+    if (g_mark_enabled) fprintf(stderr, "MARK: NEG_ENTRY time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
 
     if (g_phase == -1) {
         if (g_debug_enabled) fprintf(stderr, "WARN: negedge called twice in a row (g_time_ps=%" PRIu64 ")\n", g_time_ps);
     }
     g_phase = -1;
 
-    g_clk = 0;
-    g_clk14m = 0;
-    g_top->clk = g_clk;
-    g_top->clk14m = g_clk14m;
+    if (g_debug_enabled) {
+        fprintf(stderr, "TICK[%06" PRIu64 "] NEG before_time=%" PRIu64 "\n", g_tick_count, g_time_ps);
+    }
+    g_tick_count++;
 
-    slot_clock_halfcycle_advance_and_maybe_toggle();
+    vdp_cartridge_halfcycle_tick(0);
 
-    vdp_cartridge_eval_and_dump_current_time();
+    if (g_debug_enabled) {
+        fprintf(stderr, "TICK[%06" PRIu64 "] NEG after_time=%" PRIu64 "\n", (g_tick_count-1), g_time_ps);
+    }
 
-    g_time_ps += HALF_CYCLE_PS;
-
-    if (g_mark_enabled) fprintf(stderr, "MARK: NEG_EXIT time=%" PRIu64 " clk=%d phase=%d slot_clk=%d\n", g_time_ps, g_clk, g_phase, g_slot_clk);
+    if (g_mark_enabled) fprintf(stderr, "MARK: NEG_EXIT time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
 }
 
 /* setters */
@@ -230,6 +287,12 @@ void vdp_cartridge_set_write_on_posedge(int enable) { g_write_on_posedge = enabl
 void vdp_cartridge_set_debug(int enable) { g_debug_enabled = enable ? 1 : 0; }
 void vdp_cartridge_set_end_align(int enable) { g_end_align_enabled = enable ? 1 : 0; }
 void vdp_cartridge_set_mark_enabled(int enable) { g_mark_enabled = enable ? 1 : 0; }
+
+/* new: set number of reset cycles */
+void vdp_cartridge_set_reset_cycles(int n) {
+    if (n < 0) n = 0;
+    g_reset_cycles = n;
+}
 
 /* -------------------------------------------------------------------------
  * SDRAM model (unchanged)
@@ -318,8 +381,8 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
     if (!g_top) return;
 
     if (g_write_on_posedge) {
-        if (g_mark_enabled) fprintf(stderr, "MARK: WRITE_START addr=0x%02x data=0x%02x time=%" PRIu64 " clk=%d slot_clk=%d phase=%d\n",
-                                    address & 0xFF, wdata, g_time_ps, g_clk, g_slot_clk, g_phase);
+        if (g_mark_enabled) fprintf(stderr, "MARK: WRITE_START addr=0x%02x data=0x%02x time=%" PRIu64 " clk=%d phase=%d\n",
+                                    address & 0xFF, wdata, g_time_ps, g_clk, g_phase);
 
         const int t_addr_ns = 170;
         const int t_wr_assert_ns = 125;
@@ -346,9 +409,9 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
         /* align to negedge only if needed */
         if (g_phase != -1) {
             vdp_cartridge_step_clk_negedge();
-            if (g_mark_enabled) fprintf(stderr, "MARK: ALIGN_DONE time=%" PRIu64 " clk=%d slot_clk=%d phase=%d\n", g_time_ps, g_clk, g_slot_clk, g_phase);
+            if (g_mark_enabled) fprintf(stderr, "MARK: ALIGN_DONE time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
         } else {
-            if (g_mark_enabled) fprintf(stderr, "MARK: ALIGN_SKIPPED already negedge time=%" PRIu64 " clk=%d slot_clk=%d phase=%d\n", g_time_ps, g_clk, g_slot_clk, g_phase);
+            if (g_mark_enabled) fprintf(stderr, "MARK: ALIGN_SKIPPED already negedge time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
         }
 
         int drive_start_cycle = (cyc_addr > 3) ? (cyc_addr - 3) : 1;
@@ -356,6 +419,47 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
         if (cyc_wr_deassert > final_cycle) final_cycle = cyc_wr_deassert;
         if (cyc_addr > final_cycle) final_cycle = cyc_addr;
         final_cycle += 6;
+
+        /* --- Planned schedule logging: compute planned posedge times for cycles --- */
+        if (g_mark_enabled) {
+            int planned_cycles = final_cycle;
+            uint64_t *posedge_times = (uint64_t*)malloc(sizeof(uint64_t) * (planned_cycles + 1));
+            if (posedge_times) {
+                uint64_t sim_time = g_time_ps;
+                int sim_phase = g_phase;
+                for (int cyc = 1; cyc <= planned_cycles; ++cyc) {
+                    if (sim_phase != -1) {
+                        sim_time += HALF_CYCLE_PS; /* simulate negedge align */
+                        sim_phase = -1;
+                    }
+                    posedge_times[cyc] = sim_time;
+                    /* simulate posedge */
+                    sim_time += HALF_CYCLE_PS;
+                    sim_phase = 1;
+                }
+                fprintf(stderr, "MARK: PLANNED_SCHEDULE drive_start=%d final=%d starting_time=%" PRIu64 "\n",
+                        drive_start_cycle, final_cycle, g_time_ps);
+                fprintf(stderr, "MARK: PLANNED (cycle -> posedge_time_ps):\n");
+                for (int cyc = 1; cyc <= planned_cycles; ++cyc) {
+                    fprintf(stderr, "  C%2d -> %12" PRIu64 " ps%s\n", cyc, posedge_times[cyc],
+                            (cyc == drive_start_cycle) ? "  (drive_start)" : "");
+                }
+                fprintf(stderr, "MARK: PLANNED_EVENTS: addr_sample_cycle=%d posedge_time=%" PRIu64 " ps\n",
+                        cyc_addr, (cyc_addr <= planned_cycles) ? posedge_times[cyc_addr] : 0);
+                fprintf(stderr, "MARK: planned WR assert at cycle=%d posedge_time=%" PRIu64 " ps\n",
+                        cyc_wr_assert, (cyc_wr_assert <= planned_cycles) ? posedge_times[cyc_wr_assert] : 0);
+                fprintf(stderr, "MARK: planned IORQ assert at cycle=%d posedge_time=%" PRIu64 " ps\n",
+                        cyc_iorq_assert, (cyc_iorq_assert <= planned_cycles) ? posedge_times[cyc_iorq_assert] : 0);
+                fprintf(stderr, "MARK: planned WR deassert at cycle=%d posedge_time=%" PRIu64 " ps\n",
+                        cyc_wr_deassert, (cyc_wr_deassert <= planned_cycles) ? posedge_times[cyc_wr_deassert] : 0);
+                fprintf(stderr, "MARK: planned IORQ deassert at cycle=%d posedge_time=%" PRIu64 " ps\n",
+                        cyc_iorq_deassert, (cyc_iorq_deassert <= planned_cycles) ? posedge_times[cyc_iorq_deassert] : 0);
+                free(posedge_times);
+            } else {
+                fprintf(stderr, "WARN: PLANNED_SCHEDULE malloc failed\n");
+            }
+        }
+        /* --- end planned schedule logging --- */
 
         drive_cycles_posedge_mode(drive_start_cycle, final_cycle,
                                   cyc_wr_assert, cyc_iorq_assert,
@@ -385,13 +489,13 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
         if (g_end_align_enabled && g_clk == 1) {
             if (g_mark_enabled) fprintf(stderr, "MARK: PRE_ALIGN_END time=%" PRIu64 " clk=1 -> stepping negedge\n", g_time_ps);
             vdp_cartridge_step_clk_negedge();
-            if (g_mark_enabled) fprintf(stderr, "MARK: POST_ALIGN_END time=%" PRIu64 " clk=%d slot_clk=%d phase=%d\n", g_time_ps, g_clk, g_slot_clk, g_phase);
+            if (g_mark_enabled) fprintf(stderr, "MARK: POST_ALIGN_END time=%" PRIu64 " clk=%d phase=%d\n", g_time_ps, g_clk, g_phase);
         } else if (!g_end_align_enabled) {
             if (g_debug_enabled) fprintf(stderr, "END_ALIGN disabled; leaving phase as-is (time=%" PRIu64 " clk=%d)\n", g_time_ps, g_clk);
         }
 
-        if (g_mark_enabled) fprintf(stderr, "MARK: WRITE_END addr=0x%02x data=0x%02x time=%" PRIu64 " clk=%d slot_clk=%d phase=%d slot_a=0x%02x slot_d=0x%02x\n",
-                                    address & 0xFF, wdata, g_time_ps, g_clk, g_slot_clk, g_phase, (int)g_top->slot_a, (int)g_top->slot_d);
+        if (g_mark_enabled) fprintf(stderr, "MARK: WRITE_END addr=0x%02x data=0x%02x time=%" PRIu64 " clk=%d phase=%d slot_a=0x%02x slot_d=0x%02x\n",
+                                    address & 0xFF, wdata, g_time_ps, g_clk, g_phase, (int)g_top->slot_a, (int)g_top->slot_d);
         return;
     }
 
@@ -415,8 +519,6 @@ int vdp_cartridge_trace_open(const char* path)
     last_dump_ps = (uint64_t)(-1);
 
 #ifdef VM_TRACE
-    /* Ensure top model will include slot_clk in its trace (top Verilog must
-       expose slot_clk port). */
     g_top->trace(g_tfp, 99);
     g_tfp->open(path ? path : "dump.vcd");
     return 0;

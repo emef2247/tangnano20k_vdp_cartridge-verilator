@@ -1,0 +1,14 @@
+# GTKWave markers exported / transcribed from screenshot
+# Format: LABEL TIME_ps
+A 930800
+B 954070
+C 1093690
+D 1279850
+E 1291485
+F 1372930
+G 1396200
+H 1535820
+I 1559090
+J 1721980
+K 1745250
+

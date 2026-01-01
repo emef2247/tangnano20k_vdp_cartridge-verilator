@@ -11,6 +11,7 @@ int main(int argc, char** argv) {
     // Initialize DUT wrapper
     vdp_cartridge_init();
     vdp_cartridge_set_debug(1); // enable runtime debug
+	vdp_cartridge_set_reset_cycles(0);
 	vdp_cartridge_set_write_on_posedge(1);
 	vdp_cartridge_set_end_align(0);
     vdp_cartridge_trace_open("dump_short.vcd");

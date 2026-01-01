@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,8 +41,11 @@ void vdp_cartridge_set_write_on_posedge(int enable);
 /* Enable runtime debug logging (0/1) */
 void vdp_cartridge_set_debug(int enable);
 
-/* Control whether write_io forces end-align (advance final negedge) */
+/* Control whether wrapper performs end-align (0/1) */
 void vdp_cartridge_set_end_align(int enable);
+
+/* Control how many reset cycles vdp_cartridge_reset pulses (default 8) */
+void vdp_cartridge_set_reset_cycles(int n);
 
 /* VCD トレース制御 */
 int  vdp_cartridge_trace_open(const char* path); /* returns 0 on success, -1 on failure */
@@ -54,6 +56,9 @@ uint64_t vdp_cartridge_get_sim_time(void);
 
 /* slot_wait getter */
 uint8_t vdp_cartridge_get_slot_wait(void);
+
+/* control MARK logging (0/1) */
+void vdp_cartridge_set_mark_enabled(int enable);
 
 #ifdef __cplusplus
 }
