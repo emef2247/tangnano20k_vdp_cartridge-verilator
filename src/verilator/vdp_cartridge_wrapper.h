@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,6 +41,9 @@ void vdp_cartridge_set_write_on_posedge(int enable);
 
 /* Enable runtime debug logging (0/1) */
 void vdp_cartridge_set_debug(int enable);
+
+/* Control whether write_io forces end-align (advance final negedge) */
+void vdp_cartridge_set_end_align(int enable);
 
 /* VCD トレース制御 */
 int  vdp_cartridge_trace_open(const char* path); /* returns 0 on success, -1 on failure */
