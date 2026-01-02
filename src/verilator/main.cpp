@@ -4,10 +4,13 @@
 // - Uses vdp_cartridge_wrapper.* API
 // - Replays the same sequence of VDP register and VRAM writes as tb.sv
 // - Generates a single VCD (dump.vcd) for waveform inspection
+// - Additionally, dumps VRAM as PGM images after the display is running
 
 #include <iostream>
 #include <cstdlib>
 #include <cstdint>
+#include <cstdio>
+#include <inttypes.h>
 
 #include "vdp_cartridge_wrapper.h"
 
@@ -16,6 +19,48 @@ static void step_cycles(int cycles)
     for (int i = 0; i < cycles; ++i) {
         vdp_cartridge_step_clk_1cycle();
     }
+}
+
+// g_vram を 256x212 の簡易 SCREEN5 4bpp とみなして PGM 出力
+static void dump_vram_as_pgm(const char* filename)
+{
+    FILE* fp = std::fopen(filename, "wb");
+    if (!fp) {
+        std::fprintf(stderr, "Failed to open %s for write\n", filename);
+        return;
+    }
+
+    const int W = 256;
+    const int H = 212;
+
+    // PGMヘッダ (binary P5)
+    std::fprintf(fp, "P5\n%d %d\n255\n", W, H);
+
+    // g_vram をバイト配列として扱う
+    const uint8_t* vram_bytes =
+        reinterpret_cast<const uint8_t*>(vdp_cartridge_get_vram_buffer());
+
+    // 簡易4bpp SCREEN5 仮定:
+    //  - 画面は VRAM 先頭から 256x212/2 = 27136 バイトぶんを使用
+    //  - 1バイトに左右2ピクセル (上位4bit, 下位4bit)
+    const size_t base = 0;
+    const int bytes_per_line = W / 2;
+
+    for (int y = 0; y < H; ++y) {
+        uint8_t line[W];
+        for (int bx = 0; bx < bytes_per_line; ++bx) {
+            uint8_t b = vram_bytes[base + y * bytes_per_line + bx];
+            uint8_t left  = (b >> 4) & 0x0F;
+            uint8_t right = b & 0x0F;
+            // 4bit → 8bit グレースケール (0..15 -> 0..255)
+            line[2 * bx]     = static_cast<uint8_t>(left * 17);
+            line[2 * bx + 1] = static_cast<uint8_t>(right * 17);
+        }
+        std::fwrite(line, 1, W, fp);
+    }
+
+    std::fclose(fp);
+    std::fprintf(stderr, "[dump] wrote %s\n", filename);
 }
 
 int main(int argc, char** argv)
@@ -37,20 +82,12 @@ int main(int argc, char** argv)
 
     // --------------------------------------------------------------------
     // Reset sequence (mirror tb.sv)
-    // tb.sv:
-    //   clk_dummy = 0; clk14m = 0; slot_reset_n = 0; ...
-    //   repeat(10) @(posedge clk14m);
-    //   slot_reset_n = 1;
-    //   repeat(10) @(posedge clk14m);
     // --------------------------------------------------------------------
-    // We use vdp_cartridge_reset() which does 8 cycles low/high internally,
-    // plus a few extra cycles before/after to approximate tb.sv.
     step_cycles(10);
     vdp_cartridge_reset();
     step_cycles(10);
 
     std::cout << "[main] Wait initialization (slot_wait deassert)\n";
-    // while (slot_wait == 1) @(posedge clk14m);
     while (vdp_cartridge_get_slot_wait() == 1) {
         step_cycles(1);
     }
@@ -62,18 +99,13 @@ int main(int argc, char** argv)
     const uint16_t vdp_io0 = 0x88;            // vdp_io0 in tb.sv
     const uint16_t vdp_io1 = vdp_io0 + 0x01;  // vdp_io1 in tb.sv
 
-    // --------------------------------------------------------------------
-    // SCREEN5 register setup (mirror tb.sv lines 483–511)
-    //
-    // tb.sv:
-    //   write_io( vdp_io1, 8'h06 );  // R#0 = 0x06
-    //   write_io( vdp_io1, 8'h80 );
-    //   ...
-    // --------------------------------------------------------------------
     auto write_io = [](uint16_t addr, uint8_t data) {
         vdp_cartridge_write_io(addr, data);
     };
 
+    // --------------------------------------------------------------------
+    // SCREEN5 register setup (mirror tb.sv lines 483–511)
+    // --------------------------------------------------------------------
     std::cout << "[main] SCREEN5: set VDP registers\n";
 
     // VDP R#0 = 0x06
@@ -114,16 +146,6 @@ int main(int argc, char** argv)
 
     // --------------------------------------------------------------------
     // VRAM clear and pattern write (mirror tb.sv lines 512–523)
-    //
-    // tb.sv:
-    //   write_io( vdp_io1, 8'h00 );
-    //   write_io( vdp_io1, 8'h8E );
-    //   write_io( vdp_io1, 8'h00 );
-    //   write_io( vdp_io1, 8'h40 );
-    //   for (i = 0; i < (128*32); i++) begin
-    //     write_io( vdp_io0, (i & 255) );
-    //     repeat( $urandom(40) ) @(posedge clk14m);
-    //   end
     // --------------------------------------------------------------------
     std::cout << "[main] Write VRAM pattern (SCREEN5)\n";
 
@@ -136,10 +158,7 @@ int main(int argc, char** argv)
     const int vram_words = 128 * 32;  // 4096
     for (int i = 0; i < vram_words; ++i) {
         write_io(vdp_io0, static_cast<uint8_t>(i & 0xFF));
-
-        // In tb.sv: repeat($urandom(40)) @(posedge clk14m);
-        // Here we just insert a small, deterministic delay for now.
-        step_cycles(4);
+        step_cycles(4);  // small deterministic delay
     }
 
     // --------------------------------------------------------------------
@@ -172,21 +191,28 @@ int main(int argc, char** argv)
     write_io(vdp_io0, 15);
 
     // --------------------------------------------------------------------
-    // Let the display run for a while (tb.sv lines 553–559)
-    //
-    // tb.sv:
-    //   repeat(100) @(posedge clk14m);
-    //   repeat(1368 * 16 * 200) @(posedge clk14m);
-    //   [test---] All tests completed
-    //   repeat(100) @(posedge clk14m);
+    // Let the display run for a while and dump VRAM as PGM
     // --------------------------------------------------------------------
-    std::cout << "[main] Run display for a while\n";
+    std::cout << "[main] Run display and dump VRAM\n";
 
-    step_cycles(100);
-    // This is a lot of cycles; you can reduce for faster runs if needed.
-    const int display_cycles = 1368 * 16 * 200;
-    step_cycles(display_cycles);
-    step_cycles(100);
+    // ある程度回してからダンプ
+    step_cycles(1368 * 16 * 10);  // 約10行事ぶんだけ先に回す（適当でOK）
+
+    const int NUM_FRAMES_TO_DUMP = 3;
+    for (int f = 0; f < NUM_FRAMES_TO_DUMP; ++f) {
+        char fname[64];
+        std::snprintf(fname, sizeof(fname), "frame_%03d.pgm", f);
+        dump_vram_as_pgm(fname);
+
+        std::printf("[main] Dumped %s at sim_time=%" PRIu64 " ps\n",
+                    fname, vdp_cartridge_get_sim_time());
+
+        // 次の「フレーム相当」まで少し進める（ここも適当でOK。後で VSYNC ベースに置き換え可能）
+        step_cycles(1368 * 16 * 10);
+    }
+
+    // 少し余分に回してから終了
+    step_cycles(1000);
 
     std::cout << "[main] All tests completed\n";
 
