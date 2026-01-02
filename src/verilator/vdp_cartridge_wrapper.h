@@ -55,6 +55,9 @@ uint64_t vdp_cartridge_get_sim_time(void);
 /* slot_wait getter */
 uint8_t vdp_cartridge_get_slot_wait(void);
 
+// vram_interface 直結版
+void vdp_cartridge_vram_bus_eval(void);
+
 #ifdef __cplusplus
 }
 #endif

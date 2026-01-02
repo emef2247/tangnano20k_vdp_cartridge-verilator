@@ -39,7 +39,7 @@ VERILOG_SRCS = \
 	$(VPATH)/th9958/vdp.v \
 	$(VPATH)/ws2812_led/ip_ws2812_led.v \
 	$(VPATH)/debugger/ip_debugger.v \
-	$(VPATH)/tangnano20k_vdp_cartridge.v
+	./mod/tangnano20k_vdp_cartridge.v
 
 # C++ソース
 C_SRCS = vdp_cartridge_wrapper.cpp main.cpp

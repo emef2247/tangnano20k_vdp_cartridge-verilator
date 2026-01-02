@@ -135,8 +135,10 @@ static inline void step_halfcycle(int level)
                 g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
     }
 
+	vdp_cartridge_vram_bus_eval();
     eval_and_dump_current_time();
     g_time_ps += HALF_CYCLE_PS;
+	
 }
 
 /* Convenience wrappers for posedge / negedge */
@@ -437,4 +439,35 @@ uint8_t vdp_cartridge_get_slot_wait(void)
 {
     if (!g_top) return 0;
     return g_top->slot_wait ? 1 : 0;
+}
+
+void vdp_cartridge_vram_bus_eval(void)
+{
+    if (!g_top) return;
+
+    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit
+    uint32_t wdata    = g_top->dbg_vram_wdata;
+    uint8_t  valid    = g_top->dbg_vram_valid;
+    uint8_t  write    = g_top->dbg_vram_write;
+    uint8_t  rdata_en = g_top->dbg_vram_rdata_en;
+
+    if (!valid) return;
+
+    // アドレスをワード単位に解釈（SCREEN5 なら 18bit で 256Kbytes=64Kwords 相当）
+    uint32_t word_addr = addr18;  // 必要なら >>2 などに調整
+
+    if (write) {
+        // 全ビット書き込み（本当にマスクしたければコマンド側から mask を出す）
+        if (word_addr < VRAM_WORD_COUNT) {
+            g_vram[word_addr] = wdata;
+        }
+    } else {
+        if (rdata_en) {
+            uint32_t rdata = 0;
+            if (word_addr < VRAM_WORD_COUNT) {
+                rdata = g_vram[word_addr];
+            }
+            g_top->dbg_vram_rdata = rdata;
+        }
+    }
 }

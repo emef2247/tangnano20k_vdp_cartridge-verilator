@@ -68,7 +68,15 @@ module wrapper_top (
 
     // CPU-side bridge ports — driven by C++ wrapper
     input  [7:0]     cpu_ff_slot_data,
-    input            cpu_drive_en
+    input            cpu_drive_en,
+
+    // Debug VRAM bus exported to C++ wrapper
+    output [17:0] dbg_vram_address,
+    output [31:0] dbg_vram_wdata,
+    input  [31:0] dbg_vram_rdata,
+    output        dbg_vram_valid,
+    output        dbg_vram_write,
+    output        dbg_vram_rdata_en
 );
 
     // Instantiate original DUT (connect slot_d to the same inout)
@@ -107,7 +115,14 @@ module wrapper_top (
         .IO_sdram_dq        (IO_sdram_dq),
         .O_sdram_addr       (O_sdram_addr),
         .O_sdram_ba         (O_sdram_ba),
-        .O_sdram_dqm        (O_sdram_dqm)
+        .O_sdram_dqm        (O_sdram_dqm),
+        // new debug VRAM ports
+        .dbg_vram_address   (dbg_vram_address),
+        .dbg_vram_wdata     (dbg_vram_wdata),
+        .dbg_vram_rdata     (dbg_vram_rdata),
+        .dbg_vram_valid     (dbg_vram_valid),
+        .dbg_vram_write     (dbg_vram_write),
+        .dbg_vram_rdata_en  (dbg_vram_rdata_en)
     );
 
     // Instantiate the bridge that drives slot_d when cpu_drive_en is asserted.
