@@ -1,10 +1,10 @@
 // src/verilator/vdp_cartridge_wrapper.cpp
 // Clean wrapper for tangnano20k_vdp_cartridge:
 // - Single, centralized clock/time model
-// - clk / clk14m are always 50% duty
+// - Main clock ≒ 85.90908 MHz (VDP internal clock)
 // - slot_clk is an integer divider of the main clock (for visibility only)
-// - write_io() approximates tb.sv's write_io timing in a simple half-cycle schedule
-// - All MARK logs for edges are aligned to the actual edge time in the VCD
+// - write_io() generates Z80-like I/O write cycles in half-cycle units
+// - SDRAM is modeled as a simple functional VRAM array (timing ignored)
 
 #include "vdp_cartridge_wrapper.h"
 #include "Vwrapper_top.h"
@@ -31,18 +31,24 @@ static VerilatedVcdC*  g_tfp  = nullptr;
 static uint8_t g_clk    = 0;
 static uint8_t g_clk14m = 0;
 
-/* DUT clock parameters */
-static const uint64_t MAIN_CYCLE_PS = 23270ULL;              // 23.270 ns
-static const uint64_t HALF_CYCLE_PS = MAIN_CYCLE_PS / 2ULL;  // 11.635 ns
+/* DUT clock parameters
+ * Main clock targets the internal VDP clock (clk85m ≒ 85.90908 MHz).
+ * One full period ≒ 11.64 ns → 11,640 ps.
+ */
+static const uint64_t MAIN_CYCLE_PS = 11640ULL;              // 11.64 ns (85.9 MHz)
+static const uint64_t HALF_CYCLE_PS = MAIN_CYCLE_PS / 2ULL;  // 5,820 ps
 
 /* global sim time in ps */
 static uint64_t g_time_ps    = 0;
 static uint64_t g_last_dump  = (uint64_t)-1;
 
 /* slot clock: purely derived, visible in VCD, does NOT drive DUT logic */
+/* 12 main half-cycles per slot half-period
+ * → 24 main half-cycles per slot full period
+ * → f_slot ≈ 85.90908 MHz / 24 ≈ 3.5795 MHz
+ */
 static uint8_t  g_slot_clk         = 0;
 static int64_t  g_halfcycle_count  = 0;
-/* 12 main half-cycles per slot half-period => slot_clk ≒ 3.57954MHz (from ~21.47727MHz) */
 static const int SLOT_HALF_COUNT   = 12;
 
 /* optional phase tracking (mostly for debugging / sanity checks) */
@@ -50,9 +56,9 @@ static int g_phase = -1;  // -1: last was negedge, 1: last was posedge, 0: init
 
 /* logging controls */
 static int g_debug_enabled = 0;  // verbose logs
-static int g_mark_enabled  = 1;  // MARK logs for mapping (on by default)
+static int g_mark_enabled  = 0;  // unused at the moment
 
-/* write mode: 0 = old-style negedge (not implemented), 1 = posedge-based schedule */
+/* write mode: 0 = old-style negedge (unused), 1 = posedge-based (not used now) */
 static int g_write_on_posedge = 0;
 
 /* end-align control (currently unused) */
@@ -109,12 +115,13 @@ static inline void step_halfcycle(int level)
     uint8_t prev_clk = g_clk;
     uint8_t new_clk  = (uint8_t)(level ? 1 : 0);
 
-    /* External clocks: first set pins to new level */
+    /* External clocks */
     g_clk    = new_clk;
     g_clk14m = new_clk;
     g_top->clk    = g_clk;
     g_top->clk14m = g_clk14m;
 
+    /* Derived slot clock */
     g_halfcycle_count++;
     if (g_halfcycle_count >= SLOT_HALF_COUNT) {
         g_halfcycle_count = 0;
@@ -122,31 +129,17 @@ static inline void step_halfcycle(int level)
         g_top->slot_clk = g_slot_clk;
     }
 
-    /* Now emit MARK: edge time is current g_time_ps, clk is already new level */
-    if (g_mark_enabled) {
-        const char* kind = level ? "POS_EDGE" : "NEG_EDGE";
-        fprintf(stderr,
-            "MARK: %s time=%" PRIu64 " prev_clk=%d new_clk=%d slot_clk=%d phase=%d\n",
-            kind, g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
-    }
-
     if (g_debug_enabled) {
-        fprintf(stderr, "HALF: time=%" PRIu64 "ps level=%d clk=%d slot_clk=%d\n",
-                g_time_ps, level, g_clk, g_slot_clk);
+        fprintf(stderr,
+                "HALF: time=%" PRIu64 "ps prev_clk=%d new_clk=%d slot_clk=%d phase=%d\n",
+                g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
     }
 
     eval_and_dump_current_time();
     g_time_ps += HALF_CYCLE_PS;
 }
 
-
-/* Convenience wrappers for posedge / negedge
- *
- * IMPORTANT:
- *  - MARK logs are emitted at the *edge time* (before time is advanced),
- *    so VCD edge and MARK time are aligned 1:1.
- *  - We no longer log separate ENTRY/EXIT; only POS_EDGE / NEG_EDGE.
- */
+/* Convenience wrappers for posedge / negedge */
 void vdp_cartridge_step_clk_posedge(void)
 {
     if (!g_top) return;
@@ -179,14 +172,14 @@ void vdp_cartridge_init(void)
     g_top->clk14m      = g_clk14m;
     g_top->slot_clk    = g_slot_clk;
 
-    g_top->slot_reset_n = 0;
-    g_top->slot_iorq_n  = 1;
-    g_top->slot_rd_n    = 1;
-    g_top->slot_wr_n    = 1;
-    g_top->slot_a       = 0;
+    g_top->slot_reset_n  = 0;
+    g_top->slot_iorq_n   = 1;
+    g_top->slot_rd_n     = 1;
+    g_top->slot_wr_n     = 1;
+    g_top->slot_a        = 0;
     g_top->slot_data_dir = 1;
-    g_top->dipsw        = 0;
-    g_top->button       = 0;
+    g_top->dipsw         = 0;
+    g_top->button        = 0;
 
     g_halfcycle_count   = 0;
     g_time_ps           = 0;
@@ -194,19 +187,12 @@ void vdp_cartridge_init(void)
     g_phase             = -1;
     g_write_on_posedge  = 0;
     g_debug_enabled     = 0;
-    g_mark_enabled      = 1;
+    g_mark_enabled      = 0;
     g_end_align_enabled = 0;
 
-    /* Clear VRAM model */
     memset(g_vram, 0, sizeof(g_vram));
 
-    /* Initial eval/dump at t=0 */
     eval_and_dump_current_time();
-
-    if (g_mark_enabled) {
-        fprintf(stderr, "MARK: INIT time=%" PRIu64 " clk=%d slot_clk=%d\n",
-                g_time_ps, g_clk, g_slot_clk);
-    }
 }
 
 void vdp_cartridge_release(void)
@@ -217,11 +203,7 @@ void vdp_cartridge_release(void)
     g_top = nullptr;
 }
 
-/* Simple reset sequence:
- * - hold slot_reset_n low for N cycles
- * - then high for N cycles
- * (Here N is fixed small; tb.sv uses repeat(10) before/after)
- */
+/* Simple reset sequence */
 void vdp_cartridge_reset(void)
 {
     if (!g_top) return;
@@ -277,7 +259,7 @@ void vdp_cartridge_set_mark_enabled(int enable)
 }
 
 /* -------------------------------------------------------------------------
- * SDRAM <-> VRAM functional bridge (simple, timing-agnostic)
+ * SDRAM <-> VRAM functional bridge (timing-agnostic)
  * -------------------------------------------------------------------------*/
 void vdp_cartridge_dram_write(uint32_t addr, uint32_t data, uint8_t mask)
 {
@@ -307,119 +289,107 @@ size_t vdp_cartridge_get_vram_size(void)
     return VRAM_WORD_COUNT * sizeof(uint32_t);
 }
 
+/* Functional SDRAM model: watch DUT SDRAM pins and mirror to g_vram */
 void vdp_cartridge_sdram_bus_eval(void)
 {
     if (!g_top) return;
 
-    uint32_t bus_addr = g_top->O_sdram_addr;
-    uint32_t bus_ba   = g_top->O_sdram_ba;
-    uint32_t bus_address = (bus_ba << 11) | bus_addr;
-    uint32_t wdata    = g_top->IO_sdram_dq;
-    uint8_t  wmask    = g_top->O_sdram_dqm;
+    uint32_t addr      = g_top->O_sdram_addr;
+    uint32_t ba        = g_top->O_sdram_ba;
+    uint32_t full_addr = (ba << 11) | addr;
+
+    uint32_t wdata = g_top->IO_sdram_dq;
+    uint8_t  dqm   = g_top->O_sdram_dqm;
 
     uint8_t cs_n  = g_top->O_sdram_cs_n;
     uint8_t ras_n = g_top->O_sdram_ras_n;
     uint8_t cas_n = g_top->O_sdram_cas_n;
     uint8_t we_n  = g_top->O_sdram_wen_n;
 
-    /* Very rough SDRAM write approximation: capture data on write command */
-    if ((cs_n == 0) && (ras_n == 1) && (cas_n == 0) && (we_n == 0)) {
-        vram_write_word(bus_address, wdata, wmask);
+    // Simplified SDRAM command decode:
+    // WRITE: Cs_n=0, Ras_n=1, Cas_n=0, We_n=0
+    // READ : Cs_n=0, Ras_n=1, Cas_n=0, We_n=1
+    bool is_write_cmd = (cs_n == 0 && ras_n == 1 && cas_n == 0 && we_n == 0);
+    bool is_read_cmd  = (cs_n == 0 && ras_n == 1 && cas_n == 0 && we_n == 1);
+
+    if (is_write_cmd) {
+        vram_write_word(full_addr, wdata, dqm);
+    } else if (is_read_cmd) {
+        uint32_t rdata = vram_read_word(full_addr);
+        // NOTE: in real SDRAM this would be delayed by CAS latency.
+        g_top->IO_sdram_dq = rdata;
     }
 }
 
 /* -------------------------------------------------------------------------
- * write_io: approximate tb.sv's write_io timing in a simple half-cycle schedule
+ * write_io: generate Z80-like I/O timing in half-cycle units
  * -------------------------------------------------------------------------*/
-static inline int ns_to_halfs_ceil(int ns)
+
+// one full main clock cycle = 2 half-cycles
+static inline void step_full_cycle(void)
 {
-    if (ns <= 0) return 0;
-    uint64_t ns_ps = (uint64_t)ns * 1000ULL;
-    return (int)((ns_ps + HALF_CYCLE_PS - 1ULL) / HALF_CYCLE_PS);
+    vdp_cartridge_step_clk_posedge();
+    vdp_cartridge_step_clk_negedge();
 }
 
 void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
 {
     if (!g_top) return;
 
-    if (!g_write_on_posedge) {
-        fprintf(stderr,
-                "vdp_cartridge_write_io: negedge-mode not implemented; enable posedge mode.\n");
-        return;
-    }
+    // ざっくり half-cycle 数（ModelSim の ns 計測から多めにマージン）
+    const int H_ADDR_SETUP = 30;  // addr/data セット後、/WR アサートまで
+    const int H_WR_WIDTH   = 40;  // /WR=0 の期間
+    const int H_IORQ_DELAY = 4;   // /WR↑ から /IORQ↓ まで
+    const int H_IORQ_WIDTH = 8;   // /IORQ=0 の期間
+    const int H_RECOVERY   = 16;  // サイクル後のリカバリ
 
-    if (g_mark_enabled) {
-        fprintf(stderr,
-                "MARK: WRITE_START addr=0x%02x data=0x%02x time=%" PRIu64
-                " clk=%d slot_clk=%d phase=%d\n",
-                address & 0xFF, wdata, g_time_ps, g_clk, g_slot_clk, g_phase);
-    }
-
-    /* Translate tb.sv delays into half-cycle indices */
-    const int t_addr_ns          = 170;
-    const int t_wr_assert_ns     = 125;
-    const int t_iorq_assert_ns   = 135;
-    const int t_wr_deassert_ns   = 120;
-    const int t_iorq_deassert_ns = 145;
-
-    int addr_half        = ns_to_halfs_ceil(t_addr_ns);
-    int wr_assert_half   = ns_to_halfs_ceil(t_wr_assert_ns);
-    int iorq_assert_half = ns_to_halfs_ceil(t_iorq_assert_ns);
-    int wr_deassert_half   = wr_assert_half   + ns_to_halfs_ceil(t_wr_deassert_ns);
-    int iorq_deassert_half = iorq_assert_half + ns_to_halfs_ceil(t_iorq_deassert_ns);
-
-    int total_halfs = iorq_deassert_half;
-    if (wr_deassert_half > total_halfs) total_halfs = wr_deassert_half;
-    if (addr_half        > total_halfs) total_halfs = addr_half;
-    total_halfs += 8;  // slack after deassert
-
-    /* Prepare idle state */
+    // idle state
     g_top->slot_iorq_n      = 1;
     g_top->slot_wr_n        = 1;
-    g_top->cpu_ff_slot_data = wdata;
+    g_top->slot_rd_n        = 1;
+    g_top->slot_data_dir    = 1;    // input
     g_top->cpu_drive_en     = 0;
     g_top->slot_a           = 0;
+    g_top->cpu_ff_slot_data = 0;
 
-    /* For determinism: each transaction starts and ends at clk==0 (low) */
-    if (g_clk != 0) {
-        vdp_cartridge_step_clk_negedge();
+    // 1. アドレス & データをセット、バスドライブ ON
+    g_top->slot_a           = (uint8_t)(address & 0xFF);
+    g_top->cpu_ff_slot_data = wdata;
+    g_top->slot_data_dir    = 0;     // output to slot
+    g_top->cpu_drive_en     = 1;
+
+    for (int h = 0; h < H_ADDR_SETUP; ++h) {
+        step_full_cycle();
     }
 
-    for (int h = 0; h < total_halfs; ++h) {
-        /* Update bus signals at the beginning of this half-cycle */
-        if (h == addr_half) {
-            g_top->slot_a       = (uint8_t)(address & 0xFF);
-            g_top->cpu_drive_en = 1;
-        }
+    // 2. /WR, /IORQ をアサート（tb.sv と同様ほぼ同時でよい）
+    g_top->slot_wr_n   = 0;
+    g_top->slot_iorq_n = 0;
 
-        if (h == wr_assert_half)     g_top->slot_wr_n   = 0;
-        if (h == wr_deassert_half)   g_top->slot_wr_n   = 1;
-        if (h == iorq_assert_half)   g_top->slot_iorq_n = 0;
-        if (h == iorq_deassert_half) g_top->slot_iorq_n = 1;
-
-        /* Main clock: even half -> posedge, odd half -> negedge */
-        int level = (h & 1) ? 0 : 1;
-        if (level) {
-            vdp_cartridge_step_clk_posedge();
-        } else {
-            vdp_cartridge_step_clk_negedge();
-        }
+    for (int h = 0; h < H_WR_WIDTH; ++h) {
+        step_full_cycle();
     }
 
-    /* After the schedule, ensure we end at clk==0 (low) */
-    if (g_clk != 0) {
-        vdp_cartridge_step_clk_negedge();
+    // 3. /WR を先に戻す
+    g_top->slot_wr_n = 1;
+
+    for (int h = 0; h < H_IORQ_DELAY; ++h) {
+        step_full_cycle();
     }
 
-    /* Stop driving the bus */
-    g_top->cpu_drive_en = 0;
+    // 4. /IORQ を戻す
+    g_top->slot_iorq_n = 1;
 
-    if (g_mark_enabled) {
-        fprintf(stderr,
-                "MARK: WRITE_END addr=0x%02x data=0x%02x time=%" PRIu64
-                " clk=%d slot_clk=%d phase=%d slot_a=0x%02x slot_d=0x%02x\n",
-                address & 0xFF, wdata, g_time_ps, g_clk, g_slot_clk, g_phase,
-                (int)g_top->slot_a, (int)g_top->slot_d);
+    for (int h = 0; h < H_IORQ_WIDTH; ++h) {
+        step_full_cycle();
+    }
+
+    // 5. バス開放＋リカバリ
+    g_top->cpu_drive_en  = 0;
+    g_top->slot_data_dir = 1;  // input
+
+    for (int h = 0; h < H_RECOVERY; ++h) {
+        step_full_cycle();
     }
 }
 
