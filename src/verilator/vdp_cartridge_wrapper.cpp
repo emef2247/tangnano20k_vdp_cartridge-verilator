@@ -135,10 +135,9 @@ static inline void step_halfcycle(int level)
                 g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
     }
 
-	vdp_cartridge_vram_bus_eval();
+    vdp_cartridge_vram_bus_eval();
     eval_and_dump_current_time();
     g_time_ps += HALF_CYCLE_PS;
-	
 }
 
 /* Convenience wrappers for posedge / negedge */
@@ -441,33 +440,90 @@ uint8_t vdp_cartridge_get_slot_wait(void)
     return g_top->slot_wait ? 1 : 0;
 }
 
+/* -------------------------------------------------------------------------
+ * dbg_vram_* bridge
+ * -------------------------------------------------------------------------*/
 void vdp_cartridge_vram_bus_eval(void)
 {
     if (!g_top) return;
 
-    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit
+    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit word address想定
     uint32_t wdata    = g_top->dbg_vram_wdata;
     uint8_t  valid    = g_top->dbg_vram_valid;
     uint8_t  write    = g_top->dbg_vram_write;
-    uint8_t  rdata_en = g_top->dbg_vram_rdata_en;
+    uint8_t  rdata_en = g_top->dbg_vram_rdata_en; // 画面側では 0 かもしれない
 
     if (!valid) return;
 
-    // アドレスをワード単位に解釈（SCREEN5 なら 18bit で 256Kbytes=64Kwords 相当）
-    uint32_t word_addr = addr18;  // 必要なら >>2 などに調整
+    uint32_t word_addr = addr18;
 
     if (write) {
-        // 全ビット書き込み（本当にマスクしたければコマンド側から mask を出す）
         if (word_addr < VRAM_WORD_COUNT) {
             g_vram[word_addr] = wdata;
         }
     } else {
-        if (rdata_en) {
-            uint32_t rdata = 0;
-            if (word_addr < VRAM_WORD_COUNT) {
-                rdata = g_vram[word_addr];
-            }
-            g_top->dbg_vram_rdata = rdata;
+        uint32_t rdata = 0;
+        if (word_addr < VRAM_WORD_COUNT) {
+            rdata = g_vram[word_addr];
+        }
+        g_top->dbg_vram_rdata = rdata;
+
+        // --- デバッグログ: 先頭ページだけ軽く見る ---
+        // 多量に出るので、必要に応じて if (g_debug_enabled) でガードしてください。
+        if (word_addr < 0x0800) {
+            fprintf(stderr,
+                    "[VRAM-R] t=%" PRIu64 "ps addr=%05x data=%08x sel=%d bg=%d spr=%d cpu=%d cmd=%d\n",
+                    g_time_ps,
+                    word_addr,
+                    rdata,
+                    (int)g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1,
+                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 1),
+                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 2),
+                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 3),
+                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 4));
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------
+ * Video helpers
+ * -------------------------------------------------------------------------*/
+void vdp_render_frame_rgb(uint8_t* dst, int pitch)
+{
+    if (!g_top || !dst) return;
+
+    VdpVideoMode mode;
+    vdp_get_video_mode(&mode);
+    const int W = mode.width;
+    const int H = mode.height;
+
+    int x = 0;
+    int y = 0;
+
+    bool logged = false;
+
+    while (y < H) {
+        vdp_cartridge_step_clk_1cycle();
+
+        if (!g_top->display_en) continue;
+
+        uint8_t r = g_top->display_r;
+        uint8_t g = g_top->display_g;
+        uint8_t b = g_top->display_b;
+
+        if (!logged && y < 4 && x < 16) {
+            fprintf(stderr, "[PIX] y=%3d x=%3d rgb=%02x%02x%02x\n", y, x, r, g, b);
+            if (y == 3 && x == 15) logged = true;
+        }
+
+        uint8_t* p = dst + y * pitch + x * 3;
+        p[0] = r;
+        p[1] = g;
+        p[2] = b;
+
+        if (++x >= W) {
+            x = 0;
+            ++y;
         }
     }
 }

@@ -58,6 +58,22 @@ uint8_t vdp_cartridge_get_slot_wait(void);
 // vram_interface 直結版
 void vdp_cartridge_vram_bus_eval(void);
 
+/* -------------------------------------------------------------------------
+ * Video output helpers (for openMSX / tests)
+ * -------------------------------------------------------------------------*/
+
+typedef struct {
+    int width;
+    int height;
+} VdpVideoMode;
+
+// 現在の画面サイズを返す（当面 SCREEN5 前提で 256x212 固定）
+void vdp_get_video_mode(VdpVideoMode* out);
+
+// VDP の display_* 出力から 1フレームぶんの RGB を取得
+// dst: height 行 × pitch バイト, 1ピクセル=RGB(3バイト)
+void vdp_render_frame_rgb(uint8_t* dst, int pitch);
+
 #ifdef __cplusplus
 }
 #endif

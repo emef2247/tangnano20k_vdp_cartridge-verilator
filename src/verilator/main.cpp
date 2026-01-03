@@ -4,14 +4,16 @@
 // - Uses vdp_cartridge_wrapper.* API
 // - Replays the same sequence of VDP register and VRAM writes as tb.sv
 // - Generates a single VCD (dump.vcd) for waveform inspection
-// - Additionally, dumps VRAM as PGM images after the display is running
+// - Additionally:
+//   * dumps VRAM as PGM images after the display is running
+//   * dumps final RGB frames from VDP display_* as PPM images
 
 #include <iostream>
 #include <cstdlib>
 #include <cstdint>
 #include <cstdio>
 #include <inttypes.h>
-
+#include <vector> 
 #include "vdp_cartridge_wrapper.h"
 
 static void step_cycles(int cycles)
@@ -57,6 +59,37 @@ static void dump_vram_as_pgm(const char* filename)
             line[2 * bx + 1] = static_cast<uint8_t>(right * 17);
         }
         std::fwrite(line, 1, W, fp);
+    }
+
+    std::fclose(fp);
+    std::fprintf(stderr, "[dump] wrote %s\n", filename);
+}
+
+// VDP display_* 出力から 1フレーム分の RGB を PPM にダンプ
+static void dump_display_as_ppm(const char* filename)
+{
+    VdpVideoMode mode;
+    vdp_get_video_mode(&mode);
+
+    const int W = mode.width;
+    const int H = mode.height;
+    const int pitch = W * 3;
+
+    std::vector<uint8_t> buf(static_cast<size_t>(pitch) * H);
+
+    // 1フレーム分のピクセルを取得
+    vdp_render_frame_rgb(buf.data(), pitch);
+
+    FILE* fp = std::fopen(filename, "wb");
+    if (!fp) {
+        std::fprintf(stderr, "Failed to open %s for write\n", filename);
+        return;
+    }
+
+    // PPM (binary P6)
+    std::fprintf(fp, "P6\n%d %d\n255\n", W, H);
+    for (int y = 0; y < H; ++y) {
+        std::fwrite(buf.data() + static_cast<size_t>(y) * pitch, 1, pitch, fp);
     }
 
     std::fclose(fp);
@@ -191,23 +224,27 @@ int main(int argc, char** argv)
     write_io(vdp_io0, 15);
 
     // --------------------------------------------------------------------
-    // Let the display run for a while and dump VRAM as PGM
+    // Let the display run and dump VRAM / RGB frames
     // --------------------------------------------------------------------
-    std::cout << "[main] Run display and dump VRAM\n";
+    std::cout << "[main] Run display and dump VRAM / RGB frames\n";
 
     // ある程度回してからダンプ
-    step_cycles(1368 * 16 * 10);  // 約10行事ぶんだけ先に回す（適当でOK）
+    step_cycles(1368 * 16 * 10);  // 適当なウォームアップ
 
     const int NUM_FRAMES_TO_DUMP = 3;
     for (int f = 0; f < NUM_FRAMES_TO_DUMP; ++f) {
-        char fname[64];
-        std::snprintf(fname, sizeof(fname), "frame_%03d.pgm", f);
-        dump_vram_as_pgm(fname);
+        char fname_pgm[64];
+        char fname_ppm[64];
+        std::snprintf(fname_pgm, sizeof(fname_pgm), "frame_%03d.pgm", f);
+        std::snprintf(fname_ppm, sizeof(fname_ppm), "frame_rgb_%03d.ppm", f);
 
-        std::printf("[main] Dumped %s at sim_time=%" PRIu64 " ps\n",
-                    fname, vdp_cartridge_get_sim_time());
+        dump_vram_as_pgm(fname_pgm);
+        dump_display_as_ppm(fname_ppm);
 
-        // 次の「フレーム相当」まで少し進める（ここも適当でOK。後で VSYNC ベースに置き換え可能）
+        std::printf("[main] Dumped %s and %s at sim_time=%" PRIu64 " ps\n",
+                    fname_pgm, fname_ppm, vdp_cartridge_get_sim_time());
+
+        // 次の「フレーム相当」まで少し進める
         step_cycles(1368 * 16 * 10);
     }
 

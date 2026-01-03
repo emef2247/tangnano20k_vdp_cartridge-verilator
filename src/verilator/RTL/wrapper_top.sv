@@ -70,6 +70,14 @@ module wrapper_top (
     input  [7:0]     cpu_ff_slot_data,
     input            cpu_drive_en,
 
+	// Raw video output from VDP core (for Verilator / openMSX)
+    output           display_hs,
+    output           display_vs,
+    output           display_en,
+    output [7:0]     display_r,
+    output [7:0]     display_g,
+    output [7:0]     display_b,
+	
     // Debug VRAM bus exported to C++ wrapper
     output [17:0] dbg_vram_address,
     output [31:0] dbg_vram_wdata,
@@ -116,7 +124,16 @@ module wrapper_top (
         .O_sdram_addr       (O_sdram_addr),
         .O_sdram_ba         (O_sdram_ba),
         .O_sdram_dqm        (O_sdram_dqm),
-        // new debug VRAM ports
+
+        // new video taps
+        .display_hs   (display_hs),
+        .display_vs   (display_vs),
+        .display_en   (display_en),
+        .display_r    (display_r),
+        .display_g    (display_g),
+        .display_b    (display_b),
+		
+        // debug VRAM ports
         .dbg_vram_address   (dbg_vram_address),
         .dbg_vram_wdata     (dbg_vram_wdata),
         .dbg_vram_rdata     (dbg_vram_rdata),

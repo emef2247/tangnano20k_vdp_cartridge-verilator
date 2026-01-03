@@ -14,6 +14,7 @@ VERILOG_SRCS = \
 	$(RTL)/wrapper_top.sv \
 	$(MOD)/ip_sdram_tangnano20k_c.v \
 	$(MOD)/ip_sdram.v \
+	$(MOD)/vdp_vram_interface.v \
 	$(VPATH)/test_top_SCREEN5_SP2/dummy.v \
 	$(VPATH)/msx_slot/msx_slot.v \
 	$(VPATH)/th9958/vdp_upscan_line_buffer.v \
@@ -30,7 +31,6 @@ VERILOG_SRCS = \
 	$(VPATH)/th9958/vdp_timing_control_screen_mode.v \
 	$(VPATH)/th9958/vdp_timing_control_sprite.v \
 	$(VPATH)/th9958/vdp_timing_control.v \
-	$(VPATH)/th9958/vdp_vram_interface.v \
 	$(VPATH)/th9958/vdp_cpu_interface.v \
 	$(VPATH)/th9958/vdp_color_palette_ram.v \
 	$(MOD)/vdp_color_palette.v \
