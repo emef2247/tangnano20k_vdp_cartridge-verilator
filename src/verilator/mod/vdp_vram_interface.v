@@ -1,71 +1,73 @@
 //
-//	vdp_vram_interface.v
-//	VRAM Interface for VDP
+//  vdp_vram_interface.v
+//  VRAM Interface for VDP
 //
-//	Copyright (C) 2025 Takayuki Hara
+//  Copyright (C) 2025 Takayuki Hara
 //
-//	本ソフトウェアおよび本ソフトウェアに基づいて作成された派生物は、以下の条件を
-//	満たす場合に限り、再頒布および使用が許可されます。
+//  本ソフトウェアおよび本ソフトウェアに基づいて作成された派生物は、以下の条件を
+//  満たす場合に限り、再頒布および使用が許可されます。
 //
-//	1.ソースコード形式で再頒布する場合、上記の著作権表示、本条件一覧、および下記
-//	  免責条項をそのままの形で保持すること。
-//	2.バイナリ形式で再頒布する場合、頒布物に付属のドキュメント等の資料に、上記の
-//	  著作権表示、本条件一覧、および下記免責条項を含めること。
-//	3.書面による事前の許可なしに、本ソフトウェアを販売、および商業的な製品や活動
-//	  に使用しないこと。
+//  1.ソースコード形式で再頒布する場合、上記の著作権表示、本条件一覧、および下記
+//    免責条項をそのままの形で保持すること。
+//  2.バイナリ形式で再頒布する場合、頒布物に付属のドキュメント等の資料に、上記の
+//    著作権表示、本条件一覧、および下記免責条項を含めること。
+//  3.書面による事前の許可なしに、本ソフトウェアを販売、および商業的な製品や活動
+//    に使用しないこと。
 //
-//	本ソフトウェアは、著作権者によって「現状のまま」提供されています。著作権者は、
-//	特定目的への適合性の保証、商品性の保証、またそれに限定されない、いかなる明示
-//	的もしくは暗黙な保証責任も負いません。著作権者は、事由のいかんを問わず、損害
-//	発生の原因いかんを問わず、かつ責任の根拠が契約であるか厳格責任であるか（過失
-//	その他の）不法行為であるかを問わず、仮にそのような損害が発生する可能性を知ら
-//	されていたとしても、本ソフトウェアの使用によって発生した（代替品または代用サ
-//	ービスの調達、使用の喪失、データの喪失、利益の喪失、業務の中断も含め、またそ
-//	れに限定されない）直接損害、間接損害、偶発的な損害、特別損害、懲罰的損害、ま
-//	たは結果損害について、一切責任を負わないものとします。
+//  本ソフトウェアは、著作権者によって「現状のまま」提供されています。著作権者は、
+//  特定目的への適合性の保証、商品性の保証、またそれに限定されない、いかなる明示
+//  的もしくは暗黙な保証責任も負いません。著作権者は、事由のいかんを問わず、損害
+//  発生の原因いかんを問わず、かつ責任の根拠が契約であるか厳格責任であるか（過失
+//  その他の）不法行為であるかを問わず、仮にそのような損害が発生する可能性を知ら
+//  されていたとしても、本ソフトウェアの使用によって発生した（代替品または代用サ
+//  ービスの調達、使用の喪失、データの喪失、利益の喪失、業務の中断も含め、またそ
+//  れに限定されない）直接損害、間接損害、偶発的な損害、特別損害、懲罰的損害、ま
+//  たは結果損害について、一切責任負わないものとします。
 //
-//	Note that above Japanese version license is the formal document.
-//	The following translation is only for reference.
+//  Note that above Japanese version license is the formal document.
+//  The following translation is only for reference.
 //
-//	Redistribution and use of this software or any derivative works,
-//	are permitted provided that the following conditions are met:
+//  Redistribution and use of this software or any derivative works,
+//  are permitted provided that the following conditions are met:
 //
-//	1. Redistributions of source code must retain the above copyright
-//	   notice, this list of conditions and the following disclaimer.
-//	2. Redistributions in binary form must reproduce the above
-//	   copyright notice, this list of conditions and the following
-//	   disclaimer in the documentation and/or other materials
-//	   provided with the distribution.
-//	3. Redistributions may not be sold, nor may they be used in a
-//	   commercial product or activity without specific prior written
-//	   permission.
+//  1. Redistributions of source code must retain the above copyright
+//     notice, this list of conditions and the following disclaimer.
+//  2. Redistributions in binary form must reproduce the above
+//     copyright notice, this list of conditions and the following
+//     disclaimer in the documentation and/or other materials
+//     provided with the distribution.
+//  3. Redistributions may not be sold, nor may they be used in a
+//     commercial product or activity without specific prior written
+//     permission.
 //
-//	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-//	"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-//	LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-//	FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-//	COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-//	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-//	BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-//	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-//	CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-//	LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-//	ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-//	POSSIBILITY OF SUCH DAMAGE.
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+//  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+//  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+//  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+//  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+//  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+//  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+//  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+//  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+//  POSSIBILITY OF SUCH DAMAGE.
 //
 //-----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// [Mod] Verilator-only copy of vdp_vram_interface
-// - Based on RTL/th9958/vdp_vram_interface.v
-// - Behaviorally identical for write-side
-// - Read-side data capture is simplified for functional VRAM model:
-//     * Uses (vram_valid && !vram_write) as "read data valid" condition
-//     * Does NOT rely on vram_rdata_en (which in the original comes from SDRAM)
-//   This allows dbg_vram_rdata (driven from C++ wrapper) to be seen by the
-//   VDP core without needing a full SDRAM timing model.
 //
-// Original license and comments are preserved where possible.
-// -----------------------------------------------------------------------------
+// [Mod] Verilator-only copy of vdp_vram_interface
+//  - Based on RTL/th9958/vdp_vram_interface.v
+//  - Behaviorally identical for write-side
+//  - Read-side data capture is restored to use vram_rdata_en as the
+//    "read data valid" signal, like the original SDRAM-based design.
+//    For Verilator, vram_rdata/vram_rdata_en are driven by the C++
+//    wrapper (functional VRAM model with a small fixed latency).
+//  - Additionally, vram_rdata is first captured into ff_vram_rdata_q
+//    when vram_rdata_en is asserted, to avoid simulator-order
+//    differences.
+//
+//  Additional [VERILATOR] debug prints have been added to trace VRAM reads.
+//-----------------------------------------------------------------------------
 
 module vdp_vram_interface (
     input               reset_n,
@@ -107,10 +109,11 @@ module vdp_vram_interface (
     output      [31:0]  vram_wdata,
     output      [3:0]   vram_wdata_mask,
     input       [31:0]  vram_rdata,
-    input               vram_rdata_en,     // kept for compatibility, not used in Verilator simplification
+    input               vram_rdata_en,
     input               pre_vram_refresh,
     output              vram_refresh
 );
+
     localparam          c_idle      = 3'd0;
     localparam          c_bg        = 3'd1;
     localparam          c_sprite    = 3'd2;
@@ -129,8 +132,10 @@ module vdp_vram_interface (
     reg                 ff_vram_write;
     reg         [31:0]  ff_vram_wdata;
     reg         [3:0]   ff_vram_wdata_mask;
+
     reg         [2:0]   ff_vram_rdata_sel;
     reg         [2:0]   ff_vram_rdata_sel_d1;
+
     wire        [7:0]   w_rdata8;
     reg         [31:0]  ff_screen_mode_vram_rdata;
     reg         [31:0]  ff_sprite_vram_rdata;
@@ -145,9 +150,12 @@ module vdp_vram_interface (
     reg                 ff_vram_refresh_pulse;
     wire                w_vram_refresh;
 
+    // Registered copy of vram_rdata; updated only when vram_rdata_en=1
+    reg         [31:0]  ff_vram_rdata_q;
+
     assign w_vram_refresh       = pre_vram_refresh | ff_vram_refresh;
-    assign is_access_timming_a  = (h_count == c_timming_a) ? 1'b1 : 1'b0;  // g123m, g4567, sprite, vdp-command
-    assign is_access_timming_b  = (h_count == c_timming_b) ? 1'b1 : 1'b0;  // cpu, vdp-command
+    assign is_access_timming_a  = (h_count == c_timming_a) ? 1'b1 : 1'b0;
+    assign is_access_timming_b  = (h_count == c_timming_b) ? 1'b1 : 1'b0;
 
     // --------------------------------------------------------------------
     //  Priority selector
@@ -188,7 +196,6 @@ module vdp_vram_interface (
             ff_vram_refresh <= 1'b0;
         end
         else if (pre_vram_refresh) begin
-            // c_timming_a
             ff_vram_refresh <= 1'b1;
         end
         else if ((h_count == c_timming_a) && !ff_vram_refresh_pulse) begin
@@ -201,7 +208,6 @@ module vdp_vram_interface (
             ff_vram_refresh_pulse <= 1'b0;
         end
         else if (pre_vram_refresh) begin
-            // c_timming_a
             ff_vram_refresh_pulse <= 1'b1;
         end
         else begin
@@ -214,12 +220,16 @@ module vdp_vram_interface (
     assign w_screen_mode_vram_address = vram_interleave ? { screen_mode_vram_address[17], screen_mode_vram_address[0], screen_mode_vram_address[16:1] } : screen_mode_vram_address;
     assign w_command_vram_address     = command_vram_address; // VDP Command は内部でインターリーブ処理
 
+    // --------------------------------------------------------------------
+    //  アドレス・ライトバス生成
+    // --------------------------------------------------------------------
     always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
-            ff_vram_address <= 18'd0;
-            ff_vram_valid   <= 1'b0;
-            ff_vram_write   <= 1'b0;
-            ff_vram_wdata   <= 8'd0;
+            ff_vram_address     <= 18'd0;
+            ff_vram_valid       <= 1'b0;
+            ff_vram_write       <= 1'b0;
+            ff_vram_wdata       <= 32'd0;
+            ff_vram_wdata_mask  <= 4'd0;
         end
         else if (ff_vram_valid) begin
             ff_vram_valid <= 1'b0;
@@ -229,16 +239,18 @@ module vdp_vram_interface (
                 ff_vram_valid <= 1'b0;
             end
             else if (sprite_vram_valid) begin
-                ff_vram_address <= w_sprite_vram_address;
-                ff_vram_valid   <= 1'b1;
-                ff_vram_write   <= 1'b0;
-                ff_vram_wdata   <= 8'd0;
+                ff_vram_address     <= w_sprite_vram_address;
+                ff_vram_valid       <= 1'b1;
+                ff_vram_write       <= 1'b0;
+                ff_vram_wdata       <= 32'd0;
+                ff_vram_wdata_mask  <= 4'b0000;
             end
             else if (screen_mode_vram_valid) begin
-                ff_vram_address <= w_screen_mode_vram_address;
-                ff_vram_valid   <= 1'b1;
-                ff_vram_write   <= 1'b0;
-                ff_vram_wdata   <= 8'd0;
+                ff_vram_address     <= w_screen_mode_vram_address;
+                ff_vram_valid       <= 1'b1;
+                ff_vram_write       <= 1'b0;
+                ff_vram_wdata       <= 32'd0;
+                ff_vram_wdata_mask  <= 4'b0000;
             end
             else if (!w_vram_refresh) begin
                 if (cpu_vram_valid && is_access_timming_b) begin
@@ -264,12 +276,15 @@ module vdp_vram_interface (
         end
     end
 
-    assign cpu_vram_ready    = is_access_timming_b ? ~w_vram_refresh : 1'b0;
+    assign cpu_vram_ready     = is_access_timming_b ? ~w_vram_refresh : 1'b0;
     assign command_vram_ready =
           w_vram_refresh      ? 1'b0 :
           is_access_timming_a ? ~(screen_mode_vram_valid | sprite_vram_valid) :
           is_access_timming_b ? ~cpu_vram_valid : 1'b0;
 
+    // --------------------------------------------------------------------
+    //  Read-data byte selector
+    // --------------------------------------------------------------------
     function [7:0] func_rdata_sel(
         input   [1:0]  address,
         input   [31:0] rdata
@@ -285,11 +300,11 @@ module vdp_vram_interface (
         end
     endfunction
 
-    assign w_rdata8 = func_rdata_sel(ff_vram_byte_sel, vram_rdata);
+    assign w_rdata8 = func_rdata_sel(ff_vram_byte_sel, ff_vram_rdata_q);
 
     always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
-            ff_vram_rdata_sel_d1 <= 2'd0;
+            ff_vram_rdata_sel_d1 <= 3'd0;
             ff_vram_byte_sel     <= 2'd0;
         end
         else if (h_count == c_timming_a || h_count == c_timming_b) begin
@@ -299,10 +314,21 @@ module vdp_vram_interface (
     end
 
     // --------------------------------------------------------------------
-    //  Read data capture (Verilator simplification)
-    //  - Original RTL: capture only when vram_rdata_en == 1
-    //  - Here: treat any (vram_valid && !ff_vram_write) as having valid
-    //    read data in vram_rdata on the next cycle (sdRAM latency ignored).
+    //  vram_rdata のパイプライン取り込み (vram_rdata_en に同期)
+    // --------------------------------------------------------------------
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            ff_vram_rdata_q <= 32'd0;
+        end
+        else if (vram_rdata_en) begin
+            // SDRAM/functional VRAM model asserts vram_rdata_en when
+            // vram_rdata is valid for the last issued read.
+            ff_vram_rdata_q <= vram_rdata;
+        end
+    end
+
+    // --------------------------------------------------------------------
+    //  Read data capture (vram_rdata_en ベース)
     // --------------------------------------------------------------------
     always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
@@ -314,14 +340,18 @@ module vdp_vram_interface (
             ff_command_vram_rdata     <= 32'd0;
             ff_command_vram_rdata_en  <= 1'b0;
         end
-        else if (vram_valid && !ff_vram_write) begin
-            // read access
+        else if (vram_rdata_en) begin
+            // read access: vram_rdata_q holds the value for the last access
             case (ff_vram_rdata_sel_d1)
             c_bg: begin
-                ff_screen_mode_vram_rdata <= vram_rdata;
+                ff_screen_mode_vram_rdata <= ff_vram_rdata_q;
+`ifdef VERILATOR
+                $display("[VRAM-BG-LATCH] t=%0t addr=%05x data=%08x",
+                         $time, ff_vram_address, ff_vram_rdata_q);
+`endif
             end
             c_sprite: begin
-                ff_sprite_vram_rdata  <= vram_rdata;
+                ff_sprite_vram_rdata  <= ff_vram_rdata_q;
                 ff_sprite_vram_rdata8 <= w_rdata8;
             end
             c_cpu: begin
@@ -329,8 +359,11 @@ module vdp_vram_interface (
                 ff_cpu_vram_rdata_en <= 1'b1;
             end
             c_command: begin
-                ff_command_vram_rdata    <= vram_rdata;
+                ff_command_vram_rdata    <= ff_vram_rdata_q;
                 ff_command_vram_rdata_en <= 1'b1;
+            end
+            default: begin
+                // c_idle などは特に何もしない
             end
             endcase
         end
@@ -354,4 +387,44 @@ module vdp_vram_interface (
     assign vram_wdata             = ff_vram_wdata;
     assign vram_wdata_mask        = ff_vram_wdata_mask;
     assign vram_refresh           = ff_vram_refresh_pulse;
+
+    // --------------------------------------------------------------------
+    // [VERILATOR] Debug logging
+    // --------------------------------------------------------------------
+`ifdef VERILATOR
+    integer dbg_cnt_if;
+    integer dbg_cnt_scr;
+
+    initial begin
+        dbg_cnt_if  = 0;
+        dbg_cnt_scr = 0;
+    end
+
+    // screen_mode 用の rdata をキャプチャしたタイミング
+    always @(posedge clk) begin
+        if (vram_rdata_en && (ff_vram_rdata_sel_d1 == c_bg)) begin
+            if (dbg_cnt_scr < 256) begin
+                $display("[VRAM-SCR] t=%0t addr=%05x rdata=%08x",
+                         $time, ff_vram_address, ff_vram_rdata_q);
+                dbg_cnt_scr = dbg_cnt_scr + 1;
+            end
+        end
+    end
+
+    // vram_interface 全体での最終 rdata セレクト状況
+    always @(posedge clk) begin
+        if (vram_rdata_en) begin
+            if (dbg_cnt_if < 256) begin
+                $display("[VRAM-IF] t=%0t sel=%0d byte_sel=%0d addr=%05x rdata=%08x",
+                         $time,
+                         ff_vram_rdata_sel_d1,
+                         ff_vram_byte_sel,
+                         ff_vram_address,
+                         ff_vram_rdata_q);
+                dbg_cnt_if = dbg_cnt_if + 1;
+            end
+        end
+    end
+`endif
+
 endmodule

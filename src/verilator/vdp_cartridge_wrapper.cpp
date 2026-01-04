@@ -1,10 +1,22 @@
+// vdp_cartridge_wrapper.cpp
+// C++ wrapper around Verilated Vwrapper_top (tangnano20k_vdp_cartridge)
+//
+// - Provides a simple cycle-based API for driving the MSX slot bus
+//   and observing the VDP cartridge behavior.
+// - Implements a functional VRAM model (g_vram) that mirrors the
+//   internal VDP VRAM bus exposed as dbg_vram_* ports.
+// - NEW: Generates vram_rdata_en behaviorally compatible with the
+//   original SDRAM controller, so that vdp_vram_interface can use
+//   vram_rdata_en as the "read data valid" signal, like in ModelSim.
 // src/verilator/vdp_cartridge_wrapper.cpp
 // Clean wrapper for tangnano20k_vdp_cartridge:
 // - Single, centralized clock/time model
 // - Main clock ≒ 85.90908 MHz (VDP internal clock)
 // - slot_clk is an integer divider of the main clock (for visibility only)
 // - write_io() generates Z80-like I/O write cycles in half-cycle units
-// - SDRAM is modeled as a simple functional VRAM array (timing ignored)
+// - SDRAM is modeled as a simple functional VRAM array
+// - [VERILATOR MOD] dbg_vram_rdata_en を生成し、vram_rdata_en 相当の
+//   タイミングを再現するための簡易パイプラインを追加
 
 #include "vdp_cartridge_wrapper.h"
 #include "Vwrapper_top.h"
@@ -43,10 +55,6 @@ static uint64_t g_time_ps    = 0;
 static uint64_t g_last_dump  = (uint64_t)-1;
 
 /* slot clock: purely derived, visible in VCD, does NOT drive DUT logic */
-/* 12 main half-cycles per slot half-period
- * → 24 main half-cycles per slot full period
- * → f_slot ≈ 85.90908 MHz / 24 ≈ 3.5795 MHz
- */
 static uint8_t  g_slot_clk         = 0;
 static int64_t  g_halfcycle_count  = 0;
 static const int SLOT_HALF_COUNT   = 12;
@@ -65,7 +73,7 @@ static int g_write_on_posedge = 0;
 static int g_end_align_enabled = 0;
 
 /* -------------------------------------------------------------------------
- * Helpers: SDRAM model (simple functional model)
+ * Helpers: SDRAM / VRAM model
  * -------------------------------------------------------------------------*/
 static void vram_write_word(uint32_t addr, uint32_t data, uint8_t mask)
 {
@@ -86,6 +94,58 @@ static uint32_t vram_read_word(uint32_t addr)
 }
 
 /* -------------------------------------------------------------------------
+ * VRAM read pipeline for dbg_vram_rdata_en
+ * -------------------------------------------------------------------------
+ * - vdp_vram_interface から見ると、SDRAM の ip_sdram と同じように
+ *   「read 要求から数サイクル後に vram_rdata_en が立つ」ように見せたい。
+ * - ここでは簡単のため固定 2 ステージのパイプラインを使う。
+ *   （half-cycle 単位で 2 ステップ遅延）
+ * - 1 サイクルに 1 リクエストという前提なら十分。
+ * -------------------------------------------------------------------------*/
+typedef struct {
+    uint8_t  valid;
+    uint32_t addr;
+} VramReadReq;
+
+static const int VRAM_RD_LATENCY = 2;   // half-cycle 単位のステージ数
+static VramReadReq g_rd_pipe[VRAM_RD_LATENCY];
+
+static void vram_read_pipe_reset(void)
+{
+    for (int i = 0; i < VRAM_RD_LATENCY; ++i) {
+        g_rd_pipe[i].valid = 0;
+        g_rd_pipe[i].addr  = 0;
+    }
+}
+
+static void vram_read_pipe_push(uint32_t addr)
+{
+    g_rd_pipe[VRAM_RD_LATENCY-1].valid = 1;
+    g_rd_pipe[VRAM_RD_LATENCY-1].addr  = addr;
+}
+
+static void vram_read_pipe_step(void)
+{
+    // シフト
+    for (int i = 0; i < VRAM_RD_LATENCY-1; ++i) {
+        g_rd_pipe[i] = g_rd_pipe[i+1];
+    }
+    g_rd_pipe[VRAM_RD_LATENCY-1].valid = 0;
+
+    // デフォルト
+    g_top->dbg_vram_rdata    = 0;
+    g_top->dbg_vram_rdata_en = 0;
+
+    // ステージ0が「今サイクルの read データ」
+    if (g_rd_pipe[0].valid) {
+        uint32_t a = g_rd_pipe[0].addr;
+        uint32_t d = (a < VRAM_WORD_COUNT) ? g_vram[a] : 0;
+        g_top->dbg_vram_rdata    = d;
+        g_top->dbg_vram_rdata_en = 1;
+    }
+}
+
+/* -------------------------------------------------------------------------
  * Centralized eval + trace dump at current g_time_ps (no time advance)
  * -------------------------------------------------------------------------*/
 static inline void eval_and_dump_current_time(void)
@@ -103,6 +163,37 @@ static inline void eval_and_dump_current_time(void)
 #else
     (void)g_tfp;
 #endif
+}
+
+/* -------------------------------------------------------------------------
+ * dbg_vram_* bridge
+ * -------------------------------------------------------------------------*/
+void vdp_cartridge_vram_bus_eval(void)
+{
+    if (!g_top) return;
+
+    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit word address想定
+    uint32_t wdata    = g_top->dbg_vram_wdata;
+    uint8_t  valid    = g_top->dbg_vram_valid;
+    uint8_t  write    = g_top->dbg_vram_write;
+
+    // read パイプラインを 1 ステップ進めつつ、今サイクルの dbg_vram_rdata(+_en) を生成
+    vram_read_pipe_step();
+
+    if (valid) {
+        uint32_t word_addr = addr18;
+
+        if (write) {
+            if (word_addr < VRAM_WORD_COUNT) {
+                g_vram[word_addr] = wdata;
+            }
+        } else {
+            // read 要求をパイプラインに投入
+            vram_read_pipe_push(word_addr);
+        }
+    }
+
+    // （デバッグログは必要ならここで）
 }
 
 /* -------------------------------------------------------------------------
@@ -135,6 +226,7 @@ static inline void step_halfcycle(int level)
                 g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
     }
 
+    // VRAM バス処理 → DUT 評価
     vdp_cartridge_vram_bus_eval();
     eval_and_dump_current_time();
     g_time_ps += HALF_CYCLE_PS;
@@ -192,6 +284,7 @@ void vdp_cartridge_init(void)
     g_end_align_enabled = 0;
 
     memset(g_vram, 0, sizeof(g_vram));
+    vram_read_pipe_reset();
 
     eval_and_dump_current_time();
 }
@@ -261,7 +354,7 @@ void vdp_cartridge_set_mark_enabled(int enable)
 }
 
 /* -------------------------------------------------------------------------
- * SDRAM <-> VRAM functional bridge (timing-agnostic)
+ * SDRAM <-> VRAM functional bridge (まだ使っていないが残しておく)
  * -------------------------------------------------------------------------*/
 void vdp_cartridge_dram_write(uint32_t addr, uint32_t data, uint8_t mask)
 {
@@ -291,36 +384,10 @@ size_t vdp_cartridge_get_vram_size(void)
     return VRAM_WORD_COUNT * sizeof(uint32_t);
 }
 
-/* Functional SDRAM model: watch DUT SDRAM pins and mirror to g_vram */
 void vdp_cartridge_sdram_bus_eval(void)
 {
-    if (!g_top) return;
-
-    uint32_t addr      = g_top->O_sdram_addr;
-    uint32_t ba        = g_top->O_sdram_ba;
-    uint32_t full_addr = (ba << 11) | addr;
-
-    uint32_t wdata = g_top->IO_sdram_dq;
-    uint8_t  dqm   = g_top->O_sdram_dqm;
-
-    uint8_t cs_n  = g_top->O_sdram_cs_n;
-    uint8_t ras_n = g_top->O_sdram_ras_n;
-    uint8_t cas_n = g_top->O_sdram_cas_n;
-    uint8_t we_n  = g_top->O_sdram_wen_n;
-
-    // Simplified SDRAM command decode:
-    // WRITE: Cs_n=0, Ras_n=1, Cas_n=0, We_n=0
-    // READ : Cs_n=0, Ras_n=1, Cas_n=0, We_n=1
-    bool is_write_cmd = (cs_n == 0 && ras_n == 1 && cas_n == 0 && we_n == 0);
-    bool is_read_cmd  = (cs_n == 0 && ras_n == 1 && cas_n == 0 && we_n == 1);
-
-    if (is_write_cmd) {
-        vram_write_word(full_addr, wdata, dqm);
-    } else if (is_read_cmd) {
-        uint32_t rdata = vram_read_word(full_addr);
-        // NOTE: in real SDRAM this would be delayed by CAS latency.
-        g_top->IO_sdram_dq = rdata;
-    }
+    // 現在は dbg_vram_* で VRAM をモデル化しているので未使用。
+    // オリジナル ip_sdram の検証用に残してあるだけ。
 }
 
 /* -------------------------------------------------------------------------
@@ -446,7 +513,6 @@ uint8_t vdp_cartridge_get_slot_wait(void)
  * -------------------------------------------------------------------------*/
 
 // Temporary: fixed SCREEN5 timing (256x212).
-// Later we can read reg_screen_mode etc. from the DUT.
 void vdp_get_video_mode(VdpVideoMode* out)
 {
     if (!out) return;
@@ -455,59 +521,7 @@ void vdp_get_video_mode(VdpVideoMode* out)
 }
 
 /* -------------------------------------------------------------------------
- * dbg_vram_* bridge
- * -------------------------------------------------------------------------*/
-void vdp_cartridge_vram_bus_eval(void)
-{
-    if (!g_top) return;
-
-    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit word address想定
-    uint32_t wdata    = g_top->dbg_vram_wdata;
-    uint8_t  valid    = g_top->dbg_vram_valid;
-    uint8_t  write    = g_top->dbg_vram_write;
-    uint8_t  rdata_en = g_top->dbg_vram_rdata_en; // 画面側では 0 かもしれない
-
-	// vram_interface 内部の BG 取り込みレジスタを直接見る
-    uint32_t bg_rdata = g_top->wrapper_top__DOT__u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_screen_mode_vram_rdata;
-    static int bg_log_count = 0;
-    if (bg_log_count < 128 && bg_rdata != 0) {
-        fprintf(stderr,
-                "[BG-RDATA] t=%" PRIu64 "ps ff_screen_mode_vram_rdata=%08x\n",
-                g_time_ps, bg_rdata);
-        ++bg_log_count;
-    }
-	
-    uint32_t word_addr = addr18;
-    if (write) {
-        if (word_addr < VRAM_WORD_COUNT) {
-            g_vram[word_addr] = wdata;
-        }
-    } else {
-        uint32_t rdata = 0;
-        if (word_addr < VRAM_WORD_COUNT) {
-            rdata = g_vram[word_addr];
-        }
-        g_top->dbg_vram_rdata = rdata;
-
-        // --- デバッグログ: 先頭ページだけ軽く見る ---
-		if (word_addr < 0x4000) {  // 例: 0x0000〜0x3fff だけ見る
-			uint8_t sel = g_top
-				->wrapper_top__DOT__u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1;
-
-			// BG(screen) 読み出しだけに限定
-			if (sel == 1) {
-				fprintf(stderr,
-						"[VRAM-R BG] t=%" PRIu64 "ps addr=%05x data=%08x\n",
-						g_time_ps,
-						word_addr,
-						rdata);
-			}
-		}
-    }
-}
-
-/* -------------------------------------------------------------------------
- * Video helpers
+ * Video frame capture
  * -------------------------------------------------------------------------*/
 void vdp_render_frame_rgb(uint8_t* dst, int pitch)
 {
@@ -524,7 +538,9 @@ void vdp_render_frame_rgb(uint8_t* dst, int pitch)
     bool logged = false;
 
     while (y < H) {
-        vdp_cartridge_step_clk_1cycle();
+        // 1 main cycle = posedge + negedge
+        vdp_cartridge_step_clk_posedge();
+        vdp_cartridge_step_clk_negedge();
 
         if (!g_top->display_en) continue;
 

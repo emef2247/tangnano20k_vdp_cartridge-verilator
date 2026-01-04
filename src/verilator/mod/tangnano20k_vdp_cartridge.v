@@ -283,9 +283,11 @@ module tangnano20k_vdp_cartridge (
 	// [MOD] For functional/Verilator use, feed VRAM read data from dbg_vram_rdata.
 	// In a pure RTL/FPGA build, dbg_vram_rdata would typically be tied to w_sdram_rdata
 	// or left unconnected. For Verilator, the C++ wrapper will drive dbg_vram_rdata.
-	// assign w_vram_rdata				= dbg_vram_rdata;
-	assign w_vram_rdata				= w_sdram_rdata;
-
+`ifdef VERILATOR
+  assign w_vram_rdata = dbg_vram_rdata;
+`else
+  assign w_vram_rdata = w_sdram_rdata;
+`endif
 
 	// --------------------------------------------------------------------
 	//	HDMI

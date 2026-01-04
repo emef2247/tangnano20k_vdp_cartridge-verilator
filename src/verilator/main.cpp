@@ -16,6 +16,16 @@
 #include <vector>
 #include "vdp_cartridge_wrapper.h"
 
+
+// ----------------------------------------------------------------------
+// Workaround: some generated Verilator code still calls sc_time_stamp(),
+// which is a SystemC API. Provide a dummy implementation so linking
+// succeeds; we don't rely on this time value anywhere.
+// ----------------------------------------------------------------------
+double sc_time_stamp() {
+    return 0.0;
+}
+
 static void step_cycles(int cycles)
 {
     for (int i = 0; i < cycles; ++i) {
