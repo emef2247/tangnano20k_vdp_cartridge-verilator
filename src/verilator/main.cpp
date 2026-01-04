@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <inttypes.h>
-#include <vector> 
+#include <vector>
 #include "vdp_cartridge_wrapper.h"
 
 static void step_cycles(int cycles)
@@ -125,6 +125,20 @@ int main(int argc, char** argv)
         step_cycles(1);
     }
     step_cycles(10);
+	
+	// Reset sequence (元のまま)
+	step_cycles(10);
+	vdp_cartridge_reset();
+	step_cycles(10);
+
+	std::cout << "[main] Wait initialization (slot_wait deassert)\n";
+	while (vdp_cartridge_get_slot_wait() == 1) {
+		step_cycles(1);
+	}
+	step_cycles(10);
+	step_cycles(1000);  // 追加
+
+
 
     // --------------------------------------------------------------------
     // Constants (same as tb.sv)
@@ -182,7 +196,7 @@ int main(int argc, char** argv)
     // --------------------------------------------------------------------
     std::cout << "[main] Write VRAM pattern (SCREEN5)\n";
 
-    // VRAM 0x00000 ... 0x07FFF = 0x00 (setup)
+    // VRAM 0x00000 ... 0x07FFF = 0x00
     write_io(vdp_io1, 0x00);
     write_io(vdp_io1, 0x8E);
     write_io(vdp_io1, 0x00);
@@ -191,8 +205,23 @@ int main(int argc, char** argv)
     const int vram_words = 128 * 32;  // 4096
     for (int i = 0; i < vram_words; ++i) {
         write_io(vdp_io0, static_cast<uint8_t>(i & 0xFF));
-        step_cycles(4);  // small deterministic delay
+        step_cycles(4);  // deterministic small delay
     }
+
+    // --- R#14 / second VRAM base setup (tb.sv 相当を追加) ----------------
+    //
+    // tb.sv:
+    //   write_io( vdp_io1, 8'h01 );
+    //   write_io( vdp_io1, 8'h8E );
+    //   write_io( vdp_io1, 8'h00 );
+    //   write_io( vdp_io1, 8'h76 );
+    //
+    // → R#14 = 1, MA14..MA0 = 0x07600 (sprite attribute table base)
+    std::cout << "[main] SCREEN5: set R#14 for SAT base\n";
+    write_io(vdp_io1, 0x01);
+    write_io(vdp_io1, 0x8E);
+    write_io(vdp_io1, 0x00);
+    write_io(vdp_io1, 0x76);
 
     // --------------------------------------------------------------------
     // Sprite plane setup (mirror tb.sv lines 524–551)
@@ -229,7 +258,7 @@ int main(int argc, char** argv)
     std::cout << "[main] Run display and dump VRAM / RGB frames\n";
 
     // ある程度回してからダンプ
-    step_cycles(1368 * 16 * 10);  // 適当なウォームアップ
+    step_cycles(1368 * 16 * 10);  // ウォームアップ
 
     const int NUM_FRAMES_TO_DUMP = 3;
     for (int f = 0; f < NUM_FRAMES_TO_DUMP; ++f) {

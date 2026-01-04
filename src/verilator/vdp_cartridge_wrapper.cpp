@@ -224,6 +224,7 @@ void vdp_cartridge_reset(void)
     }
 }
 
+
 /* -------------------------------------------------------------------------
  * Simple setters / getters
  * -------------------------------------------------------------------------*/
@@ -441,6 +442,19 @@ uint8_t vdp_cartridge_get_slot_wait(void)
 }
 
 /* -------------------------------------------------------------------------
+ * Video helpers
+ * -------------------------------------------------------------------------*/
+
+// Temporary: fixed SCREEN5 timing (256x212).
+// Later we can read reg_screen_mode etc. from the DUT.
+void vdp_get_video_mode(VdpVideoMode* out)
+{
+    if (!out) return;
+    out->width  = 256;
+    out->height = 212;
+}
+
+/* -------------------------------------------------------------------------
  * dbg_vram_* bridge
  * -------------------------------------------------------------------------*/
 void vdp_cartridge_vram_bus_eval(void)
@@ -453,10 +467,17 @@ void vdp_cartridge_vram_bus_eval(void)
     uint8_t  write    = g_top->dbg_vram_write;
     uint8_t  rdata_en = g_top->dbg_vram_rdata_en; // 画面側では 0 かもしれない
 
-    if (!valid) return;
-
+	// vram_interface 内部の BG 取り込みレジスタを直接見る
+    uint32_t bg_rdata = g_top->wrapper_top__DOT__u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_screen_mode_vram_rdata;
+    static int bg_log_count = 0;
+    if (bg_log_count < 128 && bg_rdata != 0) {
+        fprintf(stderr,
+                "[BG-RDATA] t=%" PRIu64 "ps ff_screen_mode_vram_rdata=%08x\n",
+                g_time_ps, bg_rdata);
+        ++bg_log_count;
+    }
+	
     uint32_t word_addr = addr18;
-
     if (write) {
         if (word_addr < VRAM_WORD_COUNT) {
             g_vram[word_addr] = wdata;
@@ -469,19 +490,19 @@ void vdp_cartridge_vram_bus_eval(void)
         g_top->dbg_vram_rdata = rdata;
 
         // --- デバッグログ: 先頭ページだけ軽く見る ---
-        // 多量に出るので、必要に応じて if (g_debug_enabled) でガードしてください。
-        if (word_addr < 0x0800) {
-            fprintf(stderr,
-                    "[VRAM-R] t=%" PRIu64 "ps addr=%05x data=%08x sel=%d bg=%d spr=%d cpu=%d cmd=%d\n",
-                    g_time_ps,
-                    word_addr,
-                    rdata,
-                    (int)g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1,
-                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 1),
-                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 2),
-                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 3),
-                    (int)(g_top->u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1 == 4));
-        }
+		if (word_addr < 0x4000) {  // 例: 0x0000〜0x3fff だけ見る
+			uint8_t sel = g_top
+				->wrapper_top__DOT__u_dut__DOT__u_v9958__DOT__u_vram_interface__DOT__ff_vram_rdata_sel_d1;
+
+			// BG(screen) 読み出しだけに限定
+			if (sel == 1) {
+				fprintf(stderr,
+						"[VRAM-R BG] t=%" PRIu64 "ps addr=%05x data=%08x\n",
+						g_time_ps,
+						word_addr,
+						rdata);
+			}
+		}
     }
 }
 
