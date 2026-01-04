@@ -162,45 +162,60 @@ module vdp_color_palette (
 	reg					ff_display_color_sprite_en;
 	reg					ff_display_color_screen_mode_en;
 
-	// --------------------------------------------------------------------
-	//	Palette initializer
-	// --------------------------------------------------------------------
-	always @( posedge clk or negedge reset_n ) begin
-		if( !reset_n ) begin
-			ff_palette_num	<= 9'd0;
-			ff_palette_r	<= 5'd0;
-			ff_palette_g	<= 5'd0;
-			ff_palette_b	<= 5'd0;
-		end
-		else if( ff_palette_num[8] == 1'b0 ) begin
-			case( ff_palette_num[3:0] )
-			4'd0:	begin ff_palette_r <= { 5'b00000 }; ff_palette_b <= { 5'b00000 }; ff_palette_g <= { 5'b00000 }; end	//	color#1
-			4'd1:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b11011 }; end	//	color#2
-			4'd2:	begin ff_palette_r <= { 5'b01101 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b11111 }; end	//	color#3
-			4'd3:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b00100 }; end	//	color#4
-			4'd4:	begin ff_palette_r <= { 5'b01001 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b01101 }; end	//	color#5
-			4'd5:	begin ff_palette_r <= { 5'b10110 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b00100 }; end	//	color#6
-			4'd6:	begin ff_palette_r <= { 5'b01001 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b11011 }; end	//	color#7
-			4'd7:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b00100 }; end	//	color#8
-			4'd8:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b01101 }; end	//	color#9
-			4'd9:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b11011 }; end	//	color#10
-			4'd10:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b11011 }; end	//	color#11
-			4'd11:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b10010 }; end	//	color#12
-			4'd12:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b10110 }; ff_palette_g <= { 5'b01001 }; end	//	color#13
-			4'd13:	begin ff_palette_r <= { 5'b10110 }; ff_palette_b <= { 5'b10110 }; ff_palette_g <= { 5'b10110 }; end	//	color#14
-			4'd14:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b11111 }; end	//	color#15
-			4'd15:	begin ff_palette_r <= { 5'b00000 }; ff_palette_b <= { 5'b00000 }; ff_palette_g <= { 5'b00000 }; end	//	initialize
-			endcase
-			ff_palette_num <= ff_palette_num + 9'd1;
-		end
-	end
+    // --------------------------------------------------------------------
+    //  Palette initializer
+    // --------------------------------------------------------------------
+    reg [8:0] next_palette_num;
 
-	assign w_palette_valid	= ff_palette_num[8] ? palette_valid : 1'b1;
-	assign w_palette_num	= ff_palette_num[8] ? palette_num : ff_palette_num[7:0];
-	assign w_palette_r		= ff_palette_num[8] ? palette_r : ff_palette_r;
-	assign w_palette_g		= ff_palette_num[8] ? palette_g : ff_palette_g;
-	assign w_palette_b		= ff_palette_num[8] ? palette_b : ff_palette_b;
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            // 非同期リセット時は即 0 に戻す
+            ff_palette_num <= 9'd0;
+            ff_palette_r   <= 5'd0;
+            ff_palette_g   <= 5'd0;
+            ff_palette_b   <= 5'd0;
+            next_palette_num <= 9'd0;
+        end
+        else begin
+            // デフォルトでは「そのまま」
+            next_palette_num <= ff_palette_num;
 
+            if (ff_palette_num[8] == 1'b0) begin
+                // ff_palette_num の「現在値」を見て R/G/B を決める
+                case (ff_palette_num[3:0])
+                    4'd0:  begin ff_palette_r <= 5'b00000; ff_palette_b <= 5'b00000; ff_palette_g <= 5'b00000; end // color#1
+                    4'd1:  begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b11011; end // color#2
+                    4'd2:  begin ff_palette_r <= 5'b01101; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b11111; end // color#3
+                    4'd3:  begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b00100; end // color#4
+                    4'd4:  begin ff_palette_r <= 5'b01001; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b01101; end // color#5
+                    4'd5:  begin ff_palette_r <= 5'b10110; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b00100; end // color#6
+                    4'd6:  begin ff_palette_r <= 5'b01001; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b11011; end // color#7
+                    4'd7:  begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b00100; end // color#8
+                    4'd8:  begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b01101; end // color#9
+                    4'd9:  begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b11011; end // color#10
+                    4'd10: begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b11011; end // color#11
+                    4'd11: begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b10010; end // color#12
+                    4'd12: begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b10110; ff_palette_g <= 5'b01001; end // color#13
+                    4'd13: begin ff_palette_r <= 5'b10110; ff_palette_b <= 5'b10110; ff_palette_g <= 5'b10110; end // color#14
+                    4'd14: begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b11111; end // color#15
+                    4'd15: begin ff_palette_r <= 5'b00000; ff_palette_b <= 5'b00000; ff_palette_g <= 5'b00000; end // initialize
+                endcase
+
+                // 次のクロックで ff_palette_num を 1 進める
+                next_palette_num <= ff_palette_num + 9'd1;
+            end
+
+            // カウンタ本体は「次状態」をノンブロッキングで受け取る
+            ff_palette_num <= next_palette_num;
+        end
+    end
+
+    assign w_palette_valid = ff_palette_num[8] ? palette_valid : 1'b1;
+    assign w_palette_num   = ff_palette_num[8] ? palette_num   : ff_palette_num[7:0];
+    assign w_palette_r     = ff_palette_num[8] ? palette_r     : ff_palette_r;
+    assign w_palette_g     = ff_palette_num[8] ? palette_g     : ff_palette_g;
+    assign w_palette_b     = ff_palette_num[8] ? palette_b     : ff_palette_b;
+	
 	// --------------------------------------------------------------------
 	//	Pixel delay (screen_pos_x = 0)
 	// --------------------------------------------------------------------
