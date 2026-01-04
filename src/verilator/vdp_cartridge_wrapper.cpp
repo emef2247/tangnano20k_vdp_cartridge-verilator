@@ -107,7 +107,7 @@ typedef struct {
     uint32_t addr;
 } VramReadReq;
 
-static const int VRAM_RD_LATENCY = 2;   // half-cycle 単位のステージ数
+static const int VRAM_RD_LATENCY = 2;   // half-cycle 単位の遅延
 static VramReadReq g_rd_pipe[VRAM_RD_LATENCY];
 
 static void vram_read_pipe_reset(void)
@@ -126,23 +126,29 @@ static void vram_read_pipe_push(uint32_t addr)
 
 static void vram_read_pipe_step(void)
 {
-    // シフト
-    for (int i = 0; i < VRAM_RD_LATENCY-1; ++i) {
-        g_rd_pipe[i] = g_rd_pipe[i+1];
-    }
-    g_rd_pipe[VRAM_RD_LATENCY-1].valid = 0;
-
-    // デフォルト
+    // 1. 今サイクルの既定値
     g_top->dbg_vram_rdata    = 0;
     g_top->dbg_vram_rdata_en = 0;
 
-    // ステージ0が「今サイクルの read データ」
+    // 2. ステージ0が「今サイクルの read データ」
     if (g_rd_pipe[0].valid) {
         uint32_t a = g_rd_pipe[0].addr;
         uint32_t d = (a < VRAM_WORD_COUNT) ? g_vram[a] : 0;
         g_top->dbg_vram_rdata    = d;
         g_top->dbg_vram_rdata_en = 1;
+
+        if (g_debug_enabled) {
+            fprintf(stderr,
+                    "[VRAM-DATA] t=%" PRIu64 "ps addr=%05x data=%08x\n",
+                    g_time_ps, a, d);
+        }
     }
+
+    // 3. パイプラインを 1 段シフト（前に詰める）
+    for (int i = 0; i < VRAM_RD_LATENCY - 1; ++i) {
+        g_rd_pipe[i] = g_rd_pipe[i + 1];
+    }
+    g_rd_pipe[VRAM_RD_LATENCY - 1].valid = 0;
 }
 
 /* -------------------------------------------------------------------------
@@ -172,14 +178,19 @@ void vdp_cartridge_vram_bus_eval(void)
 {
     if (!g_top) return;
 
-    uint32_t addr18   = g_top->dbg_vram_address;  // 18bit word address想定
-    uint32_t wdata    = g_top->dbg_vram_wdata;
-    uint8_t  valid    = g_top->dbg_vram_valid;
-    uint8_t  write    = g_top->dbg_vram_write;
+    // 1. DUT から現在の dbg_vram_* を読み取る
+    uint32_t addr18 = g_top->dbg_vram_address;
+    uint32_t wdata  = g_top->dbg_vram_wdata;
+    uint8_t  valid  = g_top->dbg_vram_valid;
+    uint8_t  write  = g_top->dbg_vram_write;
 
-    // read パイプラインを 1 ステップ進めつつ、今サイクルの dbg_vram_rdata(+_en) を生成
-    vram_read_pipe_step();
+    if (g_debug_enabled) {
+        fprintf(stderr,
+                "[VRAM-BUS] t=%" PRIu64 "ps valid=%d write=%d addr=%05x\n",
+                g_time_ps, valid, write, addr18);
+    }
 
+    // 2. 今サイクル分の要求をパイプ末尾に登録
     if (valid) {
         uint32_t word_addr = addr18;
 
@@ -187,13 +198,25 @@ void vdp_cartridge_vram_bus_eval(void)
             if (word_addr < VRAM_WORD_COUNT) {
                 g_vram[word_addr] = wdata;
             }
+            if (g_debug_enabled) {
+                fprintf(stderr,
+                        "[VRAM-WR ] t=%" PRIu64 "ps addr=%05x data=%08x\n",
+                        g_time_ps, word_addr, wdata);
+            }
         } else {
-            // read 要求をパイプラインに投入
-            vram_read_pipe_push(word_addr);
+            // read 要求を一度だけキュー
+            g_rd_pipe[VRAM_RD_LATENCY - 1].valid = 1;
+            g_rd_pipe[VRAM_RD_LATENCY - 1].addr  = word_addr;
+            if (g_debug_enabled) {
+                fprintf(stderr,
+                        "[VRAM-REQ] t=%" PRIu64 "ps addr=%05x (enqueue)\n",
+                        g_time_ps, word_addr);
+            }
         }
     }
 
-    // （デバッグログは必要ならここで）
+    // 3. 旧リクエストの結果を出力しつつパイプラインを進める
+    vram_read_pipe_step();
 }
 
 /* -------------------------------------------------------------------------

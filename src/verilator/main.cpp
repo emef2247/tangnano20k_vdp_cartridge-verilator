@@ -114,7 +114,7 @@ int main(int argc, char** argv)
     // Init / trace
     // --------------------------------------------------------------------
     vdp_cartridge_init();
-    vdp_cartridge_set_debug(0);
+    vdp_cartridge_set_debug(1);
     vdp_cartridge_set_write_on_posedge(1);  // use tb.sv-like write_io
     vdp_cartridge_set_end_align(0);         // we handle phase in write_io
     vdp_cartridge_trace_open("dump.vcd");
@@ -206,17 +206,33 @@ int main(int argc, char** argv)
     // --------------------------------------------------------------------
     std::cout << "[main] Write VRAM pattern (SCREEN5)\n";
 
-    // VRAM 0x00000 ... 0x07FFF = 0x00
+    VRAM 0x00000 ... 0x07FFF = 0x00
     write_io(vdp_io1, 0x00);
     write_io(vdp_io1, 0x8E);
     write_io(vdp_io1, 0x00);
     write_io(vdp_io1, 0x40);
-
+	
     const int vram_words = 128 * 32;  // 4096
     for (int i = 0; i < vram_words; ++i) {
         write_io(vdp_io0, static_cast<uint8_t>(i & 0xFF));
         step_cycles(4);  // deterministic small delay
     }
+
+
+
+	const int vram_words = 128 * 32;  // 4096
+	for (int i = 0; i < vram_words; ++i) {
+		uint8_t val = static_cast<uint8_t>(i & 0xFF);
+
+		// 元の VDP 経由の書き込み
+		write_io(vdp_io0, val);
+		step_cycles(4);  // deterministic small delay
+
+		// ★ C++ 側 VRAM (g_vram) にも同じパターンを書き込む
+		uint32_t word_addr = static_cast<uint32_t>(i);  // 単純に 1 word = 1 ステップと仮定
+		uint32_t data32    = 0x01010101u * val;         // 4 バイト同じ値で埋める
+		vdp_cartridge_dram_write(word_addr, data32, 0x0); // mask=0 -> 全バイト書く
+	}
 
     // --- R#14 / second VRAM base setup (tb.sv 相当を追加) ----------------
     //

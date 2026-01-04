@@ -285,6 +285,7 @@ module tangnano20k_vdp_cartridge (
 	// or left unconnected. For Verilator, the C++ wrapper will drive dbg_vram_rdata.
 `ifdef VERILATOR
   assign w_vram_rdata = dbg_vram_rdata;
+  assign w_vram_rdata_en  = dbg_vram_rdata_en;
 `else
   assign w_vram_rdata = w_sdram_rdata;
 `endif
