@@ -114,10 +114,10 @@ int main(int argc, char** argv)
     // Init / trace
     // --------------------------------------------------------------------
     vdp_cartridge_init();
-    vdp_cartridge_set_debug(1);
+    vdp_cartridge_set_debug(0);
     vdp_cartridge_set_write_on_posedge(1);  // use tb.sv-like write_io
     vdp_cartridge_set_end_align(0);         // we handle phase in write_io
-    vdp_cartridge_trace_open("dump.vcd");
+    vdp_cartridge_set_vcd_enabled(0, "dump.vcd"); // VCD is disabled at the beginning of the simualtion 
 
     // Inputs
     vdp_cartridge_set_button(0);
@@ -206,20 +206,11 @@ int main(int argc, char** argv)
     // --------------------------------------------------------------------
     std::cout << "[main] Write VRAM pattern (SCREEN5)\n";
 
-    VRAM 0x00000 ... 0x07FFF = 0x00
     write_io(vdp_io1, 0x00);
     write_io(vdp_io1, 0x8E);
     write_io(vdp_io1, 0x00);
     write_io(vdp_io1, 0x40);
 	
-    const int vram_words = 128 * 32;  // 4096
-    for (int i = 0; i < vram_words; ++i) {
-        write_io(vdp_io0, static_cast<uint8_t>(i & 0xFF));
-        step_cycles(4);  // deterministic small delay
-    }
-
-
-
 	const int vram_words = 128 * 32;  // 4096
 	for (int i = 0; i < vram_words; ++i) {
 		uint8_t val = static_cast<uint8_t>(i & 0xFF);

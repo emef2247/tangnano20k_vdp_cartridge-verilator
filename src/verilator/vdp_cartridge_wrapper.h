@@ -48,6 +48,8 @@ void vdp_cartridge_set_end_align(int enable);
 /* VCD トレース制御 */
 int  vdp_cartridge_trace_open(const char* path); /* returns 0 on success, -1 on failure */
 void vdp_cartridge_trace_close(void);
+int vdp_cartridge_set_vcd_enabled(int enable, const char* path);
+int vdp_cartridge_is_vcd_enabled(void);
 
 /* シミュレーション時刻取得 (ps 単位) */
 uint64_t vdp_cartridge_get_sim_time(void);

@@ -270,6 +270,32 @@ void vdp_cartridge_step_clk_negedge(void)
     step_halfcycle(0);
 }
 
+/* Runtime helpers: set/get VCD enable */
+int vdp_cartridge_set_vcd_enabled(int enable, const char* path)
+{
+    if (!g_top) {
+        fprintf(stderr, "vdp_cartridge_set_vcd_enabled: g_top not initialized\n");
+        return -1;
+    }
+
+    if (enable) {
+        /* Open trace if not already open */
+        if (g_tfp) return 0;
+        return vdp_cartridge_trace_open(path);
+    } else {
+        /* Close trace if open */
+        if (g_tfp) {
+            vdp_cartridge_trace_close();
+        }
+        return 0;
+    }
+}
+
+int vdp_cartridge_is_vcd_enabled(void)
+{
+    return g_tfp ? 1 : 0;
+}
+
 /* -------------------------------------------------------------------------
  * Public API: init / release / reset
  * -------------------------------------------------------------------------*/
