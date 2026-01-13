@@ -60,6 +60,10 @@ uint8_t vdp_cartridge_get_slot_wait(void);
 // vram_interface 直結版
 void vdp_cartridge_vram_bus_eval(void);
 
+void vdp_cartridge_set_dump_screen(int enable);
+void vdp_cartridge_set_dump_frame_no(uint64_t frame_no);
+uint64_t vdp_cartridge_get_frame_no(void);
+
 /* -------------------------------------------------------------------------
  * Video output helpers (for openMSX / tests)
  * -------------------------------------------------------------------------*/

@@ -1,0 +1,4245 @@
+// Converted test pattern (auto-generated)
+// address variable holds VDP target address; initialized to current log state
+ADDRESS,0xa900
+INFO,"frame=80 time=180 port=0x99 value=0xac"
+CYCLE,720
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=180 reg=0x2c val=0x03"
+INFO,"frame=80 time=564 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=750 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=750 reg=0x2e val=0x70"
+INFO,"frame=80 time=1008 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=1194 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=1194 reg=0x0f val=0x02"
+INFO,"frame=80 time=1566 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=1752 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=1752 reg=0x0f val=0x00"
+INFO,"frame=80 time=1938 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=2124 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=2124 reg=0x0f val=0x02"
+INFO,"frame=80 time=2496 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=2682 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=2682 reg=0x0f val=0x00"
+INFO,"frame=80 time=2928 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=3114 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=3114 reg=0x0f val=0x02"
+INFO,"frame=80 time=3486 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=3672 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=3672 reg=0x0f val=0x00"
+INFO,"frame=80 time=3858 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=4044 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=4044 reg=0x0f val=0x02"
+INFO,"frame=80 time=4416 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=4602 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=4602 reg=0x0f val=0x00"
+INFO,"frame=80 time=4848 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=5034 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=5034 reg=0x0f val=0x02"
+INFO,"frame=80 time=5406 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=5592 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=5592 reg=0x0f val=0x00"
+INFO,"frame=80 time=5778 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=5964 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=5964 reg=0x0f val=0x02"
+INFO,"frame=80 time=6336 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=6522 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=6522 reg=0x0f val=0x00"
+INFO,"frame=80 time=6768 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=6954 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=6954 reg=0x0f val=0x02"
+INFO,"frame=80 time=7326 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=7512 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=7512 reg=0x0f val=0x00"
+INFO,"frame=80 time=7698 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=7884 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=7884 reg=0x0f val=0x02"
+INFO,"frame=80 time=8256 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=8442 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=8442 reg=0x0f val=0x00"
+INFO,"frame=80 time=8688 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=8874 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=8874 reg=0x0f val=0x02"
+INFO,"frame=80 time=9246 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=9432 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=9432 reg=0x0f val=0x00"
+INFO,"frame=80 time=9618 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=9804 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=9804 reg=0x0f val=0x02"
+INFO,"frame=80 time=10176 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=10362 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=10362 reg=0x0f val=0x00"
+INFO,"frame=80 time=10548 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=10734 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=10734 reg=0x0f val=0x02"
+INFO,"frame=80 time=11106 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=11292 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=11292 reg=0x0f val=0x00"
+INFO,"frame=80 time=11784 port=0x99 value=0x2e"
+CYCLE,1968
+INFO,"frame=80 time=11970 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42e,0xa4,0x2e
+INFO,"frame=80 time=11970 reg=0x24 val=0x2e"
+INFO,"frame=80 time=12240 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=12426 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=12426 reg=0x25 val=0x01"
+INFO,"frame=80 time=12732 port=0x99 value=0x02"
+CYCLE,1224
+INFO,"frame=80 time=12918 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=12918 reg=0x2c val=0x02"
+INFO,"frame=80 time=13224 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=13410 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=13410 reg=0x2e val=0x50"
+INFO,"frame=80 time=13668 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=13854 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=13854 reg=0x0f val=0x02"
+INFO,"frame=80 time=14226 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=14412 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=14412 reg=0x0f val=0x00"
+INFO,"frame=80 time=14838 port=0x99 value=0x2f"
+CYCLE,1704
+INFO,"frame=80 time=15024 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42f,0xa4,0x2f
+INFO,"frame=80 time=15024 reg=0x24 val=0x2f"
+INFO,"frame=80 time=15216 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=15402 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=15402 reg=0x25 val=0x01"
+INFO,"frame=80 time=15876 port=0x99 value=0x2d"
+CYCLE,1896
+INFO,"frame=80 time=16062 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82d,0xa8,0x2d
+INFO,"frame=80 time=16062 reg=0x28 val=0x2d"
+INFO,"frame=80 time=16254 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=16440 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=16440 reg=0x29 val=0x00"
+INFO,"frame=80 time=16896 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=17082 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=17082 reg=0x2c val=0x00"
+INFO,"frame=80 time=17466 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=17652 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=17652 reg=0x2e val=0x70"
+INFO,"frame=80 time=17904 port=0x99 value=0x02"
+CYCLE,1008
+INFO,"frame=80 time=18090 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=18090 reg=0x0f val=0x02"
+INFO,"frame=80 time=18462 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=18648 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=18648 reg=0x0f val=0x00"
+INFO,"frame=80 time=18834 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=19020 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=19020 reg=0x0f val=0x02"
+INFO,"frame=80 time=19392 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=19578 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=19578 reg=0x0f val=0x00"
+INFO,"frame=80 time=19824 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=20010 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=20010 reg=0x0f val=0x02"
+INFO,"frame=80 time=20382 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=20568 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=20568 reg=0x0f val=0x00"
+INFO,"frame=80 time=20754 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=20940 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=20940 reg=0x0f val=0x02"
+INFO,"frame=80 time=21312 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=21498 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=21498 reg=0x0f val=0x00"
+INFO,"frame=80 time=21744 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=21930 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=21930 reg=0x0f val=0x02"
+INFO,"frame=80 time=22302 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=22488 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=22488 reg=0x0f val=0x00"
+INFO,"frame=80 time=22674 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=22860 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=22860 reg=0x0f val=0x02"
+INFO,"frame=80 time=23232 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=23418 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=23418 reg=0x0f val=0x00"
+INFO,"frame=80 time=23910 port=0x99 value=0x5b"
+CYCLE,1968
+INFO,"frame=80 time=24096 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45b,0xa4,0x5b
+INFO,"frame=80 time=24096 reg=0x24 val=0x5b"
+INFO,"frame=80 time=24366 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=24552 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=24552 reg=0x25 val=0x01"
+INFO,"frame=80 time=24930 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=25116 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=25116 reg=0x2c val=0x02"
+INFO,"frame=80 time=25500 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=25686 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=25686 reg=0x2e val=0x50"
+INFO,"frame=80 time=25872 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=26058 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=26058 reg=0x0f val=0x02"
+INFO,"frame=80 time=26430 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=26616 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=26616 reg=0x0f val=0x00"
+INFO,"frame=80 time=27048 port=0x99 value=0x5c"
+CYCLE,1728
+INFO,"frame=80 time=27234 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45c,0xa4,0x5c
+INFO,"frame=80 time=27234 reg=0x24 val=0x5c"
+INFO,"frame=80 time=27504 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=27690 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=27690 reg=0x25 val=0x01"
+INFO,"frame=80 time=28242 port=0x99 value=0x2f"
+CYCLE,2208
+INFO,"frame=80 time=28428 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82f,0xa8,0x2f
+INFO,"frame=80 time=28428 reg=0x28 val=0x2f"
+INFO,"frame=80 time=28698 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=28884 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=28884 reg=0x29 val=0x00"
+INFO,"frame=80 time=29334 port=0x99 value=0x03"
+CYCLE,1800
+INFO,"frame=80 time=29520 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=29520 reg=0x2c val=0x03"
+INFO,"frame=80 time=29904 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=30090 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=30090 reg=0x2e val=0x70"
+INFO,"frame=80 time=30276 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=30462 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=30462 reg=0x0f val=0x02"
+INFO,"frame=80 time=30834 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=31020 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=31020 reg=0x0f val=0x00"
+INFO,"frame=80 time=31266 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=31452 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=31452 reg=0x0f val=0x02"
+INFO,"frame=80 time=31824 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=32010 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=32010 reg=0x0f val=0x00"
+INFO,"frame=80 time=32196 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=32382 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=32382 reg=0x0f val=0x02"
+INFO,"frame=80 time=32754 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=32940 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=32940 reg=0x0f val=0x00"
+INFO,"frame=80 time=33186 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=33372 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=33372 reg=0x0f val=0x02"
+INFO,"frame=80 time=33744 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=33930 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=33930 reg=0x0f val=0x00"
+INFO,"frame=80 time=34116 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=34302 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=34302 reg=0x0f val=0x02"
+INFO,"frame=80 time=34674 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=34860 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=34860 reg=0x0f val=0x00"
+INFO,"frame=80 time=35106 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=35292 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=35292 reg=0x0f val=0x02"
+INFO,"frame=80 time=35664 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=35850 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=35850 reg=0x0f val=0x00"
+INFO,"frame=80 time=36036 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=36222 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=36222 reg=0x0f val=0x02"
+INFO,"frame=80 time=36594 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=36780 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=36780 reg=0x0f val=0x00"
+INFO,"frame=80 time=37272 port=0x99 value=0x8a"
+CYCLE,1968
+INFO,"frame=80 time=37458 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa48a,0xa4,0x8a
+INFO,"frame=80 time=37458 reg=0x24 val=0x8a"
+INFO,"frame=80 time=37650 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=37836 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=37836 reg=0x25 val=0x01"
+INFO,"frame=80 time=38220 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=38406 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=38406 reg=0x2c val=0x02"
+INFO,"frame=80 time=38790 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=38976 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=38976 reg=0x2e val=0x50"
+INFO,"frame=80 time=39162 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=39348 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=39348 reg=0x0f val=0x02"
+INFO,"frame=80 time=39720 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=39906 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=39906 reg=0x0f val=0x00"
+INFO,"frame=80 time=40338 port=0x99 value=0x8b"
+CYCLE,1728
+INFO,"frame=80 time=40524 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa48b,0xa4,0x8b
+INFO,"frame=80 time=40524 reg=0x24 val=0x8b"
+INFO,"frame=80 time=40794 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=40980 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=40980 reg=0x25 val=0x01"
+INFO,"frame=80 time=41532 port=0x99 value=0x48"
+CYCLE,2208
+INFO,"frame=80 time=41718 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa848,0xa8,0x48
+INFO,"frame=80 time=41718 reg=0x28 val=0x48"
+INFO,"frame=80 time=41988 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=42174 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=42174 reg=0x29 val=0x00"
+INFO,"frame=80 time=42624 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=42810 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=42810 reg=0x2c val=0x00"
+INFO,"frame=80 time=43194 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=43380 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=43380 reg=0x2e val=0x70"
+INFO,"frame=80 time=43566 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=43752 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=43752 reg=0x0f val=0x02"
+INFO,"frame=80 time=44124 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=44310 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=44310 reg=0x0f val=0x00"
+INFO,"frame=80 time=44556 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=44742 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=44742 reg=0x0f val=0x02"
+INFO,"frame=80 time=45114 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=45300 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=45300 reg=0x0f val=0x00"
+INFO,"frame=80 time=45486 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=45672 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=45672 reg=0x0f val=0x02"
+INFO,"frame=80 time=46044 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=46230 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=46230 reg=0x0f val=0x00"
+INFO,"frame=80 time=46476 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=46662 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=46662 reg=0x0f val=0x02"
+INFO,"frame=80 time=47034 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=47220 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=47220 reg=0x0f val=0x00"
+INFO,"frame=80 time=47406 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=47592 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=47592 reg=0x0f val=0x02"
+INFO,"frame=80 time=47964 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=48150 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=48150 reg=0x0f val=0x00"
+INFO,"frame=80 time=48396 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=48582 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=48582 reg=0x0f val=0x02"
+INFO,"frame=80 time=48954 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=49140 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=49140 reg=0x0f val=0x00"
+INFO,"frame=80 time=49386 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=49572 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=49572 reg=0x0f val=0x02"
+INFO,"frame=80 time=49944 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=50130 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=50130 reg=0x0f val=0x00"
+INFO,"frame=80 time=50316 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=50502 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=50502 reg=0x0f val=0x02"
+INFO,"frame=80 time=50874 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=51060 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=51060 reg=0x0f val=0x00"
+INFO,"frame=80 time=51306 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=51492 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=51492 reg=0x0f val=0x02"
+INFO,"frame=80 time=51864 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=52050 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=52050 reg=0x0f val=0x00"
+INFO,"frame=80 time=52536 port=0x99 value=0xd3"
+CYCLE,1944
+INFO,"frame=80 time=52722 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d3,0xa4,0xd3
+INFO,"frame=80 time=52722 reg=0x24 val=0xd3"
+INFO,"frame=80 time=52914 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=53100 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=53100 reg=0x25 val=0x01"
+INFO,"frame=80 time=53604 port=0x99 value=0x45"
+CYCLE,2016
+INFO,"frame=80 time=53790 port=0x99 value=0xa6"
+CYCLE,744
+ADDRESS,0xa645,0xa6,0x45
+INFO,"frame=80 time=53790 reg=0x26 val=0x45"
+INFO,"frame=80 time=54174 port=0x99 value=0x2d"
+CYCLE,1536
+INFO,"frame=80 time=54360 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42d,0xa4,0x2d
+INFO,"frame=80 time=54360 reg=0x24 val=0x2d"
+INFO,"frame=80 time=54630 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=54816 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=54816 reg=0x25 val=0x00"
+INFO,"frame=80 time=55368 port=0x99 value=0x36"
+CYCLE,2208
+INFO,"frame=80 time=55554 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa836,0xa8,0x36
+INFO,"frame=80 time=55554 reg=0x28 val=0x36"
+INFO,"frame=80 time=55824 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=56010 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=56010 reg=0x29 val=0x00"
+INFO,"frame=80 time=56460 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=56646 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=56646 reg=0x2c val=0x00"
+INFO,"frame=80 time=57030 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=57216 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=57216 reg=0x2e val=0x70"
+INFO,"frame=80 time=57402 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=57588 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=57588 reg=0x0f val=0x02"
+INFO,"frame=80 time=57960 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=58146 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=58146 reg=0x0f val=0x00"
+INFO,"frame=80 time=58392 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=58578 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=58578 reg=0x0f val=0x02"
+INFO,"frame=80 time=58950 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=59136 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=59136 reg=0x0f val=0x00"
+INFO,"frame=80 time=59322 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=59508 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=59508 reg=0x0f val=0x02"
+INFO,"frame=80 time=59880 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=60066 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=60066 reg=0x0f val=0x00"
+INFO,"frame=80 time=60312 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=60498 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=60498 reg=0x0f val=0x02"
+INFO,"frame=80 time=60870 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=61056 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=61056 reg=0x0f val=0x00"
+INFO,"frame=80 time=61242 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=61428 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=61428 reg=0x0f val=0x02"
+INFO,"frame=80 time=61800 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=61986 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=61986 reg=0x0f val=0x00"
+INFO,"frame=80 time=62232 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=62418 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=62418 reg=0x0f val=0x02"
+INFO,"frame=80 time=62790 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=62976 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=62976 reg=0x0f val=0x00"
+INFO,"frame=80 time=63162 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=63348 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=63348 reg=0x0f val=0x02"
+INFO,"frame=80 time=63720 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=63906 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=63906 reg=0x0f val=0x00"
+INFO,"frame=80 time=64314 port=0x99 value=0x63"
+CYCLE,1632
+INFO,"frame=80 time=64500 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa463,0xa4,0x63
+INFO,"frame=80 time=64500 reg=0x24 val=0x63"
+INFO,"frame=80 time=64770 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=64956 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=64956 reg=0x25 val=0x00"
+INFO,"frame=80 time=65508 port=0x99 value=0x72"
+CYCLE,2208
+INFO,"frame=80 time=65694 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa872,0xa8,0x72
+INFO,"frame=80 time=65694 reg=0x28 val=0x72"
+INFO,"frame=80 time=65964 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=66150 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=66150 reg=0x29 val=0x00"
+INFO,"frame=80 time=66606 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=66792 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=66792 reg=0x2c val=0x03"
+INFO,"frame=80 time=67176 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=67362 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=67362 reg=0x2e val=0x70"
+INFO,"frame=80 time=67548 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=67734 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=67734 reg=0x0f val=0x02"
+INFO,"frame=80 time=68106 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=68292 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=68292 reg=0x0f val=0x00"
+INFO,"frame=80 time=68538 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=68724 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=68724 reg=0x0f val=0x02"
+INFO,"frame=80 time=69096 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=69282 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=69282 reg=0x0f val=0x00"
+INFO,"frame=80 time=69468 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=69654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=69654 reg=0x0f val=0x02"
+INFO,"frame=80 time=70026 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=70212 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=70212 reg=0x0f val=0x00"
+INFO,"frame=80 time=70398 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=70584 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=70584 reg=0x0f val=0x02"
+INFO,"frame=80 time=70956 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=71142 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=71142 reg=0x0f val=0x00"
+INFO,"frame=80 time=71328 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=71514 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=71514 reg=0x0f val=0x02"
+INFO,"frame=80 time=71886 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=72072 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=72072 reg=0x0f val=0x00"
+INFO,"frame=80 time=72318 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=72504 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=72504 reg=0x0f val=0x02"
+INFO,"frame=80 time=72876 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=73062 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=73062 reg=0x0f val=0x00"
+INFO,"frame=80 time=73248 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=73434 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=73434 reg=0x0f val=0x02"
+INFO,"frame=80 time=73806 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=73992 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=73992 reg=0x0f val=0x00"
+INFO,"frame=80 time=74178 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=74364 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=74364 reg=0x0f val=0x02"
+INFO,"frame=80 time=74736 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=74922 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=74922 reg=0x0f val=0x00"
+INFO,"frame=80 time=75108 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=75294 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=75294 reg=0x0f val=0x02"
+INFO,"frame=80 time=75666 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=75852 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=75852 reg=0x0f val=0x00"
+INFO,"frame=80 time=76098 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=76284 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=76284 reg=0x0f val=0x02"
+INFO,"frame=80 time=76656 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=76842 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=76842 reg=0x0f val=0x00"
+INFO,"frame=80 time=77028 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=77214 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=77214 reg=0x0f val=0x02"
+INFO,"frame=80 time=77586 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=77772 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=77772 reg=0x0f val=0x00"
+INFO,"frame=80 time=77958 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=78144 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=78144 reg=0x0f val=0x02"
+INFO,"frame=80 time=78516 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=78702 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=78702 reg=0x0f val=0x00"
+INFO,"frame=80 time=78888 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=79074 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=79074 reg=0x0f val=0x02"
+INFO,"frame=80 time=79446 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=79632 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=79632 reg=0x0f val=0x00"
+INFO,"frame=80 time=79878 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=80064 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=80064 reg=0x0f val=0x02"
+INFO,"frame=80 time=80436 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=80622 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=80622 reg=0x0f val=0x00"
+INFO,"frame=80 time=80808 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=80994 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=80994 reg=0x0f val=0x02"
+INFO,"frame=80 time=81366 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=81552 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=81552 reg=0x0f val=0x00"
+INFO,"frame=80 time=81960 port=0x99 value=0xd5"
+CYCLE,1632
+INFO,"frame=80 time=82146 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d5,0xa4,0xd5
+INFO,"frame=80 time=82146 reg=0x24 val=0xd5"
+INFO,"frame=80 time=82416 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=82602 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=82602 reg=0x25 val=0x00"
+INFO,"frame=80 time=83154 port=0x99 value=0x09"
+CYCLE,2208
+INFO,"frame=80 time=83340 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa809,0xa8,0x09
+INFO,"frame=80 time=83340 reg=0x28 val=0x09"
+INFO,"frame=80 time=83610 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=83796 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=83796 reg=0x29 val=0x00"
+INFO,"frame=80 time=84246 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=84432 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=84432 reg=0x2c val=0x00"
+INFO,"frame=80 time=84816 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=85002 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=85002 reg=0x2e val=0x70"
+INFO,"frame=80 time=85188 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=85374 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=85374 reg=0x0f val=0x02"
+INFO,"frame=80 time=85746 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=85932 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=85932 reg=0x0f val=0x00"
+INFO,"frame=80 time=86178 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=86364 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=86364 reg=0x0f val=0x02"
+INFO,"frame=80 time=86736 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=86922 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=86922 reg=0x0f val=0x00"
+INFO,"frame=80 time=87414 port=0x99 value=0xdd"
+CYCLE,1968
+INFO,"frame=80 time=87600 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4dd,0xa4,0xdd
+INFO,"frame=80 time=87600 reg=0x24 val=0xdd"
+INFO,"frame=80 time=87870 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=88056 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=88056 reg=0x25 val=0x00"
+INFO,"frame=80 time=88434 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=88620 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=88620 reg=0x2c val=0x02"
+INFO,"frame=80 time=88926 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=89112 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=89112 reg=0x2e val=0x50"
+INFO,"frame=80 time=89298 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=89484 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=89484 reg=0x0f val=0x02"
+INFO,"frame=80 time=89856 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=90042 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=90042 reg=0x0f val=0x00"
+INFO,"frame=80 time=90468 port=0x99 value=0xde"
+CYCLE,1704
+INFO,"frame=80 time=90654 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4de,0xa4,0xde
+INFO,"frame=80 time=90654 reg=0x24 val=0xde"
+INFO,"frame=80 time=90846 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=91032 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=91032 reg=0x25 val=0x00"
+INFO,"frame=80 time=91584 port=0x99 value=0x54"
+CYCLE,2208
+INFO,"frame=80 time=91770 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa854,0xa8,0x54
+INFO,"frame=80 time=91770 reg=0x28 val=0x54"
+INFO,"frame=80 time=91962 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=92148 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=92148 reg=0x29 val=0x00"
+INFO,"frame=80 time=92604 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=92790 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=92790 reg=0x2c val=0x03"
+INFO,"frame=80 time=93174 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=93360 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=93360 reg=0x2e val=0x70"
+INFO,"frame=80 time=93618 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=93804 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=93804 reg=0x0f val=0x02"
+INFO,"frame=80 time=94176 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=94362 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=94362 reg=0x0f val=0x00"
+INFO,"frame=80 time=94548 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=94734 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=94734 reg=0x0f val=0x02"
+INFO,"frame=80 time=95106 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=95292 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=95292 reg=0x0f val=0x00"
+INFO,"frame=80 time=95538 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=95724 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=95724 reg=0x0f val=0x02"
+INFO,"frame=80 time=96096 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=96282 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=96282 reg=0x0f val=0x00"
+INFO,"frame=80 time=96468 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=96654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=96654 reg=0x0f val=0x02"
+INFO,"frame=80 time=97026 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=97212 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=97212 reg=0x0f val=0x00"
+INFO,"frame=80 time=97458 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=97644 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=97644 reg=0x0f val=0x02"
+INFO,"frame=80 time=98016 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=98202 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=98202 reg=0x0f val=0x00"
+INFO,"frame=80 time=98388 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=98574 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=98574 reg=0x0f val=0x02"
+INFO,"frame=80 time=98946 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=99132 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=99132 reg=0x0f val=0x00"
+INFO,"frame=80 time=99378 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=99564 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=99564 reg=0x0f val=0x02"
+INFO,"frame=80 time=99936 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=100122 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=100122 reg=0x0f val=0x00"
+INFO,"frame=80 time=100308 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=100494 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=100494 reg=0x0f val=0x02"
+INFO,"frame=80 time=100866 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=101052 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=101052 reg=0x0f val=0x00"
+INFO,"frame=80 time=101298 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=101484 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=101484 reg=0x0f val=0x02"
+INFO,"frame=80 time=101856 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=102042 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=102042 reg=0x0f val=0x00"
+INFO,"frame=80 time=102228 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=102414 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=102414 reg=0x0f val=0x02"
+INFO,"frame=80 time=102786 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=102972 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=102972 reg=0x0f val=0x00"
+INFO,"frame=80 time=103158 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=103344 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=103344 reg=0x0f val=0x02"
+INFO,"frame=80 time=103716 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=103902 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=103902 reg=0x0f val=0x00"
+INFO,"frame=80 time=104394 port=0x99 value=0x31"
+CYCLE,1968
+INFO,"frame=80 time=104580 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa431,0xa4,0x31
+INFO,"frame=80 time=104580 reg=0x24 val=0x31"
+INFO,"frame=80 time=104850 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=105036 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=105036 reg=0x25 val=0x01"
+INFO,"frame=80 time=105342 port=0x99 value=0x02"
+CYCLE,1224
+INFO,"frame=80 time=105528 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=105528 reg=0x2c val=0x02"
+INFO,"frame=80 time=105834 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=106020 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=106020 reg=0x2e val=0x50"
+INFO,"frame=80 time=106278 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=106464 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=106464 reg=0x0f val=0x02"
+INFO,"frame=80 time=106836 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=107022 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=107022 reg=0x0f val=0x00"
+INFO,"frame=80 time=107448 port=0x99 value=0x32"
+CYCLE,1704
+INFO,"frame=80 time=107634 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa432,0xa4,0x32
+INFO,"frame=80 time=107634 reg=0x24 val=0x32"
+INFO,"frame=80 time=107826 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=108012 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=108012 reg=0x25 val=0x01"
+INFO,"frame=80 time=108486 port=0x99 value=0x2b"
+CYCLE,1896
+INFO,"frame=80 time=108672 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82b,0xa8,0x2b
+INFO,"frame=80 time=108672 reg=0x28 val=0x2b"
+INFO,"frame=80 time=108864 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=109050 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=109050 reg=0x29 val=0x00"
+INFO,"frame=80 time=109506 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=109692 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=109692 reg=0x2c val=0x00"
+INFO,"frame=80 time=110076 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=110262 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=110262 reg=0x2e val=0x70"
+INFO,"frame=80 time=110514 port=0x99 value=0x02"
+CYCLE,1008
+INFO,"frame=80 time=110700 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=110700 reg=0x0f val=0x02"
+INFO,"frame=80 time=111072 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=111258 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=111258 reg=0x0f val=0x00"
+INFO,"frame=80 time=111444 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=111630 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=111630 reg=0x0f val=0x02"
+INFO,"frame=80 time=112002 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=112188 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=112188 reg=0x0f val=0x00"
+INFO,"frame=80 time=112434 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=112620 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=112620 reg=0x0f val=0x02"
+INFO,"frame=80 time=112992 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=113178 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=113178 reg=0x0f val=0x00"
+INFO,"frame=80 time=113364 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=113550 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=113550 reg=0x0f val=0x02"
+INFO,"frame=80 time=113922 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=114108 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=114108 reg=0x0f val=0x00"
+INFO,"frame=80 time=114354 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=114540 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=114540 reg=0x0f val=0x02"
+INFO,"frame=80 time=114912 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=115098 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=115098 reg=0x0f val=0x00"
+INFO,"frame=80 time=115284 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=115470 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=115470 reg=0x0f val=0x02"
+INFO,"frame=80 time=115842 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=116028 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=116028 reg=0x0f val=0x00"
+INFO,"frame=80 time=116520 port=0x99 value=0x5c"
+CYCLE,1968
+INFO,"frame=80 time=116706 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45c,0xa4,0x5c
+INFO,"frame=80 time=116706 reg=0x24 val=0x5c"
+INFO,"frame=80 time=116976 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=117162 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=117162 reg=0x25 val=0x01"
+INFO,"frame=80 time=117540 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=117726 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=117726 reg=0x2c val=0x02"
+INFO,"frame=80 time=118110 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=118296 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=118296 reg=0x2e val=0x50"
+INFO,"frame=80 time=118482 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=118668 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=118668 reg=0x0f val=0x02"
+INFO,"frame=80 time=119040 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=119226 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=119226 reg=0x0f val=0x00"
+INFO,"frame=80 time=119658 port=0x99 value=0x5d"
+CYCLE,1728
+INFO,"frame=80 time=119844 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45d,0xa4,0x5d
+INFO,"frame=80 time=119844 reg=0x24 val=0x5d"
+INFO,"frame=80 time=120114 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=120300 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=120300 reg=0x25 val=0x01"
+INFO,"frame=80 time=120852 port=0x99 value=0x2c"
+CYCLE,2208
+INFO,"frame=80 time=121038 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82c,0xa8,0x2c
+INFO,"frame=80 time=121038 reg=0x28 val=0x2c"
+INFO,"frame=80 time=121308 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=121494 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=121494 reg=0x29 val=0x00"
+INFO,"frame=80 time=121944 port=0x99 value=0x03"
+CYCLE,1800
+INFO,"frame=80 time=122130 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=122130 reg=0x2c val=0x03"
+INFO,"frame=80 time=122514 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=122700 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=122700 reg=0x2e val=0x70"
+INFO,"frame=80 time=122886 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=123072 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=123072 reg=0x0f val=0x02"
+INFO,"frame=80 time=123444 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=123630 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=123630 reg=0x0f val=0x00"
+INFO,"frame=80 time=123876 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=124062 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=124062 reg=0x0f val=0x02"
+INFO,"frame=80 time=124434 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=124620 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=124620 reg=0x0f val=0x00"
+INFO,"frame=80 time=124806 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=124992 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=124992 reg=0x0f val=0x02"
+INFO,"frame=80 time=125364 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=125550 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=125550 reg=0x0f val=0x00"
+INFO,"frame=80 time=125796 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=125982 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=125982 reg=0x0f val=0x02"
+INFO,"frame=80 time=126354 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=126540 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=126540 reg=0x0f val=0x00"
+INFO,"frame=80 time=126726 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=126912 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=126912 reg=0x0f val=0x02"
+INFO,"frame=80 time=127284 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=127470 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=127470 reg=0x0f val=0x00"
+INFO,"frame=80 time=127716 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=127902 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=127902 reg=0x0f val=0x02"
+INFO,"frame=80 time=128274 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=128460 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=128460 reg=0x0f val=0x00"
+INFO,"frame=80 time=128952 port=0x99 value=0x88"
+CYCLE,1968
+INFO,"frame=80 time=129138 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa488,0xa4,0x88
+INFO,"frame=80 time=129138 reg=0x24 val=0x88"
+INFO,"frame=80 time=129408 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=129594 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=129594 reg=0x25 val=0x01"
+INFO,"frame=80 time=129900 port=0x99 value=0x02"
+CYCLE,1224
+INFO,"frame=80 time=130086 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=130086 reg=0x2c val=0x02"
+INFO,"frame=80 time=130392 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=130578 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=130578 reg=0x2e val=0x50"
+INFO,"frame=80 time=130836 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=131022 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=131022 reg=0x0f val=0x02"
+INFO,"frame=80 time=131394 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=131580 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=131580 reg=0x0f val=0x00"
+INFO,"frame=80 time=132006 port=0x99 value=0x89"
+CYCLE,1704
+INFO,"frame=80 time=132192 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa489,0xa4,0x89
+INFO,"frame=80 time=132192 reg=0x24 val=0x89"
+INFO,"frame=80 time=132384 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=132570 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=132570 reg=0x25 val=0x01"
+INFO,"frame=80 time=133200 port=0x99 value=0x4a"
+CYCLE,2520
+INFO,"frame=80 time=133386 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa84a,0xa8,0x4a
+INFO,"frame=80 time=133386 reg=0x28 val=0x4a"
+INFO,"frame=80 time=133578 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=133764 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=133764 reg=0x29 val=0x00"
+INFO,"frame=80 time=134220 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=134406 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=134406 reg=0x2c val=0x00"
+INFO,"frame=80 time=134790 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=134976 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=134976 reg=0x2e val=0x70"
+INFO,"frame=80 time=135234 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=135420 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=135420 reg=0x0f val=0x02"
+INFO,"frame=80 time=135792 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=135978 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=135978 reg=0x0f val=0x00"
+INFO,"frame=80 time=136164 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=136350 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=136350 reg=0x0f val=0x02"
+INFO,"frame=80 time=136722 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=136908 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=136908 reg=0x0f val=0x00"
+INFO,"frame=80 time=137154 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=137340 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=137340 reg=0x0f val=0x02"
+INFO,"frame=80 time=137712 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=137898 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=137898 reg=0x0f val=0x00"
+INFO,"frame=80 time=138084 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=138270 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=138270 reg=0x0f val=0x02"
+INFO,"frame=80 time=138642 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=138828 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=138828 reg=0x0f val=0x00"
+INFO,"frame=80 time=139074 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=139260 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=139260 reg=0x0f val=0x02"
+INFO,"frame=80 time=139632 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=139818 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=139818 reg=0x0f val=0x00"
+INFO,"frame=80 time=140004 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=140190 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=140190 reg=0x0f val=0x02"
+INFO,"frame=80 time=140562 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=140748 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=140748 reg=0x0f val=0x00"
+INFO,"frame=80 time=140994 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=141180 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=141180 reg=0x0f val=0x02"
+INFO,"frame=80 time=141552 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=141738 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=141738 reg=0x0f val=0x00"
+INFO,"frame=80 time=141984 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=142170 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=142170 reg=0x0f val=0x02"
+INFO,"frame=80 time=142542 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=142728 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=142728 reg=0x0f val=0x00"
+INFO,"frame=80 time=142914 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=143100 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=143100 reg=0x0f val=0x02"
+INFO,"frame=80 time=143472 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=143658 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=143658 reg=0x0f val=0x00"
+INFO,"frame=80 time=143904 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=144090 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=144090 reg=0x0f val=0x02"
+INFO,"frame=80 time=144462 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=144648 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=144648 reg=0x0f val=0x00"
+INFO,"frame=80 time=145134 port=0x99 value=0xd3"
+CYCLE,1944
+INFO,"frame=80 time=145320 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d3,0xa4,0xd3
+INFO,"frame=80 time=145320 reg=0x24 val=0xd3"
+INFO,"frame=80 time=145512 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=145698 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=145698 reg=0x25 val=0x01"
+INFO,"frame=80 time=146202 port=0x99 value=0x46"
+CYCLE,2016
+INFO,"frame=80 time=146388 port=0x99 value=0xa6"
+CYCLE,744
+ADDRESS,0xa646,0xa6,0x46
+INFO,"frame=80 time=146388 reg=0x26 val=0x46"
+INFO,"frame=80 time=146772 port=0x99 value=0x2d"
+CYCLE,1536
+INFO,"frame=80 time=146958 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42d,0xa4,0x2d
+INFO,"frame=80 time=146958 reg=0x24 val=0x2d"
+INFO,"frame=80 time=147228 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=147414 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=147414 reg=0x25 val=0x00"
+INFO,"frame=80 time=147966 port=0x99 value=0x36"
+CYCLE,2208
+INFO,"frame=80 time=148152 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa836,0xa8,0x36
+INFO,"frame=80 time=148152 reg=0x28 val=0x36"
+INFO,"frame=80 time=148422 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=148608 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=148608 reg=0x29 val=0x00"
+INFO,"frame=80 time=149058 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=149244 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=149244 reg=0x2c val=0x00"
+INFO,"frame=80 time=149628 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=149814 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=149814 reg=0x2e val=0x70"
+INFO,"frame=80 time=150000 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=150186 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=150186 reg=0x0f val=0x02"
+INFO,"frame=80 time=150558 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=150744 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=150744 reg=0x0f val=0x00"
+INFO,"frame=80 time=150990 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=151176 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=151176 reg=0x0f val=0x02"
+INFO,"frame=80 time=151548 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=151734 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=151734 reg=0x0f val=0x00"
+INFO,"frame=80 time=151920 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=152106 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=152106 reg=0x0f val=0x02"
+INFO,"frame=80 time=152478 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=152664 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=152664 reg=0x0f val=0x00"
+INFO,"frame=80 time=152910 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=153096 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=153096 reg=0x0f val=0x02"
+INFO,"frame=80 time=153468 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=153654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=153654 reg=0x0f val=0x00"
+INFO,"frame=80 time=153840 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=154026 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=154026 reg=0x0f val=0x02"
+INFO,"frame=80 time=154398 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=154584 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=154584 reg=0x0f val=0x00"
+INFO,"frame=80 time=154830 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=155016 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=155016 reg=0x0f val=0x02"
+INFO,"frame=80 time=155388 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=155574 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=155574 reg=0x0f val=0x00"
+INFO,"frame=80 time=155760 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=155946 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=155946 reg=0x0f val=0x02"
+INFO,"frame=80 time=156318 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=156504 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=156504 reg=0x0f val=0x00"
+INFO,"frame=80 time=156996 port=0x99 value=0x62"
+CYCLE,1968
+INFO,"frame=80 time=157182 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa462,0xa4,0x62
+INFO,"frame=80 time=157182 reg=0x24 val=0x62"
+INFO,"frame=80 time=157374 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=157560 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=157560 reg=0x25 val=0x00"
+INFO,"frame=80 time=157944 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=158130 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=158130 reg=0x2c val=0x02"
+INFO,"frame=80 time=158514 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=158700 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=158700 reg=0x2e val=0x50"
+INFO,"frame=80 time=158886 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=159072 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=159072 reg=0x0f val=0x02"
+INFO,"frame=80 time=159444 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=159630 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=159630 reg=0x0f val=0x00"
+INFO,"frame=80 time=160062 port=0x99 value=0x63"
+CYCLE,1728
+INFO,"frame=80 time=160248 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa463,0xa4,0x63
+INFO,"frame=80 time=160248 reg=0x24 val=0x63"
+INFO,"frame=80 time=160518 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=160704 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=160704 reg=0x25 val=0x00"
+INFO,"frame=80 time=161256 port=0x99 value=0x73"
+CYCLE,2208
+INFO,"frame=80 time=161442 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa873,0xa8,0x73
+INFO,"frame=80 time=161442 reg=0x28 val=0x73"
+INFO,"frame=80 time=161712 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=161898 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=161898 reg=0x29 val=0x00"
+INFO,"frame=80 time=162348 port=0x99 value=0x03"
+CYCLE,1800
+INFO,"frame=80 time=162534 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=162534 reg=0x2c val=0x03"
+INFO,"frame=80 time=162918 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=163104 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=163104 reg=0x2e val=0x70"
+INFO,"frame=80 time=163290 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=163476 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=163476 reg=0x0f val=0x02"
+INFO,"frame=80 time=163848 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=164034 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=164034 reg=0x0f val=0x00"
+INFO,"frame=80 time=164280 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=164466 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=164466 reg=0x0f val=0x02"
+INFO,"frame=80 time=164838 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=165024 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=165024 reg=0x0f val=0x00"
+INFO,"frame=80 time=165210 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=165396 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=165396 reg=0x0f val=0x02"
+INFO,"frame=80 time=165768 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=165954 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=165954 reg=0x0f val=0x00"
+INFO,"frame=80 time=166200 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=166386 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=166386 reg=0x0f val=0x02"
+INFO,"frame=80 time=166758 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=166944 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=166944 reg=0x0f val=0x00"
+INFO,"frame=80 time=167190 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=167376 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=167376 reg=0x0f val=0x02"
+INFO,"frame=80 time=167748 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=167934 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=167934 reg=0x0f val=0x00"
+INFO,"frame=80 time=168120 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=168306 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=168306 reg=0x0f val=0x02"
+INFO,"frame=80 time=168678 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=168864 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=168864 reg=0x0f val=0x00"
+INFO,"frame=80 time=169110 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=169296 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=169296 reg=0x0f val=0x02"
+INFO,"frame=80 time=169668 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=169854 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=169854 reg=0x0f val=0x00"
+INFO,"frame=80 time=170040 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=170226 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=170226 reg=0x0f val=0x02"
+INFO,"frame=80 time=170598 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=170784 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=170784 reg=0x0f val=0x00"
+INFO,"frame=80 time=171030 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=171216 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=171216 reg=0x0f val=0x02"
+INFO,"frame=80 time=171588 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=171774 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=171774 reg=0x0f val=0x00"
+INFO,"frame=80 time=171960 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=172146 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=172146 reg=0x0f val=0x02"
+INFO,"frame=80 time=172518 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=172704 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=172704 reg=0x0f val=0x00"
+INFO,"frame=80 time=172950 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=173136 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=173136 reg=0x0f val=0x02"
+INFO,"frame=80 time=173508 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=173694 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=173694 reg=0x0f val=0x00"
+INFO,"frame=80 time=173880 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=174066 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=174066 reg=0x0f val=0x02"
+INFO,"frame=80 time=174438 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=174624 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=174624 reg=0x0f val=0x00"
+INFO,"frame=80 time=174870 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=175056 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=175056 reg=0x0f val=0x02"
+INFO,"frame=80 time=175428 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=175614 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=175614 reg=0x0f val=0x00"
+INFO,"frame=80 time=175800 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=175986 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=175986 reg=0x0f val=0x02"
+INFO,"frame=80 time=176358 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=176544 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=176544 reg=0x0f val=0x00"
+INFO,"frame=80 time=176790 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=176976 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=176976 reg=0x0f val=0x02"
+INFO,"frame=80 time=177348 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=177534 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=177534 reg=0x0f val=0x00"
+INFO,"frame=80 time=178026 port=0x99 value=0xd5"
+CYCLE,1968
+INFO,"frame=80 time=178212 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d5,0xa4,0xd5
+INFO,"frame=80 time=178212 reg=0x24 val=0xd5"
+INFO,"frame=80 time=178404 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=178590 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=178590 reg=0x25 val=0x00"
+INFO,"frame=80 time=178896 port=0x99 value=0x02"
+CYCLE,1224
+INFO,"frame=80 time=179082 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=179082 reg=0x2c val=0x02"
+INFO,"frame=80 time=179466 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=179652 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=179652 reg=0x2e val=0x50"
+INFO,"frame=80 time=179910 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=180096 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=180096 reg=0x0f val=0x02"
+INFO,"frame=80 time=180468 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=180654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=180654 reg=0x0f val=0x00"
+INFO,"frame=80 time=181086 port=0x99 value=0xd6"
+CYCLE,1728
+INFO,"frame=80 time=181272 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d6,0xa4,0xd6
+INFO,"frame=80 time=181272 reg=0x24 val=0xd6"
+INFO,"frame=80 time=181464 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=181650 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=181650 reg=0x25 val=0x00"
+INFO,"frame=80 time=182202 port=0x99 value=0x09"
+CYCLE,2208
+INFO,"frame=80 time=182388 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa809,0xa8,0x09
+INFO,"frame=80 time=182388 reg=0x28 val=0x09"
+INFO,"frame=80 time=182580 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=182766 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=182766 reg=0x29 val=0x00"
+INFO,"frame=80 time=183222 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=183408 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=183408 reg=0x2c val=0x00"
+INFO,"frame=80 time=183792 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=183978 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=183978 reg=0x2e val=0x70"
+INFO,"frame=80 time=184236 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=184422 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=184422 reg=0x0f val=0x02"
+INFO,"frame=80 time=184794 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=184980 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=184980 reg=0x0f val=0x00"
+INFO,"frame=80 time=185166 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=185352 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=185352 reg=0x0f val=0x02"
+INFO,"frame=80 time=185724 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=185910 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=185910 reg=0x0f val=0x00"
+INFO,"frame=80 time=186402 port=0x99 value=0xde"
+CYCLE,1968
+INFO,"frame=80 time=186588 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4de,0xa4,0xde
+INFO,"frame=80 time=186588 reg=0x24 val=0xde"
+INFO,"frame=80 time=186858 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=187044 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=187044 reg=0x25 val=0x00"
+INFO,"frame=80 time=187428 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=187614 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=187614 reg=0x2c val=0x02"
+INFO,"frame=80 time=187998 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=188184 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=188184 reg=0x2e val=0x50"
+INFO,"frame=80 time=188370 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=188556 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=188556 reg=0x0f val=0x02"
+INFO,"frame=80 time=188928 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=189114 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=189114 reg=0x0f val=0x00"
+INFO,"frame=80 time=189546 port=0x99 value=0xdf"
+CYCLE,1728
+INFO,"frame=80 time=189732 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4df,0xa4,0xdf
+INFO,"frame=80 time=189732 reg=0x24 val=0xdf"
+INFO,"frame=80 time=190002 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=190188 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=190188 reg=0x25 val=0x00"
+INFO,"frame=80 time=190740 port=0x99 value=0x55"
+CYCLE,2208
+INFO,"frame=80 time=190926 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa855,0xa8,0x55
+INFO,"frame=80 time=190926 reg=0x28 val=0x55"
+INFO,"frame=80 time=191196 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=191382 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=191382 reg=0x29 val=0x00"
+INFO,"frame=80 time=191838 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=192024 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=192024 reg=0x2c val=0x03"
+INFO,"frame=80 time=192408 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=192594 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=192594 reg=0x2e val=0x70"
+INFO,"frame=80 time=192780 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=192966 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=192966 reg=0x0f val=0x02"
+INFO,"frame=80 time=193338 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=193524 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=193524 reg=0x0f val=0x00"
+INFO,"frame=80 time=193770 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=193956 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=193956 reg=0x0f val=0x02"
+INFO,"frame=80 time=194328 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=194514 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=194514 reg=0x0f val=0x00"
+INFO,"frame=80 time=194700 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=194886 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=194886 reg=0x0f val=0x02"
+INFO,"frame=80 time=195258 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=195444 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=195444 reg=0x0f val=0x00"
+INFO,"frame=80 time=195690 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=195876 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=195876 reg=0x0f val=0x02"
+INFO,"frame=80 time=196248 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=196434 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=196434 reg=0x0f val=0x00"
+INFO,"frame=80 time=196620 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=196806 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=196806 reg=0x0f val=0x02"
+INFO,"frame=80 time=197178 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=197364 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=197364 reg=0x0f val=0x00"
+INFO,"frame=80 time=197610 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=197796 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=197796 reg=0x0f val=0x02"
+INFO,"frame=80 time=198168 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=198354 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=198354 reg=0x0f val=0x00"
+INFO,"frame=80 time=198540 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=198726 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=198726 reg=0x0f val=0x02"
+INFO,"frame=80 time=199098 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=199284 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=199284 reg=0x0f val=0x00"
+INFO,"frame=80 time=199530 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=199716 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=199716 reg=0x0f val=0x02"
+INFO,"frame=80 time=200088 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=200274 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=200274 reg=0x0f val=0x00"
+INFO,"frame=80 time=200460 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=200646 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=200646 reg=0x0f val=0x02"
+INFO,"frame=80 time=201018 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=201204 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=201204 reg=0x0f val=0x00"
+INFO,"frame=80 time=201450 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=201636 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=201636 reg=0x0f val=0x02"
+INFO,"frame=80 time=202008 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=202194 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=202194 reg=0x0f val=0x00"
+INFO,"frame=80 time=202380 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=202566 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=202566 reg=0x0f val=0x02"
+INFO,"frame=80 time=202938 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=203124 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=203124 reg=0x0f val=0x00"
+INFO,"frame=80 time=203616 port=0x99 value=0x33"
+CYCLE,1968
+INFO,"frame=80 time=203802 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa433,0xa4,0x33
+INFO,"frame=80 time=203802 reg=0x24 val=0x33"
+INFO,"frame=80 time=203994 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=204180 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=204180 reg=0x25 val=0x01"
+INFO,"frame=80 time=204564 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=204750 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=204750 reg=0x2c val=0x02"
+INFO,"frame=80 time=205134 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=205320 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=205320 reg=0x2e val=0x50"
+INFO,"frame=80 time=205506 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=205692 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=205692 reg=0x0f val=0x02"
+INFO,"frame=80 time=206064 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=206250 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=206250 reg=0x0f val=0x00"
+INFO,"frame=80 time=206682 port=0x99 value=0x34"
+CYCLE,1728
+INFO,"frame=80 time=206868 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa434,0xa4,0x34
+INFO,"frame=80 time=206868 reg=0x24 val=0x34"
+INFO,"frame=80 time=207138 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=207324 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=207324 reg=0x25 val=0x01"
+INFO,"frame=80 time=207876 port=0x99 value=0x2b"
+CYCLE,2208
+INFO,"frame=80 time=208062 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82b,0xa8,0x2b
+INFO,"frame=80 time=208062 reg=0x28 val=0x2b"
+INFO,"frame=80 time=208332 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=208518 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=208518 reg=0x29 val=0x00"
+INFO,"frame=80 time=208968 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=209154 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=209154 reg=0x2c val=0x00"
+INFO,"frame=80 time=209538 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=209724 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=209724 reg=0x2e val=0x70"
+INFO,"frame=80 time=209910 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=210096 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=210096 reg=0x0f val=0x02"
+INFO,"frame=80 time=210468 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=210654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=210654 reg=0x0f val=0x00"
+INFO,"frame=80 time=210900 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=211086 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=211086 reg=0x0f val=0x02"
+INFO,"frame=80 time=211458 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=211644 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=211644 reg=0x0f val=0x00"
+INFO,"frame=80 time=211830 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=212016 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=212016 reg=0x0f val=0x02"
+INFO,"frame=80 time=212388 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=212574 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=212574 reg=0x0f val=0x00"
+INFO,"frame=80 time=212820 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=213006 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=213006 reg=0x0f val=0x02"
+INFO,"frame=80 time=213378 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=213564 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=213564 reg=0x0f val=0x00"
+INFO,"frame=80 time=213810 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=213996 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=213996 reg=0x0f val=0x02"
+INFO,"frame=80 time=214368 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=214554 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=214554 reg=0x0f val=0x00"
+INFO,"frame=80 time=214740 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=214926 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=214926 reg=0x0f val=0x02"
+INFO,"frame=80 time=215298 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=215484 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=215484 reg=0x0f val=0x00"
+INFO,"frame=80 time=215976 port=0x99 value=0x5e"
+CYCLE,1968
+INFO,"frame=80 time=216162 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45e,0xa4,0x5e
+INFO,"frame=80 time=216162 reg=0x24 val=0x5e"
+INFO,"frame=80 time=216432 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=216618 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=216618 reg=0x25 val=0x01"
+INFO,"frame=80 time=217002 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=217188 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=217188 reg=0x2c val=0x02"
+INFO,"frame=80 time=217494 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=217680 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=217680 reg=0x2e val=0x50"
+INFO,"frame=80 time=217866 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=218052 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=218052 reg=0x0f val=0x02"
+INFO,"frame=80 time=218424 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=218610 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=218610 reg=0x0f val=0x00"
+INFO,"frame=80 time=219042 port=0x99 value=0x5f"
+CYCLE,1728
+INFO,"frame=80 time=219228 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45f,0xa4,0x5f
+INFO,"frame=80 time=219228 reg=0x24 val=0x5f"
+INFO,"frame=80 time=219498 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=219684 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=219684 reg=0x25 val=0x01"
+INFO,"frame=80 time=220236 port=0x99 value=0x29"
+CYCLE,2208
+INFO,"frame=80 time=220422 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa829,0xa8,0x29
+INFO,"frame=80 time=220422 reg=0x28 val=0x29"
+INFO,"frame=80 time=220614 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=220800 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=220800 reg=0x29 val=0x00"
+INFO,"frame=80 time=221178 port=0x99 value=0x03"
+CYCLE,1512
+INFO,"frame=80 time=221364 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=221364 reg=0x2c val=0x03"
+INFO,"frame=80 time=221748 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=221934 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=221934 reg=0x2e val=0x70"
+INFO,"frame=80 time=222192 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=222378 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=222378 reg=0x0f val=0x02"
+INFO,"frame=80 time=222750 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=222936 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=222936 reg=0x0f val=0x00"
+INFO,"frame=80 time=223122 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=223308 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=223308 reg=0x0f val=0x02"
+INFO,"frame=80 time=223680 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=223866 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=223866 reg=0x0f val=0x00"
+INFO,"frame=80 time=224112 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=224298 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=224298 reg=0x0f val=0x02"
+INFO,"frame=80 time=224670 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=224856 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=224856 reg=0x0f val=0x00"
+INFO,"frame=80 time=225042 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=225228 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=225228 reg=0x0f val=0x02"
+INFO,"frame=80 time=225600 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=225786 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=225786 reg=0x0f val=0x00"
+INFO,"frame=80 time=226032 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=226218 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=226218 reg=0x0f val=0x02"
+INFO,"frame=80 time=226590 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=226776 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=226776 reg=0x0f val=0x00"
+INFO,"frame=80 time=226962 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=227148 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=227148 reg=0x0f val=0x02"
+INFO,"frame=80 time=227520 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=227706 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=227706 reg=0x0f val=0x00"
+INFO,"frame=80 time=228120 port=0x99 value=0x87"
+CYCLE,1656
+INFO,"frame=80 time=228306 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa487,0xa4,0x87
+INFO,"frame=80 time=228306 reg=0x24 val=0x87"
+INFO,"frame=80 time=228576 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=228762 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=228762 reg=0x25 val=0x01"
+INFO,"frame=80 time=229146 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=229332 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=229332 reg=0x2c val=0x02"
+INFO,"frame=80 time=229716 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=229902 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=229902 reg=0x2e val=0x50"
+INFO,"frame=80 time=230088 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=230274 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=230274 reg=0x0f val=0x02"
+INFO,"frame=80 time=230646 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=230832 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=230832 reg=0x0f val=0x00"
+INFO,"frame=80 time=231264 port=0x99 value=0x88"
+CYCLE,1728
+INFO,"frame=80 time=231450 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa488,0xa4,0x88
+INFO,"frame=80 time=231450 reg=0x24 val=0x88"
+INFO,"frame=80 time=231720 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=231906 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=231906 reg=0x25 val=0x01"
+INFO,"frame=80 time=232458 port=0x99 value=0x4b"
+CYCLE,2208
+INFO,"frame=80 time=232644 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa84b,0xa8,0x4b
+INFO,"frame=80 time=232644 reg=0x28 val=0x4b"
+INFO,"frame=80 time=232914 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=233100 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=233100 reg=0x29 val=0x00"
+INFO,"frame=80 time=233556 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=233742 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=233742 reg=0x2c val=0x00"
+INFO,"frame=80 time=234126 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=234312 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=234312 reg=0x2e val=0x70"
+INFO,"frame=80 time=234498 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=234684 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=234684 reg=0x0f val=0x02"
+INFO,"frame=80 time=235056 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=235242 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=235242 reg=0x0f val=0x00"
+INFO,"frame=80 time=235488 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=235674 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=235674 reg=0x0f val=0x02"
+INFO,"frame=80 time=236046 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=236232 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=236232 reg=0x0f val=0x00"
+INFO,"frame=80 time=236418 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=236604 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=236604 reg=0x0f val=0x02"
+INFO,"frame=80 time=236976 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=237162 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=237162 reg=0x0f val=0x00"
+INFO,"frame=80 time=237348 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=237534 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=237534 reg=0x0f val=0x02"
+INFO,"frame=80 time=237906 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=238092 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=238092 reg=0x0f val=0x00"
+INFO,"frame=80 time=238278 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=238464 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=238464 reg=0x0f val=0x02"
+INFO,"frame=80 time=238836 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=239022 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=239022 reg=0x0f val=0x00"
+INFO,"frame=80 time=239268 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=239454 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=239454 reg=0x0f val=0x02"
+INFO,"frame=80 time=239826 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=240012 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=240012 reg=0x0f val=0x00"
+INFO,"frame=80 time=240198 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=240384 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=240384 reg=0x0f val=0x02"
+INFO,"frame=80 time=240756 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=240942 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=240942 reg=0x0f val=0x00"
+INFO,"frame=80 time=241128 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=241314 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=241314 reg=0x0f val=0x02"
+INFO,"frame=80 time=241686 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=241872 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=241872 reg=0x0f val=0x00"
+INFO,"frame=80 time=242058 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=242244 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=242244 reg=0x0f val=0x02"
+INFO,"frame=80 time=242616 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=242802 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=242802 reg=0x0f val=0x00"
+INFO,"frame=80 time=243048 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=243234 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=243234 reg=0x0f val=0x02"
+INFO,"frame=80 time=243606 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=243792 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=243792 reg=0x0f val=0x00"
+INFO,"frame=80 time=244278 port=0x99 value=0xd3"
+CYCLE,1944
+INFO,"frame=80 time=244464 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d3,0xa4,0xd3
+INFO,"frame=80 time=244464 reg=0x24 val=0xd3"
+INFO,"frame=80 time=244734 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=244920 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=244920 reg=0x25 val=0x01"
+INFO,"frame=80 time=245418 port=0x99 value=0x47"
+CYCLE,1992
+INFO,"frame=80 time=245604 port=0x99 value=0xa6"
+CYCLE,744
+ADDRESS,0xa647,0xa6,0x47
+INFO,"frame=80 time=245604 reg=0x26 val=0x47"
+INFO,"frame=80 time=245988 port=0x99 value=0x2d"
+CYCLE,1536
+INFO,"frame=80 time=246174 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42d,0xa4,0x2d
+INFO,"frame=80 time=246174 reg=0x24 val=0x2d"
+INFO,"frame=80 time=246366 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=246552 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=246552 reg=0x25 val=0x00"
+INFO,"frame=80 time=247104 port=0x99 value=0x35"
+CYCLE,2208
+INFO,"frame=80 time=247290 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa835,0xa8,0x35
+INFO,"frame=80 time=247290 reg=0x28 val=0x35"
+INFO,"frame=80 time=247482 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=247668 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=247668 reg=0x29 val=0x00"
+INFO,"frame=80 time=248124 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=80 time=248310 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=248310 reg=0x2c val=0x00"
+INFO,"frame=80 time=248694 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=248880 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=248880 reg=0x2e val=0x70"
+INFO,"frame=80 time=249138 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=249324 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=249324 reg=0x0f val=0x02"
+INFO,"frame=80 time=249696 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=249882 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=249882 reg=0x0f val=0x00"
+INFO,"frame=80 time=250068 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=250254 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=250254 reg=0x0f val=0x02"
+INFO,"frame=80 time=250626 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=250812 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=250812 reg=0x0f val=0x00"
+INFO,"frame=80 time=251058 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=251244 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=251244 reg=0x0f val=0x02"
+INFO,"frame=80 time=251616 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=251802 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=251802 reg=0x0f val=0x00"
+INFO,"frame=80 time=251988 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=252174 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=252174 reg=0x0f val=0x02"
+INFO,"frame=80 time=252546 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=252732 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=252732 reg=0x0f val=0x00"
+INFO,"frame=80 time=252978 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=253164 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=253164 reg=0x0f val=0x02"
+INFO,"frame=80 time=253536 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=253722 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=253722 reg=0x0f val=0x00"
+INFO,"frame=80 time=253908 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=254094 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=254094 reg=0x0f val=0x02"
+INFO,"frame=80 time=254466 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=254652 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=254652 reg=0x0f val=0x00"
+INFO,"frame=80 time=254898 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=255084 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=255084 reg=0x0f val=0x02"
+INFO,"frame=80 time=255456 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=255642 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=255642 reg=0x0f val=0x00"
+INFO,"frame=80 time=256128 port=0x99 value=0x62"
+CYCLE,1944
+INFO,"frame=80 time=256314 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa462,0xa4,0x62
+INFO,"frame=80 time=256314 reg=0x24 val=0x62"
+INFO,"frame=80 time=256506 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=256692 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=256692 reg=0x25 val=0x00"
+INFO,"frame=80 time=257166 port=0x99 value=0x74"
+CYCLE,1896
+INFO,"frame=80 time=257352 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa874,0xa8,0x74
+INFO,"frame=80 time=257352 reg=0x28 val=0x74"
+INFO,"frame=80 time=257544 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=257730 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=257730 reg=0x29 val=0x00"
+INFO,"frame=80 time=258186 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=258372 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=258372 reg=0x2c val=0x03"
+INFO,"frame=80 time=258756 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=258942 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=258942 reg=0x2e val=0x70"
+INFO,"frame=80 time=259194 port=0x99 value=0x02"
+CYCLE,1008
+INFO,"frame=80 time=259380 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=259380 reg=0x0f val=0x02"
+INFO,"frame=80 time=259752 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=259938 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=259938 reg=0x0f val=0x00"
+INFO,"frame=80 time=260124 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=260310 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=260310 reg=0x0f val=0x02"
+INFO,"frame=80 time=260682 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=260868 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=260868 reg=0x0f val=0x00"
+INFO,"frame=80 time=261114 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=261300 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=261300 reg=0x0f val=0x02"
+INFO,"frame=80 time=261672 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=261858 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=261858 reg=0x0f val=0x00"
+INFO,"frame=80 time=262044 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=262230 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=262230 reg=0x0f val=0x02"
+INFO,"frame=80 time=262602 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=262788 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=262788 reg=0x0f val=0x00"
+INFO,"frame=80 time=263034 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=263220 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=263220 reg=0x0f val=0x02"
+INFO,"frame=80 time=263592 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=263778 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=263778 reg=0x0f val=0x00"
+INFO,"frame=80 time=263964 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=264150 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=264150 reg=0x0f val=0x02"
+INFO,"frame=80 time=264522 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=264708 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=264708 reg=0x0f val=0x00"
+INFO,"frame=80 time=264954 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=265140 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=265140 reg=0x0f val=0x02"
+INFO,"frame=80 time=265512 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=265698 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=265698 reg=0x0f val=0x00"
+INFO,"frame=80 time=265884 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=266070 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=266070 reg=0x0f val=0x02"
+INFO,"frame=80 time=266442 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=266628 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=266628 reg=0x0f val=0x00"
+INFO,"frame=80 time=266874 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=267060 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=267060 reg=0x0f val=0x02"
+INFO,"frame=80 time=267432 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=267618 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=267618 reg=0x0f val=0x00"
+INFO,"frame=80 time=267804 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=267990 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=267990 reg=0x0f val=0x02"
+INFO,"frame=80 time=268362 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=268548 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=268548 reg=0x0f val=0x00"
+INFO,"frame=80 time=268794 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=268980 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=268980 reg=0x0f val=0x02"
+INFO,"frame=80 time=269352 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=269538 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=269538 reg=0x0f val=0x00"
+INFO,"frame=80 time=269724 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=269910 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=269910 reg=0x0f val=0x02"
+INFO,"frame=80 time=270282 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=270468 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=270468 reg=0x0f val=0x00"
+INFO,"frame=80 time=270714 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=270900 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=270900 reg=0x0f val=0x02"
+INFO,"frame=80 time=271272 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=271458 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=271458 reg=0x0f val=0x00"
+INFO,"frame=80 time=271644 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=271830 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=271830 reg=0x0f val=0x02"
+INFO,"frame=80 time=272202 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=272388 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=272388 reg=0x0f val=0x00"
+INFO,"frame=80 time=272634 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=272820 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=272820 reg=0x0f val=0x02"
+INFO,"frame=80 time=273192 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=273378 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=273378 reg=0x0f val=0x00"
+INFO,"frame=80 time=273864 port=0x99 value=0xd6"
+CYCLE,1944
+INFO,"frame=80 time=274050 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d6,0xa4,0xd6
+INFO,"frame=80 time=274050 reg=0x24 val=0xd6"
+INFO,"frame=80 time=274320 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=274506 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=274506 reg=0x25 val=0x00"
+INFO,"frame=80 time=275058 port=0x99 value=0x0a"
+CYCLE,2208
+INFO,"frame=80 time=275244 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa80a,0xa8,0x0a
+INFO,"frame=80 time=275244 reg=0x28 val=0x0a"
+INFO,"frame=80 time=275436 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=275622 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=275622 reg=0x29 val=0x00"
+INFO,"frame=80 time=276000 port=0x99 value=0x00"
+CYCLE,1512
+INFO,"frame=80 time=276186 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=276186 reg=0x2c val=0x00"
+INFO,"frame=80 time=276570 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=276756 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=276756 reg=0x2e val=0x70"
+INFO,"frame=80 time=277014 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=277200 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=277200 reg=0x0f val=0x02"
+INFO,"frame=80 time=277572 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=277758 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=277758 reg=0x0f val=0x00"
+INFO,"frame=80 time=277944 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=278130 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=278130 reg=0x0f val=0x02"
+INFO,"frame=80 time=278502 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=278688 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=278688 reg=0x0f val=0x00"
+INFO,"frame=80 time=279180 port=0x99 value=0xdf"
+CYCLE,1968
+INFO,"frame=80 time=279366 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4df,0xa4,0xdf
+INFO,"frame=80 time=279366 reg=0x24 val=0xdf"
+INFO,"frame=80 time=279558 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=279744 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=279744 reg=0x25 val=0x00"
+INFO,"frame=80 time=280122 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=280308 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=280308 reg=0x2c val=0x02"
+INFO,"frame=80 time=280692 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=280878 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=280878 reg=0x2e val=0x50"
+INFO,"frame=80 time=281064 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=281250 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=281250 reg=0x0f val=0x02"
+INFO,"frame=80 time=281622 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=281808 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=281808 reg=0x0f val=0x00"
+INFO,"frame=80 time=282240 port=0x99 value=0xe0"
+CYCLE,1728
+INFO,"frame=80 time=282426 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4e0,0xa4,0xe0
+INFO,"frame=80 time=282426 reg=0x24 val=0xe0"
+INFO,"frame=80 time=282696 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=282882 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=282882 reg=0x25 val=0x00"
+INFO,"frame=80 time=283434 port=0x99 value=0x55"
+CYCLE,2208
+INFO,"frame=80 time=283620 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa855,0xa8,0x55
+INFO,"frame=80 time=283620 reg=0x28 val=0x55"
+INFO,"frame=80 time=283890 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=284076 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=284076 reg=0x29 val=0x00"
+INFO,"frame=80 time=284526 port=0x99 value=0x03"
+CYCLE,1800
+INFO,"frame=80 time=284712 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=284712 reg=0x2c val=0x03"
+INFO,"frame=80 time=285096 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=285282 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=285282 reg=0x2e val=0x70"
+INFO,"frame=80 time=285468 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=285654 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=285654 reg=0x0f val=0x02"
+INFO,"frame=80 time=286026 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=286212 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=286212 reg=0x0f val=0x00"
+INFO,"frame=80 time=286458 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=286644 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=286644 reg=0x0f val=0x02"
+INFO,"frame=80 time=287016 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=287202 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=287202 reg=0x0f val=0x00"
+INFO,"frame=80 time=287388 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=287574 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=287574 reg=0x0f val=0x02"
+INFO,"frame=80 time=287946 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=288132 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=288132 reg=0x0f val=0x00"
+INFO,"frame=80 time=288378 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=288564 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=288564 reg=0x0f val=0x02"
+INFO,"frame=80 time=288936 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=289122 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=289122 reg=0x0f val=0x00"
+INFO,"frame=80 time=289308 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=289494 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=289494 reg=0x0f val=0x02"
+INFO,"frame=80 time=289866 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=290052 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=290052 reg=0x0f val=0x00"
+INFO,"frame=80 time=290298 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=290484 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=290484 reg=0x0f val=0x02"
+INFO,"frame=80 time=290856 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=291042 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=291042 reg=0x0f val=0x00"
+INFO,"frame=80 time=291228 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=291414 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=291414 reg=0x0f val=0x02"
+INFO,"frame=80 time=291786 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=291972 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=291972 reg=0x0f val=0x00"
+INFO,"frame=80 time=292158 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=292344 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=292344 reg=0x0f val=0x02"
+INFO,"frame=80 time=292716 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=292902 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=292902 reg=0x0f val=0x00"
+INFO,"frame=80 time=293088 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=293274 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=293274 reg=0x0f val=0x02"
+INFO,"frame=80 time=293646 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=293832 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=293832 reg=0x0f val=0x00"
+INFO,"frame=80 time=294078 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=294264 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=294264 reg=0x0f val=0x02"
+INFO,"frame=80 time=294636 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=294822 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=294822 reg=0x0f val=0x00"
+INFO,"frame=80 time=295008 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=295194 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=295194 reg=0x0f val=0x02"
+INFO,"frame=80 time=295566 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=295752 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=295752 reg=0x0f val=0x00"
+INFO,"frame=80 time=296166 port=0x99 value=0x34"
+CYCLE,1656
+INFO,"frame=80 time=296352 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa434,0xa4,0x34
+INFO,"frame=80 time=296352 reg=0x24 val=0x34"
+INFO,"frame=80 time=296622 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=296808 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=296808 reg=0x25 val=0x01"
+INFO,"frame=80 time=297192 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=297378 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=297378 reg=0x2c val=0x02"
+INFO,"frame=80 time=297762 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=297948 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=297948 reg=0x2e val=0x50"
+INFO,"frame=80 time=298134 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=298320 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=298320 reg=0x0f val=0x02"
+INFO,"frame=80 time=298692 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=298878 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=298878 reg=0x0f val=0x00"
+INFO,"frame=80 time=299310 port=0x99 value=0x35"
+CYCLE,1728
+INFO,"frame=80 time=299496 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa435,0xa4,0x35
+INFO,"frame=80 time=299496 reg=0x24 val=0x35"
+INFO,"frame=80 time=299766 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=299952 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=299952 reg=0x25 val=0x01"
+INFO,"frame=80 time=300504 port=0x99 value=0x29"
+CYCLE,2208
+INFO,"frame=80 time=300690 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa829,0xa8,0x29
+INFO,"frame=80 time=300690 reg=0x28 val=0x29"
+INFO,"frame=80 time=300960 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=301146 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=301146 reg=0x29 val=0x00"
+INFO,"frame=80 time=301596 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=301782 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=301782 reg=0x2c val=0x00"
+INFO,"frame=80 time=302166 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=302352 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=302352 reg=0x2e val=0x70"
+INFO,"frame=80 time=302538 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=302724 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=302724 reg=0x0f val=0x02"
+INFO,"frame=80 time=303096 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=303282 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=303282 reg=0x0f val=0x00"
+INFO,"frame=80 time=303528 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=303714 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=303714 reg=0x0f val=0x02"
+INFO,"frame=80 time=304086 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=304272 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=304272 reg=0x0f val=0x00"
+INFO,"frame=80 time=304458 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=304644 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=304644 reg=0x0f val=0x02"
+INFO,"frame=80 time=305016 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=305202 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=305202 reg=0x0f val=0x00"
+INFO,"frame=80 time=305388 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=305574 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=305574 reg=0x0f val=0x02"
+INFO,"frame=80 time=305946 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=306132 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=306132 reg=0x0f val=0x00"
+INFO,"frame=80 time=306318 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=306504 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=306504 reg=0x0f val=0x02"
+INFO,"frame=80 time=306876 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=307062 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=307062 reg=0x0f val=0x00"
+INFO,"frame=80 time=307308 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=307494 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=307494 reg=0x0f val=0x02"
+INFO,"frame=80 time=307866 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=308052 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=308052 reg=0x0f val=0x00"
+INFO,"frame=80 time=308544 port=0x99 value=0x5d"
+CYCLE,1968
+INFO,"frame=80 time=308730 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45d,0xa4,0x5d
+INFO,"frame=80 time=308730 reg=0x24 val=0x5d"
+INFO,"frame=80 time=309000 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=309186 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=309186 reg=0x25 val=0x01"
+INFO,"frame=80 time=309564 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=309750 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=309750 reg=0x2c val=0x02"
+INFO,"frame=80 time=310056 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=310242 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=310242 reg=0x2e val=0x50"
+INFO,"frame=80 time=310428 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=310614 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=310614 reg=0x0f val=0x02"
+INFO,"frame=80 time=310986 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=311172 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=311172 reg=0x0f val=0x00"
+INFO,"frame=80 time=311598 port=0x99 value=0x5e"
+CYCLE,1704
+INFO,"frame=80 time=311784 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa45e,0xa4,0x5e
+INFO,"frame=80 time=311784 reg=0x24 val=0x5e"
+INFO,"frame=80 time=311976 port=0x99 value=0x01"
+CYCLE,768
+INFO,"frame=80 time=312162 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=312162 reg=0x25 val=0x01"
+INFO,"frame=80 time=312714 port=0x99 value=0x2a"
+CYCLE,2208
+INFO,"frame=80 time=312900 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa82a,0xa8,0x2a
+INFO,"frame=80 time=312900 reg=0x28 val=0x2a"
+INFO,"frame=80 time=313092 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=313278 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=313278 reg=0x29 val=0x00"
+INFO,"frame=80 time=313734 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=313920 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=313920 reg=0x2c val=0x03"
+INFO,"frame=80 time=314304 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=314490 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=314490 reg=0x2e val=0x70"
+INFO,"frame=80 time=314748 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=314934 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=314934 reg=0x0f val=0x02"
+INFO,"frame=80 time=315306 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=315492 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=315492 reg=0x0f val=0x00"
+INFO,"frame=80 time=315678 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=315864 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=315864 reg=0x0f val=0x02"
+INFO,"frame=80 time=316236 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=316422 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=316422 reg=0x0f val=0x00"
+INFO,"frame=80 time=316668 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=316854 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=316854 reg=0x0f val=0x02"
+INFO,"frame=80 time=317226 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=317412 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=317412 reg=0x0f val=0x00"
+INFO,"frame=80 time=317598 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=317784 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=317784 reg=0x0f val=0x02"
+INFO,"frame=80 time=318156 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=318342 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=318342 reg=0x0f val=0x00"
+INFO,"frame=80 time=318588 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=318774 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=318774 reg=0x0f val=0x02"
+INFO,"frame=80 time=319146 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=319332 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=319332 reg=0x0f val=0x00"
+INFO,"frame=80 time=319518 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=319704 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=319704 reg=0x0f val=0x02"
+INFO,"frame=80 time=320076 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=320262 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=320262 reg=0x0f val=0x00"
+INFO,"frame=80 time=320754 port=0x99 value=0x87"
+CYCLE,1968
+INFO,"frame=80 time=320940 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa487,0xa4,0x87
+INFO,"frame=80 time=320940 reg=0x24 val=0x87"
+INFO,"frame=80 time=321210 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=321396 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=321396 reg=0x25 val=0x01"
+INFO,"frame=80 time=321780 port=0x99 value=0x02"
+CYCLE,1536
+INFO,"frame=80 time=321966 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=321966 reg=0x2c val=0x02"
+INFO,"frame=80 time=322350 port=0x99 value=0x50"
+CYCLE,1536
+INFO,"frame=80 time=322536 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=322536 reg=0x2e val=0x50"
+INFO,"frame=80 time=322788 port=0x99 value=0x02"
+CYCLE,1008
+INFO,"frame=80 time=322974 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=322974 reg=0x0f val=0x02"
+INFO,"frame=80 time=323346 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=323532 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=323532 reg=0x0f val=0x00"
+INFO,"frame=80 time=323886 port=0x99 value=0x88"
+CYCLE,1416
+INFO,"frame=80 time=324072 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa488,0xa4,0x88
+INFO,"frame=80 time=324072 reg=0x24 val=0x88"
+INFO,"frame=80 time=324342 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=324528 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=324528 reg=0x25 val=0x01"
+INFO,"frame=80 time=325080 port=0x99 value=0x4b"
+CYCLE,2208
+INFO,"frame=80 time=325266 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa84b,0xa8,0x4b
+INFO,"frame=80 time=325266 reg=0x28 val=0x4b"
+INFO,"frame=80 time=325536 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=325722 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=325722 reg=0x29 val=0x00"
+INFO,"frame=80 time=326172 port=0x99 value=0x00"
+CYCLE,1800
+INFO,"frame=80 time=326358 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=326358 reg=0x2c val=0x00"
+INFO,"frame=80 time=326742 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=326928 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=326928 reg=0x2e val=0x70"
+INFO,"frame=80 time=327114 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=327300 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=327300 reg=0x0f val=0x02"
+INFO,"frame=80 time=327672 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=327858 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=327858 reg=0x0f val=0x00"
+INFO,"frame=80 time=328104 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=328290 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=328290 reg=0x0f val=0x02"
+INFO,"frame=80 time=328662 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=328848 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=328848 reg=0x0f val=0x00"
+INFO,"frame=80 time=329094 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=329280 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=329280 reg=0x0f val=0x02"
+INFO,"frame=80 time=329652 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=329838 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=329838 reg=0x0f val=0x00"
+INFO,"frame=80 time=330024 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=330210 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=330210 reg=0x0f val=0x02"
+INFO,"frame=80 time=330582 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=330768 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=330768 reg=0x0f val=0x00"
+INFO,"frame=80 time=331014 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=331200 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=331200 reg=0x0f val=0x02"
+INFO,"frame=80 time=331572 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=331758 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=331758 reg=0x0f val=0x00"
+INFO,"frame=80 time=331944 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=332130 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=332130 reg=0x0f val=0x02"
+INFO,"frame=80 time=332502 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=332688 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=332688 reg=0x0f val=0x00"
+INFO,"frame=80 time=332934 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=333120 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=333120 reg=0x0f val=0x02"
+INFO,"frame=80 time=333492 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=333678 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=333678 reg=0x0f val=0x00"
+INFO,"frame=80 time=333864 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=334050 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=334050 reg=0x0f val=0x02"
+INFO,"frame=80 time=334422 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=334608 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=334608 reg=0x0f val=0x00"
+INFO,"frame=80 time=334854 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=335040 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=335040 reg=0x0f val=0x02"
+INFO,"frame=80 time=335412 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=335598 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=335598 reg=0x0f val=0x00"
+INFO,"frame=80 time=335784 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=335970 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=335970 reg=0x0f val=0x02"
+INFO,"frame=80 time=336342 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=336528 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=336528 reg=0x0f val=0x00"
+INFO,"frame=80 time=337014 port=0x99 value=0xd3"
+CYCLE,1944
+INFO,"frame=80 time=337200 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa4d3,0xa4,0xd3
+INFO,"frame=80 time=337200 reg=0x24 val=0xd3"
+INFO,"frame=80 time=337470 port=0x99 value=0x01"
+CYCLE,1080
+INFO,"frame=80 time=337656 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa501,0xa5,0x01
+INFO,"frame=80 time=337656 reg=0x25 val=0x01"
+INFO,"frame=80 time=338160 port=0x99 value=0x48"
+CYCLE,2016
+INFO,"frame=80 time=338346 port=0x99 value=0xa6"
+CYCLE,744
+ADDRESS,0xa648,0xa6,0x48
+INFO,"frame=80 time=338346 reg=0x26 val=0x48"
+INFO,"frame=80 time=338724 port=0x99 value=0x2d"
+CYCLE,1512
+INFO,"frame=80 time=338910 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa42d,0xa4,0x2d
+INFO,"frame=80 time=338910 reg=0x24 val=0x2d"
+INFO,"frame=80 time=339180 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=339366 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=339366 reg=0x25 val=0x00"
+INFO,"frame=80 time=339918 port=0x99 value=0x35"
+CYCLE,2208
+INFO,"frame=80 time=340104 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa835,0xa8,0x35
+INFO,"frame=80 time=340104 reg=0x28 val=0x35"
+INFO,"frame=80 time=340296 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=340482 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=340482 reg=0x29 val=0x00"
+INFO,"frame=80 time=340860 port=0x99 value=0x00"
+CYCLE,1512
+INFO,"frame=80 time=341046 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac00,0xac,0x00
+INFO,"frame=80 time=341046 reg=0x2c val=0x00"
+INFO,"frame=80 time=341430 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=341616 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=341616 reg=0x2e val=0x70"
+INFO,"frame=80 time=341874 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=342060 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=342060 reg=0x0f val=0x02"
+INFO,"frame=80 time=342432 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=342618 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=342618 reg=0x0f val=0x00"
+INFO,"frame=80 time=342804 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=342990 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=342990 reg=0x0f val=0x02"
+INFO,"frame=80 time=343362 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=343548 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=343548 reg=0x0f val=0x00"
+INFO,"frame=80 time=343794 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=343980 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=343980 reg=0x0f val=0x02"
+INFO,"frame=80 time=344352 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=344538 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=344538 reg=0x0f val=0x00"
+INFO,"frame=80 time=344724 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=344910 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=344910 reg=0x0f val=0x02"
+INFO,"frame=80 time=345282 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=345468 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=345468 reg=0x0f val=0x00"
+INFO,"frame=80 time=345714 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=345900 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=345900 reg=0x0f val=0x02"
+INFO,"frame=80 time=346272 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=346458 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=346458 reg=0x0f val=0x00"
+INFO,"frame=80 time=346644 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=346830 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=346830 reg=0x0f val=0x02"
+INFO,"frame=80 time=347202 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=347388 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=347388 reg=0x0f val=0x00"
+INFO,"frame=80 time=347634 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=347820 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=347820 reg=0x0f val=0x02"
+INFO,"frame=80 time=348192 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=348378 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=348378 reg=0x0f val=0x00"
+INFO,"frame=80 time=348870 port=0x99 value=0x61"
+CYCLE,1968
+INFO,"frame=80 time=349056 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa461,0xa4,0x61
+INFO,"frame=80 time=349056 reg=0x24 val=0x61"
+INFO,"frame=80 time=349326 port=0x99 value=0x00"
+CYCLE,1080
+INFO,"frame=80 time=349512 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=349512 reg=0x25 val=0x00"
+INFO,"frame=80 time=349890 port=0x99 value=0x02"
+CYCLE,1512
+INFO,"frame=80 time=350076 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac02,0xac,0x02
+INFO,"frame=80 time=350076 reg=0x2c val=0x02"
+INFO,"frame=80 time=350382 port=0x99 value=0x50"
+CYCLE,1224
+INFO,"frame=80 time=350568 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae50,0xae,0x50
+INFO,"frame=80 time=350568 reg=0x2e val=0x50"
+INFO,"frame=80 time=350754 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=350940 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=350940 reg=0x0f val=0x02"
+INFO,"frame=80 time=351312 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=351498 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=351498 reg=0x0f val=0x00"
+INFO,"frame=80 time=351924 port=0x99 value=0x62"
+CYCLE,1704
+INFO,"frame=80 time=352110 port=0x99 value=0xa4"
+CYCLE,744
+ADDRESS,0xa462,0xa4,0x62
+INFO,"frame=80 time=352110 reg=0x24 val=0x62"
+INFO,"frame=80 time=352302 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=352488 port=0x99 value=0xa5"
+CYCLE,744
+ADDRESS,0xa500,0xa5,0x00
+INFO,"frame=80 time=352488 reg=0x25 val=0x00"
+INFO,"frame=80 time=353040 port=0x99 value=0x75"
+CYCLE,2208
+INFO,"frame=80 time=353226 port=0x99 value=0xa8"
+CYCLE,744
+ADDRESS,0xa875,0xa8,0x75
+INFO,"frame=80 time=353226 reg=0x28 val=0x75"
+INFO,"frame=80 time=353418 port=0x99 value=0x00"
+CYCLE,768
+INFO,"frame=80 time=353604 port=0x99 value=0xa9"
+CYCLE,744
+ADDRESS,0xa900,0xa9,0x00
+INFO,"frame=80 time=353604 reg=0x29 val=0x00"
+INFO,"frame=80 time=354060 port=0x99 value=0x03"
+CYCLE,1824
+INFO,"frame=80 time=354246 port=0x99 value=0xac"
+CYCLE,744
+ADDRESS,0xac03,0xac,0x03
+INFO,"frame=80 time=354246 reg=0x2c val=0x03"
+INFO,"frame=80 time=354630 port=0x99 value=0x70"
+CYCLE,1536
+INFO,"frame=80 time=354816 port=0x99 value=0xae"
+CYCLE,744
+ADDRESS,0xae70,0xae,0x70
+INFO,"frame=80 time=354816 reg=0x2e val=0x70"
+INFO,"frame=80 time=355074 port=0x99 value=0x02"
+CYCLE,1032
+INFO,"frame=80 time=355260 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=355260 reg=0x0f val=0x02"
+INFO,"frame=80 time=355632 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=355818 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=355818 reg=0x0f val=0x00"
+INFO,"frame=80 time=356004 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=356190 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=356190 reg=0x0f val=0x02"
+INFO,"frame=80 time=356562 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=356748 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=356748 reg=0x0f val=0x00"
+INFO,"frame=80 time=356994 port=0x99 value=0x02"
+CYCLE,984
+INFO,"frame=80 time=357180 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=357180 reg=0x0f val=0x02"
+INFO,"frame=80 time=357552 port=0x99 value=0x00"
+CYCLE,1488
+INFO,"frame=80 time=357738 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=80 time=357738 reg=0x0f val=0x00"
+INFO,"frame=80 time=357924 port=0x99 value=0x02"
+CYCLE,744
+INFO,"frame=80 time=358110 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f02,0x8f,0x02
+INFO,"frame=80 time=358110 reg=0x0f val=0x02"
+INFO,"frame=80 time=358416"
+CYCLE,1224

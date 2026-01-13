@@ -1,0 +1,4852 @@
+// Converted test pattern (auto-generated)
+// address variable holds VDP target address; initialized to current log state
+ADDRESS,0x8f02
+INFO,"frame=36 time=56652 port=0x99 value=0x00"
+CYCLE,226608
+INFO,"frame=36 time=56838 port=0x99 value=0x8f"
+CYCLE,744
+ADDRESS,0x8f00,0x8f,0x00
+INFO,"frame=36 time=56838 reg=0x0f val=0x00"
+INFO,"frame=36 time=57078 port=0x99 value=0x23"
+CYCLE,960
+INFO,"frame=36 time=57264 port=0x99 value=0x81"
+CYCLE,744
+ADDRESS,0x8123,0x81,0x23
+INFO,"frame=36 time=57264 reg=0x01 val=0x23"
+INFO,"frame=36 time=57558 port=0x99 value=0x08"
+CYCLE,1176
+INFO,"frame=36 time=57744 port=0x99 value=0x80"
+CYCLE,744
+ADDRESS,0x8008,0x80,0x08
+INFO,"frame=36 time=57744 reg=0x00 val=0x08"
+INFO,"frame=36 time=58050 port=0x99 value=0x23"
+CYCLE,1224
+INFO,"frame=36 time=58236 port=0x99 value=0x81"
+CYCLE,744
+ADDRESS,0x8123,0x81,0x23
+INFO,"frame=36 time=58236 reg=0x01 val=0x23"
+INFO,"frame=36 time=58542 port=0x99 value=0x28"
+CYCLE,1224
+INFO,"frame=36 time=58728 port=0x99 value=0x88"
+CYCLE,744
+ADDRESS,0x8828,0x88,0x28
+INFO,"frame=36 time=58728 reg=0x08 val=0x28"
+INFO,"frame=36 time=59034 port=0x99 value=0x00"
+CYCLE,1224
+INFO,"frame=36 time=59220 port=0x99 value=0x89"
+CYCLE,744
+ADDRESS,0x8900,0x89,0x00
+INFO,"frame=36 time=59220 reg=0x09 val=0x00"
+INFO,"frame=36 time=59448 port=0x99 value=0x1f"
+CYCLE,912
+INFO,"frame=36 time=59634 port=0x99 value=0x82"
+CYCLE,744
+ADDRESS,0x821f,0x82,0x1f
+INFO,"frame=36 time=59634 reg=0x02 val=0x1f"
+INFO,"frame=36 time=59940 port=0x99 value=0xef"
+CYCLE,1224
+INFO,"frame=36 time=60126 port=0x99 value=0x85"
+CYCLE,744
+ADDRESS,0x85ef,0x85,0xef
+INFO,"frame=36 time=60126 reg=0x05 val=0xef"
+INFO,"frame=36 time=60432 port=0x99 value=0x00"
+CYCLE,1224
+INFO,"frame=36 time=60618 port=0x99 value=0x8b"
+CYCLE,744
+ADDRESS,0x8b00,0x8b,0x00
+INFO,"frame=36 time=60618 reg=0x0b val=0x00"
+INFO,"frame=36 time=60924 port=0x99 value=0x0f"
+CYCLE,1224
+INFO,"frame=36 time=61110 port=0x99 value=0x86"
+CYCLE,744
+ADDRESS,0x860f,0x86,0x0f
+INFO,"frame=36 time=61110 reg=0x06 val=0x0f"
+INFO,"frame=36 time=61566 port=0x99 value=0x00"
+CYCLE,1824
+INFO,"frame=36 time=61752 port=0x99 value=0x8e"
+CYCLE,744
+ADDRESS,0x8e00,0x8e,0x00
+INFO,"frame=36 time=61752 reg=0x0e val=0x00"
+INFO,"frame=36 time=61938 port=0x99 value=0x00"
+CYCLE,744
+INFO,"frame=36 time=62124 port=0x99 value=0x40"
+CYCLE,744
+ADDRESS,0x4000,0x40,0x00
+INFO,"frame=36 time=62376 port=0x98 value=0x55"
+CYCLE,1008
+IO,address,0x55,0x55
+INFO,"frame=36 time=62562 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=62748 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=62934 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=63120 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=63306 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=63492 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=63678 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=63864 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64050 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64236 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64422 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64608 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64794 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=64980 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=65166 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=65352 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=65538 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=65724 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=65910 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=66096 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=66282 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=66468 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=66654 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=66840 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67026 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67212 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67398 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67584 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67770 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=67956 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=68142 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=68328 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=68514 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=68700 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=68886 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=69072 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=69258 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=69444 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=69630 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=69816 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70002 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70188 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70374 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70560 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70746 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=70932 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=71118 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=71304 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=71490 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=71676 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=71862 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72048 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72234 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72420 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72606 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72792 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=72978 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=73164 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=73350 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=73536 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=73722 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=73908 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=74094 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=74280 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=74466 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=74652 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=74838 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75024 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75210 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75396 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75582 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75768 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=75954 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=76140 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=76326 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=76512 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=76698 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=76884 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=77070 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=77256 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=77442 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=77628 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=77814 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78000 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78186 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78372 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78558 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78744 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=78930 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=79116 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=79302 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=79488 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=79674 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=79860 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80046 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80232 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80418 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80604 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80790 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=80976 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=81162 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=81348 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=81534 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=81720 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=81906 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=82092 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=82278 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=82464 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=82650 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=82836 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83022 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83208 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83394 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83580 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83766 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=83952 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=84138 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=84324 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=84510 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=84696 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=84882 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85068 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85254 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85440 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85626 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85812 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=85998 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=86184 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=86370 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=86556 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=86742 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=86928 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=87114 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=87300 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=87486 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=87672 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=87858 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88044 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88230 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88416 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88602 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88788 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=88974 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=89160 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=89346 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=89532 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=89718 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=89904 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=90090 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=90276 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=90462 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=90648 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=90834 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91020 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91206 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91392 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91578 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91764 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=91950 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=92136 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=92322 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=92508 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=92694 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=92880 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93066 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93252 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93438 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93624 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93810 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=93996 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=94182 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=94368 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=94554 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=94740 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=94926 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=95112 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=95298 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=95484 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=95670 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=95856 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96042 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96228 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96414 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96600 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96786 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=96972 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=97158 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=97344 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=97530 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=97716 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=97902 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=98088 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=98274 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=98460 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=98646 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=98832 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99018 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99204 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99390 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99576 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99762 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=99948 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=100134 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=100320 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=100506 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=100692 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=100878 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101064 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101250 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101436 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101622 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101808 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=101994 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=102180 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=102366 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=102552 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=102738 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=102924 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=103110 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=103296 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=103482 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=103668 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=103854 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104040 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104226 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104412 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104598 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104784 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=104970 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=105156 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=105342 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=105528 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=105714 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=105900 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=106086 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=106272 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=106458 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=106644 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=106830 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107016 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107202 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107388 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107574 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107760 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=107946 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=108132 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=108318 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=108504 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=108690 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=108876 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109062 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109248 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109434 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109620 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109806 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=109992 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=110178 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=110364 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=110550 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=110736 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=110922 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=111108 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=111294 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=111480 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=111666 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=111852 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112038 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112224 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112410 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112596 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112782 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=112968 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=113154 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=113340 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=113526 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=113712 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=113898 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=114084 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=114270 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=114456 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=114642 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=114828 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115014 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115200 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115386 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115572 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115758 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=115944 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=116130 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=116316 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=116502 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=116688 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=116874 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117060 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117246 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117432 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117618 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117804 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=117990 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=118176 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=118362 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=118548 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=118734 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=118920 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=119106 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=119292 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=119478 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=119664 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=119850 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120036 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120222 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120408 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120594 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120780 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=120966 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=121152 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=121338 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=121524 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=121710 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=121896 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=122082 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=122268 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=122454 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=122640 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=122826 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123012 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123198 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123384 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123570 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123756 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=123942 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=124128 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=124314 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=124500 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=124686 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=124872 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125058 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125244 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125430 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125616 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125802 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=125988 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=126174 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=126360 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=126546 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=126732 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=126918 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=127104 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=127290 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=127476 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=127662 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=127848 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128034 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128220 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128406 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128592 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128778 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=128964 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=129150 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=129336 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=129522 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=129708 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=129894 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=130080 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=130266 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=130452 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=130638 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=130824 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131010 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131196 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131382 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131568 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131754 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=131940 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=132126 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=132312 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=132498 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=132684 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=132870 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133056 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133242 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133428 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133614 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133800 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=133986 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=134172 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=134358 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=134544 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=134730 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=134916 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=135102 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=135288 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=135474 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=135660 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=135846 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136032 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136218 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136404 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136590 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136776 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=136962 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=137148 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=137334 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=137520 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=137706 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=137892 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=138078 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=138264 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=138450 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=138636 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=138822 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139008 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139194 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139380 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139566 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139752 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=139938 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=140124 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=140310 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=140496 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=140682 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=140868 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141054 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141240 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141426 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141612 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141798 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=141984 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=142170 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=142356 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=142542 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=142728 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=142914 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=143100 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=143286 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=143472 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=143658 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=143844 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144030 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144216 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144402 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144588 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144774 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=144960 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=145146 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=145332 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=145518 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=145704 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=145890 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=146076 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=146262 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=146448 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=146634 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=146820 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147006 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147192 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147378 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147564 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147750 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=147936 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=148122 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=148308 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=148494 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=148680 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=148866 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149052 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149238 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149424 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149610 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149796 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=149982 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=150168 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=150354 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=150540 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=150726 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=150912 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=151098 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=151284 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=151470 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=151656 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=151842 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152028 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152214 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152400 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152586 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152772 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=152958 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=153144 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=153330 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=153516 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=153702 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=153888 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=154074 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=154260 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=154446 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=154632 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=154818 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155004 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155190 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155376 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155562 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155748 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=155934 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=156120 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=156306 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=156492 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=156678 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=156864 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157050 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157236 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157422 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157608 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157794 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=157980 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=158166 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=158352 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=158538 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=158724 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=158910 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=159096 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=159282 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=159468 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=159654 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=159840 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160026 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160212 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160398 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160584 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160770 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=160956 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=161142 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=161328 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=161514 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=161700 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=161886 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=162072 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=162258 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=162444 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=162630 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=162816 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163002 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163188 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163374 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163560 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163746 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=163932 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=164118 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=164304 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=164490 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=164676 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=164862 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165048 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165234 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165420 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165606 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165792 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=165978 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=166164 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=166350 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=166536 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=166722 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=166908 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=167094 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=167280 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=167466 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=167652 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=167838 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168024 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168210 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168396 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168582 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168768 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=168954 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=169140 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=169326 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=169512 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=169698 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=169884 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=170070 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=170256 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=170442 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=170628 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=170814 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171000 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171186 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171372 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171558 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171744 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=171930 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=172116 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=172302 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=172488 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=172674 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=172860 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173046 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173232 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173418 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173604 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173790 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=173976 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=174162 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=174348 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=174534 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=174720 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=174906 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=175092 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=175278 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=175464 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=175650 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=175836 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176022 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176208 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176394 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176580 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176766 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=176952 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=177138 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=177324 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=177510 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=177696 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=177882 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178068 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178254 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178440 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178626 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178812 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=178998 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=179184 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=179370 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=179556 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=179742 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=179928 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=180114 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=180300 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=180486 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=180672 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=180858 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181044 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181230 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181416 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181602 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181788 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=181974 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=182160 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=182346 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=182532 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=182718 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=182904 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=183090 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=183276 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=183462 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=183648 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=183834 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184020 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184206 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184392 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184578 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184764 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=184950 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=185136 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=185322 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=185508 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=185694 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=185880 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186066 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186252 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186438 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186624 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186810 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=186996 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=187182 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=187368 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=187554 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=187740 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=187926 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=188112 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=188298 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=188484 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=188670 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=188856 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189042 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189228 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189414 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189600 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189786 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=189972 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=190158 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=190344 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=190530 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=190716 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=190902 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=191088 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=191274 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=191460 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=191646 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=191832 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192018 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192204 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192390 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192576 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192762 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=192948 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=193134 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=193320 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=193506 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=193692 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=193878 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194064 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194250 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194436 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194622 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194808 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=194994 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=195180 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=195366 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=195552 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=195738 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=195924 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=196110 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=196296 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=196482 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=196668 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=196854 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197040 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197226 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197412 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197598 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197784 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=197970 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=198156 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=198342 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=198528 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=198714 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=198900 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=199086 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=199272 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=199458 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=199644 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=199830 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200016 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200202 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200388 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200574 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200760 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=200946 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=201132 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=201318 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=201504 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=201690 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=201876 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202062 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202248 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202434 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202620 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202806 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=202992 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=203178 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=203364 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=203550 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=203736 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=203922 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=204108 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=204294 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=204480 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=204666 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=204852 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205038 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205224 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205410 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205596 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205782 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=205968 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=206154 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=206340 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=206526 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=206712 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=206898 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=207084 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=207270 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=207456 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=207642 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=207828 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208014 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208200 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208386 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208572 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208758 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=208944 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=209130 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=209316 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=209502 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=209688 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=209874 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210060 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210246 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210432 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210618 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210804 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=210990 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=211176 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=211362 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=211548 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=211734 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=211920 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=212106 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=212292 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=212478 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=212664 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=212850 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213036 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213222 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213408 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213594 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213780 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=213966 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=214152 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=214338 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=214524 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=214710 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=214896 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=215082 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=215268 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=215454 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=215640 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=215826 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216012 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216198 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216384 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216570 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216756 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=216942 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=217128 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=217314 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=217500 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=217686 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=217872 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218058 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218244 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218430 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218616 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218802 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=218988 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=219174 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=219360 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=219546 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=219732 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=219918 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=220104 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=220290 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=220476 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=220662 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=220848 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221034 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221220 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221406 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221592 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221778 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=221964 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=222150 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=222336 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=222522 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=222708 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=222894 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=223080 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=223266 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=223452 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=223638 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=223824 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224010 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224196 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224382 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224568 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224754 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=224940 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=225126 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=225312 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=225498 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=225684 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=225870 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226056 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226242 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226428 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226614 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226800 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=226986 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=227172 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=227358 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=227544 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=227730 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=227916 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=228102 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=228288 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=228474 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=228660 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=228846 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229032 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229218 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229404 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229590 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229776 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=229962 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=230148 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=230334 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=230520 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=230706 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=230892 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=231078 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=231264 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=231450 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=231636 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=231822 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232008 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232194 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232380 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232566 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232752 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=232938 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=233124 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=233310 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=233496 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=233682 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=233868 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234054 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234240 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234426 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234612 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234798 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=234984 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=235170 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=235356 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=235542 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=235728 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=235914 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=236100 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=236286 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=236472 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=236658 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=236844 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237030 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237216 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237402 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237588 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237774 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=237960 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=238146 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=238332 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=238518 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=238704 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=238890 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=239076 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=239262 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=239448 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=239634 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=239820 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240006 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240192 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240378 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240564 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240750 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=240936 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=241122 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=241308 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=241494 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=241680 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=241866 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242052 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242238 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242424 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242610 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242796 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=242982 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=243168 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=243354 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=243540 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=243726 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=243912 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=244098 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=244284 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=244470 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=244656 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=244842 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245028 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245214 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245400 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245586 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245772 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=245958 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=246144 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=246330 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=246516 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=246702 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=246888 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=247074 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=247260 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=247446 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=247632 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=247818 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248004 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248190 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248376 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248562 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248748 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=248934 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=249120 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=249306 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=249492 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=249678 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=249864 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250050 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250236 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250422 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250608 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250794 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=250980 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=251166 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=251352 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=251538 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=251724 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=251910 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=252096 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=252282 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=252468 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=252654 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=252840 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253026 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253212 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253398 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253584 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253770 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=253956 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=254142 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=254328 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=254514 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=254700 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=254886 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=255072 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=255258 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=255444 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=255630 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=255816 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256002 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256188 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256374 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256560 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256746 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=256932 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=257118 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=257304 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=257490 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=257676 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=257862 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258048 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258234 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258420 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258606 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258792 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=258978 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=259164 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=259350 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=259536 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=259722 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=259908 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=260094 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=260280 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=260466 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=260652 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=260838 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261024 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261210 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261396 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261582 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261768 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=261954 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=262140 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=262326 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=262512 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=262698 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=262884 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=263070 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=263256 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=263442 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=263628 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=263814 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264000 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264186 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264372 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264558 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264744 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=264930 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=265116 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=265302 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=265488 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=265674 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=265860 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266046 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266232 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266418 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266604 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266790 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=266976 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=267162 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=267348 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=267534 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=267720 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=267906 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=268092 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=268278 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=268464 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=268650 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=268836 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269022 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269208 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269394 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269580 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269766 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=269952 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=270138 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=270324 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=270510 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=270696 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=270882 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271068 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271254 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271440 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271626 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271812 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=271998 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=272184 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=272370 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=272556 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=272742 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=272928 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=273114 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=273300 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=273486 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=273672 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=273858 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274044 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274230 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274416 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274602 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274788 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=274974 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=275160 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=275346 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=275532 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=275718 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=275904 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=276090 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=276276 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=276462 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=276648 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=276834 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277020 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277206 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277392 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277578 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277764 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=277950 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=278136 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=278322 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=278508 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=278694 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=278880 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279066 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279252 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279438 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279624 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279810 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=279996 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=280182 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=280368 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=280554 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=280740 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=280926 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=281112 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=281298 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=281484 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=281670 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=281856 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282042 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282228 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282414 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282600 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282786 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=282972 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=283158 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=283344 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=283530 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=283716 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=283902 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=284088 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=284274 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=284460 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=284646 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=284832 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285018 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285204 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285390 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285576 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285762 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=285948 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=286134 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=286320 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=286506 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=286692 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=286878 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287064 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287250 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287436 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287622 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287808 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=287994 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=288180 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=288366 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=288552 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=288738 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=288924 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=289110 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=289296 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=289482 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=289668 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=289854 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290040 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290226 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290412 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290598 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290784 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=290970 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=291156 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=291342 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=291528 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=291714 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=291900 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=292086 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=292272 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=292458 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=292644 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=292830 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293016 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293202 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293388 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293574 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293760 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=293946 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=294132 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=294318 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=294504 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=294690 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=294876 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295062 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295248 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295434 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295620 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295806 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=295992 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=296178 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=296364 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=296550 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=296736 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=296922 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=297108 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=297294 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=297480 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=297666 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=297852 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298038 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298224 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298410 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298596 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298782 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=298968 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=299154 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=299340 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=299526 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=299712 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=299898 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=300084 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=300270 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=300456 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=300642 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=300828 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301014 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301200 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301386 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301572 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301758 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=301944 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=302130 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=302316 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=302502 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=302688 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=302874 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303060 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303246 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303432 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303618 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303804 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=303990 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=304176 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=304362 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=304548 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=304734 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=304920 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=305106 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=305292 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=305478 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=305664 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=305850 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306036 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306222 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306408 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306594 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306780 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=306966 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=307152 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=307338 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=307524 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=307710 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=307896 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=308082 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=308268 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=308454 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=308640 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=308826 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309012 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309198 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309384 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309570 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309756 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=309942 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=310128 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=310314 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=310500 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=310686 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=310872 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311058 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311244 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311430 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311616 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311802 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=311988 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=312174 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=312360 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=312546 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=312732 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=312918 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=313104 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=313290 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=313476 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=313662 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=313848 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314034 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314220 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314406 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314592 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314778 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=314964 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=315150 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=315336 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=315522 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=315708 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=315894 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=316080 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=316266 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=316452 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=316638 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=316824 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317010 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317196 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317382 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317568 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317754 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=317940 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=318126 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=318312 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=318498 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=318684 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=318870 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319056 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319242 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319428 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319614 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319800 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=319986 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=320172 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=320358 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=320544 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=320730 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=320916 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=321102 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=321288 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=321474 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=321660 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=321846 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322032 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322218 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322404 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322590 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322776 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=322962 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=323148 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=323334 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=323520 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=323706 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=323892 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=324078 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=324264 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=324450 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=324636 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=324822 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325008 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325194 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325380 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325566 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325752 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=325938 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=326124 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=326310 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=326496 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=326682 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=326868 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327054 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327240 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327426 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327612 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327798 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=327984 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=328170 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=328356 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=328542 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=328728 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=328914 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=329100 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=329286 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=329472 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=329658 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=329844 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330030 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330216 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330402 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330588 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330774 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=330960 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=331146 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=331332 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=331518 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=331704 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=331890 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=332076 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=332262 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=332448 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=332634 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=332820 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333006 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333192 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333378 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333564 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333750 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=333936 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=334122 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=334308 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=334494 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=334680 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=334866 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335052 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335238 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335424 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335610 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335796 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=335982 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=336168 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=336354 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=336540 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=336726 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=336912 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=337098 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=337284 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=337470 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=337656 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=337842 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338028 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338214 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338400 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338586 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338772 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=338958 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=339144 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=339330 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=339516 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=339702 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=339888 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=340074 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=340260 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=340446 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=340632 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=340818 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341004 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341190 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341376 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341562 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341748 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=341934 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=342120 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=342306 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=342492 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=342678 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=342864 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343050 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343236 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343422 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343608 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343794 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=343980 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=344166 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=344352 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=344538 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=344724 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=344910 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=345096 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=345282 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=345468 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=345654 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=345840 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346026 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346212 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346398 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346584 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346770 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=346956 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=347142 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=347328 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=347514 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=347700 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=347886 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=348072 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=348258 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=348444 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=348630 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=348816 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349002 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349188 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349374 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349560 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349746 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=349932 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=350118 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=350304 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=350490 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=350676 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=350862 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351048 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351234 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351420 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351606 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351792 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=351978 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=352164 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=352350 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=352536 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=352722 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=352908 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=353094 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=353280 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=353466 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=353652 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=353838 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354024 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354210 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354396 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354582 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354768 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=354954 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=355140 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=355326 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=355512 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=355698 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=355884 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=356070 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=356256 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=356442 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=356628 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=356814 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357000 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357186 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357372 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357558 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357744 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=357930 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=358116 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=358302 port=0x98 value=0x55"
+CYCLE,744
+IO,address,0x55,0x55
+INFO,"frame=36 time=358416"
+CYCLE,456

@@ -15,7 +15,7 @@
 // - slot_clk is an integer divider of the main clock (for visibility only)
 // - write_io() generates Z80-like I/O write cycles in half-cycle units
 // - SDRAM is modeled as a simple functional VRAM array
-// - [VERILATOR MOD] dbg_vram_rdata_en を生成し、vram_rdata_en 相当の
+// - [VERILATOR MOD] dbg_vram_rdata_en を生成し��vram_rdata_en 相当の
 //   タイミングを再現するための簡易パイプラインを追加
 
 #include "vdp_cartridge_wrapper.h"
@@ -29,6 +29,9 @@
 #include <limits.h>
 #include <assert.h>
 #include <inttypes.h>
+#include <vector>
+#include <algorithm>
+#include <stdlib.h>
 
 /* -------------------------------------------------------------------------
  * Basic state / configuration
@@ -71,6 +74,56 @@ static int g_write_on_posedge = 0;
 
 /* end-align control (currently unused) */
 static int g_end_align_enabled = 0;
+
+/* -------------------------------------------------------------------------
+ * Capture / frame buffer state (NEW)
+ * - Captures pixel stream from the DUT by sampling display_* signals on
+ *   the posedge of the main clock. A pixel is considered valid when
+ *   (display_hs && display_en) are both high.
+ * - A frame is considered finished when display_vs transitions from 1 -> 0
+ *   (VSYNC==0 denotes VBLANK as requested).
+ * - Pixels are stored as a list of (x,y,r,g,b) during capture; at frame end
+ *   we compute width=max_x+1, height=max_y+1 and compose a rectangular image.
+ * - Sampling is done at 1/4 rate of the main clock: only once every 4 main
+ *   cycles (to match openMSX emu-cycle granularity).
+ * -------------------------------------------------------------------------*/
+typedef struct {
+    uint32_t x;
+    uint32_t y;
+    uint8_t  r;
+    uint8_t  g;
+    uint8_t  b;
+} CapturedPixel;
+
+static std::vector<CapturedPixel> g_captured_pixels;
+static uint32_t g_cur_x = 0;
+static uint32_t g_cur_y = 0;
+static uint32_t g_max_x = 0;
+static uint32_t g_max_y = 0;
+static uint8_t  g_prev_vs = 1;  // init conservatively to 1 to avoid immediate finalize
+static uint8_t  g_prev_hs = 0;
+static uint8_t  g_prev_en = 0;
+static uint64_t g_frame_no = 0;
+static int g_dump_screen = 0;   // if 1, dump each finished frame as display_<frame_no>.ppm
+
+/* Sampling phase counter: sample only when g_sample_phase == 0 (0..3) */
+static int g_sample_phase = 0;
+
+/* Setter to toggle dump_screen at runtime */
+void vdp_cartridge_set_dump_screen(int enable)
+{
+    g_dump_screen = enable ? 1 : 0;
+}
+
+void vdp_cartridge_set_dump_frame_no(uint64_t frame_no)
+{
+	g_frame_no = frame_no;
+}
+
+uint64_t vdp_cartridge_get_frame_no(void)
+{
+	return g_frame_no;
+}
 
 /* -------------------------------------------------------------------------
  * Helpers: SDRAM / VRAM model
@@ -220,6 +273,78 @@ void vdp_cartridge_vram_bus_eval(void)
 }
 
 /* -------------------------------------------------------------------------
+ * Frame finalization: compose rectangular image from captured pixels
+ * and optionally dump as PPM (binary P6).
+ * -------------------------------------------------------------------------*/
+static void vdp_finalize_frame_and_maybe_dump(void)
+{
+    if (g_captured_pixels.empty()) {
+        // nothing captured -> reset counters and return
+        g_captured_pixels.clear();
+        g_cur_x = g_cur_y = 0;
+        g_max_x = g_max_y = 0;
+        return;
+    }
+
+    const uint32_t W = g_max_x + 1;
+    const uint32_t H = g_max_y + 1;
+
+    if (W == 0 || H == 0) {
+        g_captured_pixels.clear();
+        g_cur_x = g_cur_y = 0;
+        g_max_x = g_max_y = 0;
+        return;
+    }
+
+    // allocate image buffer and fill with black
+    size_t img_size = static_cast<size_t>(W) * static_cast<size_t>(H) * 3;
+    std::vector<uint8_t> img;
+    try {
+        img.resize(img_size);
+    } catch (...) {
+        fprintf(stderr, "[dump] Failed to allocate image buffer %" PRIu32 "x%" PRIu32 "\n", W, H);
+        g_captured_pixels.clear();
+        g_cur_x = g_cur_y = 0;
+        g_max_x = g_max_y = 0;
+        return;
+    }
+    std::fill(img.begin(), img.end(), 0);
+
+    // paint pixels
+    for (const auto &p : g_captured_pixels) {
+        if (p.x < W && p.y < H) {
+            size_t idx = (static_cast<size_t>(p.y) * W + p.x) * 3;
+            img[idx + 0] = p.r;
+            img[idx + 1] = p.g;
+            img[idx + 2] = p.b;
+        }
+    }
+
+    if (g_dump_screen) {
+        char fname[128];
+        std::snprintf(fname, sizeof(fname), "display_%06" PRIu64 ".ppm", g_frame_no);
+        FILE* fp = std::fopen(fname, "wb");
+        if (fp) {
+            std::fprintf(fp, "P6\n%u %u\n255\n", W, H);
+            // binary write entire buffer (row-major)
+            std::fwrite(img.data(), 1, img_size, fp);
+            std::fclose(fp);
+            std::fprintf(stderr, "[dump] wrote %s (w=%u h=%u) at t=%" PRIu64 "ps\n",
+                        fname, W, H, g_time_ps);
+        } else {
+            std::fprintf(stderr, "[dump] failed to open %s for write\n", fname);
+        }
+    }
+
+    // advance frame counter and reset capture state
+    g_frame_no++;
+    g_captured_pixels.clear();
+    g_cur_x = 0;
+    g_cur_y = 0;
+    g_max_x = g_max_y = 0;
+}
+
+/* -------------------------------------------------------------------------
  * Half-cycle step: single source of time / clock progression
  * -------------------------------------------------------------------------*/
 static inline void step_halfcycle(int level)
@@ -252,6 +377,58 @@ static inline void step_halfcycle(int level)
     // VRAM バス処理 → DUT 評価
     vdp_cartridge_vram_bus_eval();
     eval_and_dump_current_time();
+
+    // --- NEW: sample video signals on posedge (new_clk == 1) ---
+    // We sample after eval() so DUT outputs are stable for this half-cycle.
+    // Sampling is performed only when g_sample_phase == 0 (1/4 rate).
+    if (new_clk == 1) {
+        if (g_top) {
+            if (g_sample_phase == 0) {
+                uint8_t cur_vs = g_top->display_vs ? 1 : 0;
+                uint8_t cur_hs = g_top->display_hs ? 1 : 0;
+                uint8_t cur_en = g_top->display_en ? 1 : 0;
+                uint8_t cur_r  = static_cast<uint8_t>(g_top->display_r);
+                uint8_t cur_g  = static_cast<uint8_t>(g_top->display_g);
+                uint8_t cur_b  = static_cast<uint8_t>(g_top->display_b);
+
+                // Frame end detection: VSYNC falling edge (1 -> 0) means enter VBLANK
+                if (cur_vs == 0 && g_prev_vs == 1) {
+                    // finalize previous frame and optionally dump
+                    vdp_finalize_frame_and_maybe_dump();
+                }
+
+                // Pixel capture: when HS && EN are both high, capture a pixel at (x,y)
+                if (cur_hs && cur_en) {
+                    CapturedPixel px;
+                    px.x = g_cur_x;
+                    px.y = g_cur_y;
+                    px.r = cur_r;
+                    px.g = cur_g;
+                    px.b = cur_b;
+                    g_captured_pixels.push_back(px);
+                    if (g_cur_x > g_max_x) g_max_x = g_cur_x;
+                    if (g_cur_y > g_max_y) g_max_y = g_cur_y;
+                    g_cur_x++;
+                }
+
+                // Line end detection: previous sampled state had HS&&EN but now not -> increment Y and reset X
+                if ((g_prev_hs && g_prev_en) && !(cur_hs && cur_en)) {
+                    g_cur_x = 0;
+                    g_cur_y++;
+                }
+
+                // update previous sampled state
+                g_prev_vs = cur_vs;
+                g_prev_hs = cur_hs;
+                g_prev_en = cur_en;
+            }
+
+            // advance sampling phase (0..3)
+            g_sample_phase = (g_sample_phase + 1) & 3;
+        }
+    }
+    // --- end new capture code ---
+
     g_time_ps += HALF_CYCLE_PS;
 }
 
@@ -334,6 +511,26 @@ void vdp_cartridge_init(void)
 
     memset(g_vram, 0, sizeof(g_vram));
     vram_read_pipe_reset();
+
+    // capture defaults
+    g_captured_pixels.clear();
+    g_cur_x = g_cur_y = 0;
+    g_max_x = g_max_y = 0;
+    g_prev_vs = 1; // assume initially out of VBLANK
+    g_prev_hs = 0;
+    g_prev_en = 0;
+    g_frame_no = 0;
+    g_sample_phase = 0; // start sampling phase aligned to 0
+
+    // Allow override via environment variable DUMP_SCREEN (convenience)
+    const char* env = getenv("DUMP_SCREEN");
+    if (env) {
+        int v = atoi(env);
+        g_dump_screen = (v != 0) ? 1 : 0;
+        if (g_dump_screen) {
+            fprintf(stderr, "[init] DUMP_SCREEN env enabled\n");
+        }
+    }
 
     eval_and_dump_current_time();
 }
@@ -454,7 +651,7 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
 {
     if (!g_top) return;
 
-    // ざっくり half-cycle 数（ModelSim の ns 計測から多めにマージン）
+    // ざっ���り half-cycle 数（ModelSim の ns 計測から多めにマージン）
     const int H_ADDR_SETUP = 30;  // addr/data セット後、/WR アサートまで
     const int H_WR_WIDTH   = 40;  // /WR=0 の期間
     const int H_IORQ_DELAY = 4;   // /WR↑ から /IORQ↓ まで
