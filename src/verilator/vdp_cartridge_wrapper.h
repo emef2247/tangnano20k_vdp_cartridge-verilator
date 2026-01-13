@@ -48,12 +48,33 @@ void vdp_cartridge_set_end_align(int enable);
 /* VCD トレース制御 */
 int  vdp_cartridge_trace_open(const char* path); /* returns 0 on success, -1 on failure */
 void vdp_cartridge_trace_close(void);
+int vdp_cartridge_set_vcd_enabled(int enable, const char* path);
+int vdp_cartridge_is_vcd_enabled(void);
 
 /* シミュレーション時刻取得 (ps 単位) */
 uint64_t vdp_cartridge_get_sim_time(void);
 
 /* slot_wait getter */
 uint8_t vdp_cartridge_get_slot_wait(void);
+
+// vram_interface 直結版
+void vdp_cartridge_vram_bus_eval(void);
+
+/* -------------------------------------------------------------------------
+ * Video output helpers (for openMSX / tests)
+ * -------------------------------------------------------------------------*/
+
+typedef struct {
+    int width;
+    int height;
+} VdpVideoMode;
+
+// 現在の画面サイズを返す（当面 SCREEN5 前提で 256x212 固定）
+void vdp_get_video_mode(VdpVideoMode* out);
+
+// VDP の display_* 出力から 1フレームぶんの RGB を取得
+// dst: height 行 × pitch バイト, 1ピクセル=RGB(3バイト)
+void vdp_render_frame_rgb(uint8_t* dst, int pitch);
 
 #ifdef __cplusplus
 }

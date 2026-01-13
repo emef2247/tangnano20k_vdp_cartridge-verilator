@@ -68,7 +68,23 @@ module wrapper_top (
 
     // CPU-side bridge ports — driven by C++ wrapper
     input  [7:0]     cpu_ff_slot_data,
-    input            cpu_drive_en
+    input            cpu_drive_en,
+
+	// Raw video output from VDP core (for Verilator / openMSX)
+    output           display_hs,
+    output           display_vs,
+    output           display_en,
+    output [7:0]     display_r,
+    output [7:0]     display_g,
+    output [7:0]     display_b,
+	
+    // Debug VRAM bus exported to C++ wrapper
+    output [17:0] dbg_vram_address,
+    output [31:0] dbg_vram_wdata,
+    input  [31:0] dbg_vram_rdata,
+    output        dbg_vram_valid,
+    output        dbg_vram_write,
+    output        dbg_vram_rdata_en
 );
 
     // Instantiate original DUT (connect slot_d to the same inout)
@@ -107,7 +123,23 @@ module wrapper_top (
         .IO_sdram_dq        (IO_sdram_dq),
         .O_sdram_addr       (O_sdram_addr),
         .O_sdram_ba         (O_sdram_ba),
-        .O_sdram_dqm        (O_sdram_dqm)
+        .O_sdram_dqm        (O_sdram_dqm),
+
+        // new video taps
+        .display_hs   (display_hs),
+        .display_vs   (display_vs),
+        .display_en   (display_en),
+        .display_r    (display_r),
+        .display_g    (display_g),
+        .display_b    (display_b),
+		
+        // debug VRAM ports
+        .dbg_vram_address   (dbg_vram_address),
+        .dbg_vram_wdata     (dbg_vram_wdata),
+        .dbg_vram_rdata     (dbg_vram_rdata),
+        .dbg_vram_valid     (dbg_vram_valid),
+        .dbg_vram_write     (dbg_vram_write),
+        .dbg_vram_rdata_en  (dbg_vram_rdata_en)
     );
 
     // Instantiate the bridge that drives slot_d when cpu_drive_en is asserted.
