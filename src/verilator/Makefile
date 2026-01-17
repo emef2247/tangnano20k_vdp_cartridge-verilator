@@ -13,7 +13,7 @@ VERILATOR_FLAGS = -Wno-fatal -I$(VPATH)
 VERILOG_SRCS = \
 	$(RTL)/wrapper_top.sv \
 	$(MOD)/ip_sdram_tangnano20k_c.v \
-	$(MOD)/ip_sdram.v \
+	$(MOD)/ip_sdram_simple.v \
 	$(MOD)/vdp_vram_interface.v \
 	$(VPATH)/test_top_SCREEN5_SP2/dummy.v \
 	$(VPATH)/msx_slot/msx_slot.v \

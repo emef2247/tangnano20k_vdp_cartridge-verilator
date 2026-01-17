@@ -3,20 +3,17 @@
 //
 // - Provides a simple cycle-based API for driving the MSX slot bus
 //   and observing the VDP cartridge behavior.
-// - Implements a functional VRAM model (g_vram) that mirrors the
-//   internal VDP VRAM bus exposed as dbg_vram_* ports.
-// - NEW: Generates vram_rdata_en behaviorally compatible with the
-//   original SDRAM controller, so that vdp_vram_interface can use
-//   vram_rdata_en as the "read data valid" signal, like in ModelSim.
-// src/verilator/vdp_cartridge_wrapper.cpp
-// Clean wrapper for tangnano20k_vdp_cartridge:
-// - Single, centralized clock/time model
-// - Main clock ≒ 85.90908 MHz (VDP internal clock)
-// - slot_clk is an integer divider of the main clock (for visibility only)
-// - write_io() generates Z80-like I/O write cycles in half-cycle units
-// - SDRAM is modeled as a simple functional VRAM array
-// - [VERILATOR MOD] dbg_vram_rdata_en を生成し��vram_rdata_en 相当の
-//   タイミングを再現するための簡易パイプラインを追加
+// - Implements a functional VRAM image (g_vram) for inspection only.
+// - Monitor-only mode: the wrapper does NOT drive dbg_vram_rdata or
+//   dbg_vram_rdata_en. Instead it observes dbg_vram_* outputs from the DUT
+//   and keeps an internal copy of VRAM contents when it sees write requests.
+//
+// Notes:
+// - This file exports a C API (extern "C") so main.o can link without
+//   C++ name-mangling. Internal helpers remain C++.
+// - Because the wrapper does not drive read responses any more, the
+//   SDRAM model must be used in the simulation (ip_sdram_simple.v) to
+//   produce vram_rdata_en and vram_rdata for vdp_vram_interface to latch.
 
 #include "vdp_cartridge_wrapper.h"
 #include "Vwrapper_top.h"
@@ -33,6 +30,10 @@
 #include <algorithm>
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* -------------------------------------------------------------------------
  * Basic state / configuration
  * -------------------------------------------------------------------------*/
@@ -48,7 +49,7 @@ static uint8_t g_clk14m = 0;
 
 /* DUT clock parameters
  * Main clock targets the internal VDP clock (clk85m ≒ 85.90908 MHz).
- * One full period ≒ 11.64 ns → 11,640 ps.
+ * One full period ≒ 11.64 ns -> 11,640 ps.
  */
 static const uint64_t MAIN_CYCLE_PS = 11640ULL;              // 11.64 ns (85.9 MHz)
 static const uint64_t HALF_CYCLE_PS = MAIN_CYCLE_PS / 2ULL;  // 5,820 ps
@@ -77,15 +78,6 @@ static int g_end_align_enabled = 0;
 
 /* -------------------------------------------------------------------------
  * Capture / frame buffer state (NEW)
- * - Captures pixel stream from the DUT by sampling display_* signals on
- *   the posedge of the main clock. A pixel is considered valid when
- *   (display_hs && display_en) are both high.
- * - A frame is considered finished when display_vs transitions from 1 -> 0
- *   (VSYNC==0 denotes VBLANK as requested).
- * - Pixels are stored as a list of (x,y,r,g,b) during capture; at frame end
- *   we compute width=max_x+1, height=max_y+1 and compose a rectangular image.
- * - Sampling is done at 1/4 rate of the main clock: only once every 4 main
- *   cycles (to match openMSX emu-cycle granularity).
  * -------------------------------------------------------------------------*/
 typedef struct {
     uint32_t x;
@@ -117,91 +109,27 @@ void vdp_cartridge_set_dump_screen(int enable)
 
 void vdp_cartridge_set_dump_frame_no(uint64_t frame_no)
 {
-	g_frame_no = frame_no;
+    g_frame_no = frame_no;
 }
 
 uint64_t vdp_cartridge_get_frame_no(void)
 {
-	return g_frame_no;
+    return g_frame_no;
 }
 
 /* -------------------------------------------------------------------------
- * Helpers: SDRAM / VRAM model
+ * Helpers: VRAM image for inspection (monitor-only mode)
  * -------------------------------------------------------------------------*/
-static void vram_write_word(uint32_t addr, uint32_t data, uint8_t mask)
+static void vram_write_word_monitored(uint32_t addr, uint32_t data)
 {
     if (addr >= VRAM_WORD_COUNT) return;
-    uint32_t cur = g_vram[addr];
-    for (int i = 0; i < 4; ++i) {
-        if (mask & (1u << i)) {
-            ((uint8_t*)&cur)[i] = ((uint8_t*)&data)[i];
-        }
-    }
-    g_vram[addr] = cur;
+    g_vram[addr] = data;
 }
 
-static uint32_t vram_read_word(uint32_t addr)
+static uint32_t vram_read_word_monitored(uint32_t addr)
 {
     if (addr >= VRAM_WORD_COUNT) return 0;
     return g_vram[addr];
-}
-
-/* -------------------------------------------------------------------------
- * VRAM read pipeline for dbg_vram_rdata_en
- * -------------------------------------------------------------------------
- * - vdp_vram_interface から見ると、SDRAM の ip_sdram と同じように
- *   「read 要求から数サイクル後に vram_rdata_en が立つ」ように見せたい。
- * - ここでは簡単のため固定 2 ステージのパイプラインを使う。
- *   （half-cycle 単位で 2 ステップ遅延）
- * - 1 サイクルに 1 リクエストという前提なら十分。
- * -------------------------------------------------------------------------*/
-typedef struct {
-    uint8_t  valid;
-    uint32_t addr;
-} VramReadReq;
-
-static const int VRAM_RD_LATENCY = 16;   // half-cycle 単位の遅延
-static VramReadReq g_rd_pipe[VRAM_RD_LATENCY];
-
-static void vram_read_pipe_reset(void)
-{
-    for (int i = 0; i < VRAM_RD_LATENCY; ++i) {
-        g_rd_pipe[i].valid = 0;
-        g_rd_pipe[i].addr  = 0;
-    }
-}
-
-static void vram_read_pipe_push(uint32_t addr)
-{
-    g_rd_pipe[VRAM_RD_LATENCY-1].valid = 1;
-    g_rd_pipe[VRAM_RD_LATENCY-1].addr  = addr;
-}
-
-static void vram_read_pipe_step(void)
-{
-    // 1. 今サイクルの既定値
-    g_top->dbg_vram_rdata    = 0;
-    g_top->dbg_vram_rdata_en = 0;
-
-    // 2. ステージ0が「今サイクルの read データ」
-    if (g_rd_pipe[0].valid) {
-        uint32_t a = g_rd_pipe[0].addr;
-        uint32_t d = (a < VRAM_WORD_COUNT) ? g_vram[a] : 0;
-        g_top->dbg_vram_rdata    = d;
-        g_top->dbg_vram_rdata_en = 1;
-
-        if (g_debug_enabled) {
-            fprintf(stderr,
-                    "[VRAM-DATA] t=%" PRIu64 "ps addr=%05x data=%08x\n",
-                    g_time_ps, a, d);
-        }
-    }
-
-    // 3. パイプラインを 1 段シフト（前に詰める）
-    for (int i = 0; i < VRAM_RD_LATENCY - 1; ++i) {
-        g_rd_pipe[i] = g_rd_pipe[i + 1];
-    }
-    g_rd_pipe[VRAM_RD_LATENCY - 1].valid = 0;
 }
 
 /* -------------------------------------------------------------------------
@@ -225,61 +153,54 @@ static inline void eval_and_dump_current_time(void)
 }
 
 /* -------------------------------------------------------------------------
- * dbg_vram_* bridge
+ * Monitor-only dbg_vram_* bridge
+ * - Observes dbg_vram_valid/ dbg_vram_write/ dbg_vram_wdata and updates
+ *   the local g_vram image on writes. Does NOT drive dbg_vram_rdata or
+ *   dbg_vram_rdata_en; those are expected to be produced by ip_sdram_simple.v.
+ * - For reads it only logs the request for debugging/inspection.
  * -------------------------------------------------------------------------*/
 void vdp_cartridge_vram_bus_eval(void)
 {
     if (!g_top) return;
 
-    // 1. DUT から現在の dbg_vram_* を読み取る
-    uint32_t addr18 = g_top->dbg_vram_address;
-    uint32_t wdata  = g_top->dbg_vram_wdata;
-    uint8_t  valid  = g_top->dbg_vram_valid;
-    uint8_t  write  = g_top->dbg_vram_write;
+    uint32_t addr18 = (uint32_t)g_top->dbg_vram_address;
+    uint32_t wdata  = (uint32_t)g_top->dbg_vram_wdata;
+    uint8_t  valid  = g_top->dbg_vram_valid ? 1 : 0;
+    uint8_t  write  = g_top->dbg_vram_write ? 1 : 0;
 
     if (g_debug_enabled) {
         fprintf(stderr,
-                "[VRAM-BUS] t=%" PRIu64 "ps valid=%d write=%d addr=%05x\n",
-                g_time_ps, valid, write, addr18);
+                "[VRAM-BUS-MON] t=%" PRIu64 "ps valid=%d write=%d addr=%05x data=%08x\n",
+                g_time_ps, valid, write, addr18, wdata);
     }
 
-    // 2. 今サイクル分の要求をパイプ末尾に登録
     if (valid) {
         uint32_t word_addr = addr18;
-
         if (write) {
-            if (word_addr < VRAM_WORD_COUNT) {
-                g_vram[word_addr] = wdata;
-            }
+            // Update local image for inspection (no drive-back to DUT)
+            vram_write_word_monitored(word_addr, wdata);
             if (g_debug_enabled) {
                 fprintf(stderr,
-                        "[VRAM-WR ] t=%" PRIu64 "ps addr=%05x data=%08x\n",
+                        "[VRAM-MON-WR] t=%" PRIu64 "ps addr=%05x data=%08x\n",
                         g_time_ps, word_addr, wdata);
             }
         } else {
-            // read 要求を一度だけキュー
-            g_rd_pipe[VRAM_RD_LATENCY - 1].valid = 1;
-            g_rd_pipe[VRAM_RD_LATENCY - 1].addr  = word_addr;
+            // Read request observed: log only. ip_sdram_simple.v should respond.
             if (g_debug_enabled) {
                 fprintf(stderr,
-                        "[VRAM-REQ] t=%" PRIu64 "ps addr=%05x (enqueue)\n",
+                        "[VRAM-MON-RD] t=%" PRIu64 "ps addr=%05x (observe only)\n",
                         g_time_ps, word_addr);
             }
         }
     }
-
-    // 3. 旧リクエストの結果を出力しつつパイプラインを進める
-    vram_read_pipe_step();
 }
 
 /* -------------------------------------------------------------------------
- * Frame finalization: compose rectangular image from captured pixels
- * and optionally dump as PPM (binary P6).
+ * Frame finalization & capture
  * -------------------------------------------------------------------------*/
 static void vdp_finalize_frame_and_maybe_dump(void)
 {
     if (g_captured_pixels.empty()) {
-        // nothing captured -> reset counters and return
         g_captured_pixels.clear();
         g_cur_x = g_cur_y = 0;
         g_max_x = g_max_y = 0;
@@ -296,7 +217,6 @@ static void vdp_finalize_frame_and_maybe_dump(void)
         return;
     }
 
-    // allocate image buffer and fill with black
     size_t img_size = static_cast<size_t>(W) * static_cast<size_t>(H) * 3;
     std::vector<uint8_t> img;
     try {
@@ -310,7 +230,6 @@ static void vdp_finalize_frame_and_maybe_dump(void)
     }
     std::fill(img.begin(), img.end(), 0);
 
-    // paint pixels
     for (const auto &p : g_captured_pixels) {
         if (p.x < W && p.y < H) {
             size_t idx = (static_cast<size_t>(p.y) * W + p.x) * 3;
@@ -326,7 +245,6 @@ static void vdp_finalize_frame_and_maybe_dump(void)
         FILE* fp = std::fopen(fname, "wb");
         if (fp) {
             std::fprintf(fp, "P6\n%u %u\n255\n", W, H);
-            // binary write entire buffer (row-major)
             std::fwrite(img.data(), 1, img_size, fp);
             std::fclose(fp);
             std::fprintf(stderr, "[dump] wrote %s (w=%u h=%u) at t=%" PRIu64 "ps\n",
@@ -336,16 +254,18 @@ static void vdp_finalize_frame_and_maybe_dump(void)
         }
     }
 
-    // advance frame counter and reset capture state
     g_frame_no++;
     g_captured_pixels.clear();
     g_cur_x = 0;
     g_cur_y = 0;
-    g_max_x = g_max_y = 0;
+    g_max_x = 0;
+    g_max_y = 0;
 }
 
 /* -------------------------------------------------------------------------
  * Half-cycle step: single source of time / clock progression
+ * - IMPORTANT: we evaluate DUT first (eval_and_dump_current_time) so
+ *   DUT outputs (including dbg_vram_*) are stable when we monitor them.
  * -------------------------------------------------------------------------*/
 static inline void step_halfcycle(int level)
 {
@@ -374,13 +294,13 @@ static inline void step_halfcycle(int level)
                 g_time_ps, prev_clk, new_clk, g_slot_clk, g_phase);
     }
 
-    // VRAM バス処理 → DUT 評価
-    // vdp_cartridge_vram_bus_eval();
+    // 1) Evaluate DUT so dbg_vram_* and video signals reflect current half-cycle
     eval_and_dump_current_time();
 
-    // --- NEW: sample video signals on posedge (new_clk == 1) ---
-    // We sample after eval() so DUT outputs are stable for this half-cycle.
-    // Sampling is performed only when g_sample_phase == 0 (1/4 rate).
+    // 2) Monitor VRAM bus outputs from DUT (post-eval)
+    vdp_cartridge_vram_bus_eval();
+
+    // 3) Video sampling (sample after eval). sample phase at 1/4 rate
     if (new_clk == 1) {
         if (g_top) {
             if (g_sample_phase == 0) {
@@ -391,13 +311,10 @@ static inline void step_halfcycle(int level)
                 uint8_t cur_g  = static_cast<uint8_t>(g_top->display_g);
                 uint8_t cur_b  = static_cast<uint8_t>(g_top->display_b);
 
-                // Frame end detection: VSYNC falling edge (1 -> 0) means enter VBLANK
                 if (cur_vs == 0 && g_prev_vs == 1) {
-                    // finalize previous frame and optionally dump
                     vdp_finalize_frame_and_maybe_dump();
                 }
 
-                // Pixel capture: when HS && EN are both high, capture a pixel at (x,y)
                 if (cur_hs && cur_en) {
                     CapturedPixel px;
                     px.x = g_cur_x;
@@ -411,23 +328,19 @@ static inline void step_halfcycle(int level)
                     g_cur_x++;
                 }
 
-                // Line end detection: previous sampled state had HS&&EN but now not -> increment Y and reset X
                 if ((g_prev_hs && g_prev_en) && !(cur_hs && cur_en)) {
                     g_cur_x = 0;
                     g_cur_y++;
                 }
 
-                // update previous sampled state
                 g_prev_vs = cur_vs;
                 g_prev_hs = cur_hs;
                 g_prev_en = cur_en;
             }
 
-            // advance sampling phase (0..3)
             g_sample_phase = (g_sample_phase + 1) & 3;
         }
     }
-    // --- end new capture code ---
 
     g_time_ps += HALF_CYCLE_PS;
 }
@@ -456,11 +369,9 @@ int vdp_cartridge_set_vcd_enabled(int enable, const char* path)
     }
 
     if (enable) {
-        /* Open trace if not already open */
         if (g_tfp) return 0;
         return vdp_cartridge_trace_open(path);
     } else {
-        /* Close trace if open */
         if (g_tfp) {
             vdp_cartridge_trace_close();
         }
@@ -510,7 +421,6 @@ void vdp_cartridge_init(void)
     g_end_align_enabled = 0;
 
     memset(g_vram, 0, sizeof(g_vram));
-    vram_read_pipe_reset();
 
     // capture defaults
     g_captured_pixels.clear();
@@ -522,7 +432,6 @@ void vdp_cartridge_init(void)
     g_frame_no = 0;
     g_sample_phase = 0; // start sampling phase aligned to 0
 
-    // Allow override via environment variable DUMP_SCREEN (convenience)
     const char* env = getenv("DUMP_SCREEN");
     if (env) {
         int v = atoi(env);
@@ -563,7 +472,6 @@ void vdp_cartridge_reset(void)
     }
 }
 
-
 /* -------------------------------------------------------------------------
  * Simple setters / getters
  * -------------------------------------------------------------------------*/
@@ -600,16 +508,18 @@ void vdp_cartridge_set_mark_enabled(int enable)
 }
 
 /* -------------------------------------------------------------------------
- * SDRAM <-> VRAM functional bridge (まだ使っていないが残しておく)
+ * SDRAM image helpers (inspection)
  * -------------------------------------------------------------------------*/
 void vdp_cartridge_dram_write(uint32_t addr, uint32_t data, uint8_t mask)
 {
-    vram_write_word(addr, data, mask);
+    // helper that mirrors ip_sdram_simple semantics is intentionally not
+    // used for DUT operation in monitor-only mode; keep for tests.
+    vram_write_word_monitored(addr, data);
 }
 
 uint32_t vdp_cartridge_dram_read(uint32_t addr)
 {
-    return vram_read_word(addr);
+    return vram_read_word_monitored(addr);
 }
 
 void vdp_cartridge_dram_dump(FILE* fp)
@@ -632,12 +542,11 @@ size_t vdp_cartridge_get_vram_size(void)
 
 void vdp_cartridge_sdram_bus_eval(void)
 {
-    // 現在は dbg_vram_* で VRAM をモデル化しているので未使用。
-    // オリジナル ip_sdram の検証用に残してあるだけ。
+    // Monitor-only mode: leave legacy sdram eval unused.
 }
 
 /* -------------------------------------------------------------------------
- * write_io: generate Z80-like I/O timing in half-cycle units
+ * Slot I/O helpers (unchanged)
  * -------------------------------------------------------------------------*/
 
 // one full main clock cycle = 2 half-cycles
@@ -716,12 +625,12 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
 {
     if (!g_top) return;
 
-    // ざっ���り half-cycle 数（ModelSim の ns 計測から多めにマージン）
-    const int H_ADDR_SETUP = 30;  // addr/data セット後、/WR アサートまで
-    const int H_WR_WIDTH   = 40;  // /WR=0 の期間
-    const int H_IORQ_DELAY = 4;   // /WR↑ から /IORQ↓ まで
-    const int H_IORQ_WIDTH = 8;   // /IORQ=0 の期間
-    const int H_RECOVERY   = 16;  // サイクル後のリカバリ
+    // approximate half-cycle counts (tuned conservatively)
+    const int H_ADDR_SETUP = 30;  // addr/data set before /WR assert
+    const int H_WR_WIDTH   = 40;  // /WR low period
+    const int H_IORQ_DELAY = 4;   // delay between /WR high and /IORQ high
+    const int H_IORQ_WIDTH = 8;   // extra cycles after /IORQ released
+    const int H_RECOVERY   = 16;  // recovery cycles
 
     // idle state
     g_top->slot_iorq_n      = 1;
@@ -732,7 +641,7 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
     g_top->slot_a           = 0;
     g_top->cpu_ff_slot_data = 0;
 
-    // 1. アドレス & データをセット、バスドライブ ON
+    // 1. Address & data set, enable CPU drive
     g_top->slot_a           = (uint8_t)(address & 0xFF);
     g_top->cpu_ff_slot_data = wdata;
     g_top->slot_data_dir    = 0;     // output to slot
@@ -742,7 +651,7 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
         step_full_cycle();
     }
 
-    // 2. /WR, /IORQ をアサート（tb.sv と同様ほぼ同時でよい）
+    // 2. Assert /WR and /IORQ (near-simultaneous)
     g_top->slot_wr_n   = 0;
     g_top->slot_iorq_n = 0;
 
@@ -750,21 +659,21 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
         step_full_cycle();
     }
 
-    // 3. /WR を先に戻す
+    // 3. Release /WR first
     g_top->slot_wr_n = 1;
 
     for (int h = 0; h < H_IORQ_DELAY; ++h) {
         step_full_cycle();
     }
 
-    // 4. /IORQ を戻す
+    // 4. Release /IORQ
     g_top->slot_iorq_n = 1;
 
     for (int h = 0; h < H_IORQ_WIDTH; ++h) {
         step_full_cycle();
     }
 
-    // 5. バス開放＋リカバリ
+    // 5. Release bus + recovery
     g_top->cpu_drive_en  = 0;
     g_top->slot_data_dir = 1;  // input
 
@@ -875,3 +784,9 @@ void vdp_render_frame_rgb(uint8_t* dst, int pitch)
         }
     }
 }
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
+// End of file
