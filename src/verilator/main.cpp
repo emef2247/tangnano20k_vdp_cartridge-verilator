@@ -122,6 +122,28 @@ static uint8_t parse_u8_from_token(const std::string &t)
 }
 
 // Execute actions described in CSV file (path). Returns true on success.
+// Replace existing run_testpattern_csv with this updated implementation
+// Replace or add this updated run_testpattern_csv implementation in main.cpp
+// Supports IO,port,value (direct port write), IO,address,<value> (legacy),
+// WRITE_ADDR / WRITE_DATA (legacy), ADDRESS, CYCLE, INFO records.
+// Simple CSV runner: minimal, easy-to-read implementation.
+// Replace the existing run_testpattern_csv in your main.cpp with this function.
+//
+// Behavior:
+// - ADDRESS,0xHHHH        -> set internal 'address' variable (legacy support)
+// - CYCLE,<n>             -> call step_cycles(n) (n already converted to wrapper cycles)
+// - INFO,"...text..."      -> print the quoted text (or raw field) to stdout
+// - IO,port,value         -> call vdp_cartridge_write_io(port, value)
+//   - Also supports legacy form IO,address,value (writes to current 'address' and increments it)
+//
+// This keeps the replay faithful (always calls vdp_cartridge_write_io) and prints INFO lines
+// exactly as they appear in the CSV, which is what you requested.
+// Updated run_testpattern_csv with 0x9x -> 0x8x port mapping.
+// Replace the previous run_testpattern_csv in main.cpp with this function.
+
+// Updated run_testpattern_csv with 0x9x -> 0x8x port mapping.
+// Replace the previous run_testpattern_csv in main.cpp with this function.
+
 void run_testpattern_csv(const char* csv_path)
 {
     std::ifstream ifs(csv_path);
@@ -168,7 +190,6 @@ void run_testpattern_csv(const char* csv_path)
             if (fields.size() >= 2) {
                 uint64_t v = 0;
                 if (parse_uint64_from_token(fields[1], v)) {
-                    // step_cycles takes int; clamp to INT_MAX if too large
                     const long long max_int = std::numeric_limits<int>::max();
                     if (v > static_cast<uint64_t>(max_int)) {
                         std::fprintf(stderr, "[CSV] line %" PRIu64 ": CYCLE value %" PRIu64 " too large, clamped to %lld\n", line_no, v, (long long)max_int);
@@ -187,9 +208,8 @@ void run_testpattern_csv(const char* csv_path)
 
         if (cmd == "INFO") {
             if (fields.size() >= 2) {
-                // print the raw second field as-is (it may be quoted)
                 std::string msg = fields[1];
-                // If the message still has surrounding quotes, remove them
+                // remove surrounding quotes if present
                 if (msg.size() >= 2 && msg.front() == '"' && msg.back() == '"') {
                     msg = msg.substr(1, msg.size()-2);
                 }
@@ -201,37 +221,30 @@ void run_testpattern_csv(const char* csv_path)
         }
 
         if (cmd == "IO") {
-            // two expected forms:
-            // 1) IO,address,<value>   -> writes <value> to current address then address++
-            // 2) IO,<addr_hex>,<value> -> writes <value> to specified addr (does NOT change internal address)
-            if (fields.size() >= 3) {
-                std::string f1 = fields[1];
-                // lowercase
-                for (auto &c: f1) c = static_cast<char>(std::tolower((unsigned char)c));
-                if (f1 == "address") {
-                    // IO,address,<value>
-                    uint8_t v = parse_u8_from_token(fields[2]);
-                    vdp_cartridge_write_io(address, v);
-                    if (vdp_cartridge_get_sim_time) {
-                        // optionally print debug
-                        std::fprintf(stderr, "[CSV] IO write @address=0x%04x value=0x%02x\n", address, v);
-                    }
-                    address = (address + 1) & 0xFFFF;
-                } else {
-                    // IO,<addr_hex>,<value>
-                    uint64_t a = 0;
-                    if (!parse_uint64_from_token(fields[1], a)) {
-                        std::fprintf(stderr, "[CSV] line %" PRIu64 ": IO address parse error '%s'\n", line_no, fields[1].c_str());
-                        continue;
-                    }
-                    uint8_t v = 0;
-                    if (fields.size() >= 3) v = parse_u8_from_token(fields[2]);
-                    vdp_cartridge_write_io(static_cast<uint16_t>(a & 0xFFFF), v);
-                    std::fprintf(stderr, "[CSV] IO write @address=0x%04x value=0x%02x\n", static_cast<int>(a & 0xFFFF), v);
-                }
-            } else {
+            if (fields.size() < 3) {
                 std::fprintf(stderr, "[CSV] line %" PRIu64 ": IO missing operands\n", line_no);
+                continue;
             }
+
+            // IO,port,value -> map 0x9x -> 0x8x before calling
+            uint64_t port_v = 0;
+            if (!parse_uint64_from_token(fields[1], port_v)) {
+                std::fprintf(stderr, "[CSV] line %" PRIu64 ": IO port parse error '%s'\n", line_no, fields[1].c_str());
+                continue;
+            }
+            uint8_t val = parse_u8_from_token(fields[2]);
+
+            uint16_t orig_port = static_cast<uint16_t>(port_v & 0xFFFF);
+            uint16_t mapped_port = orig_port;
+            if ((orig_port & 0xF0) == 0x90) {
+                // map 0x9x -> 0x8x by subtracting 0x10
+                mapped_port = static_cast<uint16_t>(orig_port - 0x10);
+            }
+
+            // Replay the IO to the DUT using mapped port
+            vdp_cartridge_write_io(mapped_port, val);
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": IO write orig_port=0x%02x mapped_port=0x%02x value=0x%02x\n",
+                        line_no, static_cast<int>(orig_port & 0xFF), static_cast<int>(mapped_port & 0xFF), val);
             continue;
         }
 
@@ -453,14 +466,35 @@ int main(int argc, char** argv)
 {
     (void)argc; (void)argv;
 
+    // parse simple command-line option: --dump-screen or --dump-screen=0/1
+    int requested_dump_screen = -1; // -1 = not specified, 0/1 explicit
+    for (int ai = 1; ai < argc; ++ai) {
+        const char* a = argv[ai];
+        if (std::strcmp(a, "--dump-screen") == 0 || std::strcmp(a, "--dump_screen") == 0) {
+            requested_dump_screen = 1;
+        } else if (std::strncmp(a, "--dump-screen=", 14) == 0) {
+            requested_dump_screen = std::atoi(a + 14) ? 1 : 0;
+        } else if (std::strncmp(a, "--dump_screen=", 14) == 0) {
+            requested_dump_screen = std::atoi(a + 14) ? 1 : 0;
+        }
+    }
+
     // --------------------------------------------------------------------
     // Init / trace
     // --------------------------------------------------------------------
     vdp_cartridge_init();
+
+    // Apply command-line override for dump_screen (if given). This takes precedence
+    // over DUMP_SCREEN environment variable which the wrapper also checks.
+    if (requested_dump_screen != -1) {
+        vdp_cartridge_set_dump_screen(requested_dump_screen);
+        std::fprintf(stderr, "[main] dump_screen set to %d via command-line\n", requested_dump_screen);
+    }
+	
     vdp_cartridge_set_debug(0);
     vdp_cartridge_set_write_on_posedge(1);  // use tb.sv-like write_io
     vdp_cartridge_set_end_align(0);         // we handle phase in write_io
-    vdp_cartridge_set_vcd_enabled(0, "dump.vcd"); // VCD is disabled at the beginning of the simualtion 
+    vdp_cartridge_set_vcd_enabled(1, "dump.vcd"); // VCD is disabled at the beginning of the simualtion 
 
     // Inputs
     vdp_cartridge_set_button(0);
@@ -507,28 +541,6 @@ int main(int argc, char** argv)
         vdp_cartridge_write_io(addr, data);
     };
 	
-	// Converted test pattern (auto-generated)
-	// address variable holds VDP target address; initialized to current log state
-	uint16_t address = 0x0000;
-	std::cout << "frame=33 time=358416" << std::endl;
-	step_cycles(1433664);
-	std::cout << "frame=34 time=267804 port=0x99 value=0x00" << std::endl;
-	step_cycles(1071216);
-	std::cout << "frame=34 time=267960 port=0x99 value=0x92" << std::endl;
-	step_cycles(624);
-	address = 0x9200;  // set address (high=0x92 low=0x00)
-	std::cout << "frame=34 time=267960 reg=0x12 val=0x00" << std::endl;
-	std::cout << "frame=34 time=358416" << std::endl;
-	step_cycles(361824);
-	std::cout << "frame=35 time=317604 port=0x99 value=0x02" << std::endl;
-	step_cycles(1270416);
-	std::cout << "frame=35 time=317790 port=0x99 value=0x8f" << std::endl;
-	step_cycles(744);
-	address = 0x8f02;  // set address (high=0x8f low=0x02)
-	std::cout << "frame=35 time=317790 reg=0x0f val=0x02" << std::endl;
-	std::cout << "frame=35 time=358416" << std::endl;
-	step_cycles(162504);
-	
 
     // --------------------------------------------------------------------
     // TEST SCENARIO
@@ -536,8 +548,12 @@ int main(int argc, char** argv)
     std::cout << "[test] Test Scenario Start\n";
 	// Converted test pattern (auto-generated)
 
-	run_testpattern_csv("./tests/csv/frame_no080.csv");
+	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP.csv");
+	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN7_VRAM.csv");
+	run_testpattern_csv("./tests/csv/frame_036.csv");
+	
 
+	step_cycles(1433664);  // 追加
     // --------------------------------------------------------------------
     // Let the display run and dump VRAM / RGB frames
     // --------------------------------------------------------------------
@@ -546,10 +562,10 @@ int main(int argc, char** argv)
 	char vram_ppm[64];
 	char vram_screen5_pages[64];
 	std::snprintf(vram_ppm, sizeof(vram_ppm), "vram_%03d.ppm", vdp_cartridge_get_frame_no());
-	std::snprintf(vram_screen5_pages, sizeof(vram_screen5_pages), "vram_screen5_%03d.ppm", vdp_cartridge_get_frame_no());
+	//std::snprintf(vram_screen5_pages, sizeof(vram_screen5_pages), "vram_screen5_%03d.ppm", vdp_cartridge_get_frame_no());
 
 	dump_vram_as_ppm(vram_ppm);
-	dump_vram_screen5_pages(vram_screen5_pages);
+	//dump_vram_screen5_pages(vram_screen5_pages);
 
     std::cout << "[main] All tests completed\n";
 

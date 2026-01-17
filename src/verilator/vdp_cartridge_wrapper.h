@@ -33,6 +33,7 @@ size_t vdp_cartridge_get_vram_size(void);
 // 内部コア用: バス信号監視(eval中自動呼び出す)
 void vdp_cartridge_sdram_bus_eval(void);
 
+uint8_t vdp_cartridge_read_io(uint16_t port);
 /* write task emulation */
 void vdp_cartridge_write_io(uint16_t address, uint8_t wdata);
 

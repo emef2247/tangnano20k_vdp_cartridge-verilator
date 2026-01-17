@@ -60,7 +60,7 @@ static uint64_t g_last_dump  = (uint64_t)-1;
 /* slot clock: purely derived, visible in VCD, does NOT drive DUT logic */
 static uint8_t  g_slot_clk         = 0;
 static int64_t  g_halfcycle_count  = 0;
-static const int SLOT_HALF_COUNT   = 12;
+static const int SLOT_HALF_COUNT   = 2;
 
 /* optional phase tracking (mostly for debugging / sanity checks) */
 static int g_phase = -1;  // -1: last was negedge, 1: last was posedge, 0: init
@@ -160,7 +160,7 @@ typedef struct {
     uint32_t addr;
 } VramReadReq;
 
-static const int VRAM_RD_LATENCY = 2;   // half-cycle 単位の遅延
+static const int VRAM_RD_LATENCY = 16;   // half-cycle 単位の遅延
 static VramReadReq g_rd_pipe[VRAM_RD_LATENCY];
 
 static void vram_read_pipe_reset(void)
@@ -375,7 +375,7 @@ static inline void step_halfcycle(int level)
     }
 
     // VRAM バス処理 → DUT 評価
-    vdp_cartridge_vram_bus_eval();
+    // vdp_cartridge_vram_bus_eval();
     eval_and_dump_current_time();
 
     // --- NEW: sample video signals on posedge (new_clk == 1) ---
@@ -645,6 +645,71 @@ static inline void step_full_cycle(void)
 {
     vdp_cartridge_step_clk_posedge();
     vdp_cartridge_step_clk_negedge();
+}
+
+uint8_t vdp_cartridge_read_io(uint16_t address)
+{
+    if (!g_top) return 0;
+
+    // Timing parameters — keep in sync with write_io
+    const int H_ADDR_SETUP = 30;  // address setup (half-cycle units)
+    const int H_RD_WIDTH   = 40;  // /RD low period (half-cycle units)
+    const int H_IORQ_DELAY = 4;   // delay between /RD up and /IORQ up
+    const int H_IORQ_WIDTH = 8;   // extra cycles after /IORQ released
+    const int H_RECOVERY   = 16;  // recovery cycles
+
+    // Ensure CPU not driving the bus
+    g_top->slot_iorq_n      = 1;
+    g_top->slot_wr_n        = 1;
+    g_top->slot_rd_n        = 1;
+    g_top->slot_data_dir    = 1;   // indicate slot drives data (DUT -> CPU)
+    g_top->cpu_drive_en     = 0;   // C++/CPU not driving
+    g_top->cpu_ff_slot_data = 0;
+
+    // Put address on bus (lower 8-bit as in write_io)
+    g_top->slot_a = static_cast<uint8_t>(address & 0xFF);
+
+    // hold address/setup
+    for (int h = 0; h < H_ADDR_SETUP; ++h) {
+        step_full_cycle();
+    }
+
+    // Assert /RD and /IORQ (drive read)
+    g_top->slot_rd_n   = 0;
+    g_top->slot_iorq_n = 0;
+
+    for (int h = 0; h < H_RD_WIDTH; ++h) {
+        step_full_cycle();
+    }
+
+    // Sample data from DUT-driven slot_d (inout in wrapper_top -> available as g_top->slot_d)
+    uint8_t data = static_cast<uint8_t>(g_top->slot_d & 0xFF);
+
+    // Deassert /RD first
+    g_top->slot_rd_n = 1;
+
+    for (int h = 0; h < H_IORQ_DELAY; ++h) {
+        step_full_cycle();
+    }
+
+    // Deassert /IORQ
+    g_top->slot_iorq_n = 1;
+
+    for (int h = 0; h < H_IORQ_WIDTH; ++h) {
+        step_full_cycle();
+    }
+
+    // Recovery
+    for (int h = 0; h < H_RECOVERY; ++h) {
+        step_full_cycle();
+    }
+
+    if (g_debug_enabled) {
+        std::fprintf(stderr, "[IO-RD ] port=0x%02x data=0x%02x t=%" PRIu64 "ps\n",
+                     address & 0xFF, data, g_time_ps);
+    }
+
+    return data;
 }
 
 void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)

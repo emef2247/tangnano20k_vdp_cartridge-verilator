@@ -4,14 +4,13 @@
 # convert_testpattern.py
 #
 # Convert [TESTPATTERN] logs to C++ calls using vdp_cartridge_write_io().
-# - Control-port writes are treated as 2-byte pairs: low then high -> 16-bit address.
+# - For write events, emit direct port writes: vdp_cartridge_write_io(port, value)
+# - Control-port/address assembly is NOT performed here (the CSV path handles finer control)
 # - Frame filter accepts: single (50), range (34-35) or comma list (10,12-14,20).
 # - For writes/changes: skip printing step_cycles(0).
 # - For VSYNC: always print step_cycles(delta).
-# - When scheduleDisplayStart (current format "[DISPLAY][RESET]VDP.scheduleDisplayStart:")
-#   is seen, reset the internal time counter so deltas inside the frame measure from 0.
 #
-# NOTE (updated): multiply printed step_cycles(...) argument by 4 so that
+# NOTE: printed step_cycles(...) argument is multiplied by 4 so that
 # the generated main.cpp uses wrapper cycles (main clock) = 4 * openMSX emu-cycles.
 #
 import sys
@@ -28,9 +27,6 @@ RE_CHANGE = re.compile(
 
 # Only current scheduleDisplayStart format is supported:
 SCHEDULE_DISPLAY_PREFIX = '[DISPLAY][RESET]VDP.scheduleDisplayStart:'
-
-DATA_PORTS = (0x88, 0x98)
-ADDR_PORTS = (0x89, 0x99)
 
 def format_hex(value, width=2):
     return f'0x{(value & 0xFFFF):0{width}x}'
@@ -139,16 +135,12 @@ def main(argv):
     printed_header = False
     printed_any = False
 
-    # Internal state maintained across all lines (updated even when not printed)
-    address = 0                 # 16-bit composed address used for data writes
-    control_low = None          # holds low byte when waiting for next control write
-    last_time = 0               # last observed time for delta calculation
+    last_time = 0
 
     with path.open('r', encoding='utf-8', errors='replace') as f:
         for raw in f:
             line = raw.rstrip('\n')
 
-            # Only current format: detect scheduleDisplayStart and reset time base.
             if line.startswith(SCHEDULE_DISPLAY_PREFIX):
                 last_time = 0
                 continue
@@ -159,7 +151,6 @@ def main(argv):
 
             is_match = frame_match(parsed.get('frame'))
 
-            # compute delta from last_time (always, before updating last_time)
             cur_time = parsed['time']
             delta = cur_time - last_time
             if delta < 0:
@@ -169,23 +160,18 @@ def main(argv):
             # convert delta (in log units / emu-cycles) to wrapper main cycles by *4
             step_cycles_count = delta * 4
 
-            # print header once if we're about to produce any printed output
             if is_match and not printed_header:
                 print('// Converted test pattern (auto-generated)')
-                print('// address variable holds VDP target address; initialized to current log state')
-                print(f'uint16_t address = {format_hex(address,4)};')
                 printed_header = True
 
             if parsed['type'] == 'vsync':
                 if is_match:
                     print(f'std::cout << "frame={parsed["frame"]} time={parsed["time"]}" << std::endl;')
-                    # For VSYNC we always print the step_cycles delta (even if zero)
                     print(f'step_cycles({step_cycles_count});')
                     printed_any = True
                 continue
 
             if parsed['type'] == 'change':
-                # convert changeRegister to cout + step_cycles (no internal register emulation)
                 if is_match:
                     reg_text = parsed.get('reg_text', format_hex(parsed['reg'],2))
                     val_text = parsed.get('val_text', format_hex(parsed['val'],2))
@@ -193,51 +179,25 @@ def main(argv):
                     if delta > 0:
                         print(f'step_cycles({step_cycles_count});')
                     printed_any = True
-                # no internal state change in this converter
                 continue
 
-            # write event
-            port = parsed['port']
-            value = parsed['value']
-            port_text = parsed.get('port_text', hex(port))
-            value_text = parsed.get('value_text', hex(value))
+            # write event: output direct port write
+            if parsed['type'] == 'write':
+                port = parsed['port']
+                value = parsed['value']
+                port_text = parsed.get('port_text', format_hex(port,2))
+                value_text = parsed.get('value_text', format_hex(value,2))
 
-            # If matched, print debug line and step_cycles delta (skip delta==0)
-            if is_match:
-                print(f'std::cout << "frame={parsed["frame"]} time={parsed["time"]} port={port_text} value={value_text}" << std::endl;')
-                if delta > 0:
-                    print(f'step_cycles({step_cycles_count});')
-                printed_any = True
-
-            # Handle control (address) writes as LOW/HIGH pair
-            if port in ADDR_PORTS:
-                if control_low is None:
-                    # store as low byte, do not update address yet
-                    control_low = value & 0xFF
-                else:
-                    # This write is treated as high byte; compose 16-bit address
-                    high = value & 0xFF
-                    new_addr = ((high << 8) | control_low) & 0xFFFF
-                    if is_match:
-                        print(f'address = {format_hex(new_addr,4)};  // set address (high={format_hex(high,2)} low={format_hex(control_low,2)})')
-                    address = new_addr
-                    control_low = None
-                continue
-
-            # Data port: do write using current internal address, then increment
-            if port in DATA_PORTS:
                 if is_match:
-                    print(f'vdp_cartridge_write_io(address, {format_hex(value,2)});  // data={format_hex(value,2)}')
-                    print('address++;')
-                address = (address + 1) & 0xFFFF
+                    print(f'std::cout << "frame={parsed["frame"]} time={parsed["time"]} port={port_text} value={value_text}" << std::endl;')
+                    if delta > 0:
+                        print(f'step_cycles({step_cycles_count});')
+                    # write using port directly
+                    print(f'vdp_cartridge_write_io({port_text}, {value_text});')
+                    printed_any = True
                 continue
-
-            # Unknown port
-            if is_match:
-                print(f'// UNHANDLED-PORT: {parsed["orig_line"]}')
 
     if not printed_header:
-        # nothing printed (no matching lines)
         return 1
     return 0
 
