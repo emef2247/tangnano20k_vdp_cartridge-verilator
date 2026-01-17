@@ -550,6 +550,7 @@ int main(int argc, char** argv)
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN7_VRAM.csv");
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP_tb.csv");
 	run_testpattern_csv("./tests/csv/frame_0_200.csv");
+	run_testpattern_csv("./tests/csv/frame_200_500.csv");
 
 
 	step_cycles(1433664);  // 追加
@@ -561,8 +562,6 @@ int main(int argc, char** argv)
 	char vram_ppm[64];
 	char vram_screen5_pages[64];
 	std::snprintf(vram_ppm, sizeof(vram_ppm), "vram_%03d.ppm", vdp_cartridge_get_frame_no());
-	//std::snprintf(vram_screen5_pages, sizeof(vram_screen5_pages), "vram_screen5_%03d.ppm", vdp_cartridge_get_frame_no());
-
 	dump_vram_as_ppm(vram_ppm);
 	//dump_vram_screen5_pages(vram_screen5_pages);
 

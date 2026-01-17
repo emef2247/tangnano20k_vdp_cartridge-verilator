@@ -1,36 +1,9 @@
 // -----------------------------------------------------------------------------
 //	tangnano20k_vdp_cartridge.v
 //	Copyright (C)2025 Takayuki Hara (HRA!)
-//	
-//	 Permission is hereby granted, free of charge, to any person obtaining a 
-//	copy of this software and associated documentation files (the "Software"), 
-//	to deal in the Software without restriction, including without limitation 
-//	the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-//	and/or sell copies of the Software, and to permit persons to whom the 
-//	Software is furnished to do so, subject to the following conditions:
-//	
-//	The above copyright notice and this permission notice shall be included in 
-//	all copies or substantial portions of the Software.
-//	
-//	The Software is provided "as is", without warranty of any kind, express or 
-//	implied, including but not limited to the warranties of merchantability, 
-//	fitness for a particular purpose and noninfringement. In no event shall the 
-//	authors or copyright holders be liable for any claim, damages or other 
-//	liability, whether in an action of contract, tort or otherwise, arising 
-//	from, out of or in connection with the Software or the use or other dealings 
-//	in the Software.
+//	Modified 2026-01-02 by @emef2247 (Verilator integration)
+//	Updated: restored proper rdata_en wiring and added guarded debug monitors
 // -----------------------------------------------------------------------------
-//
-// [MOD] 2026-01-02 by @emef2247
-//  - This file is a lightly modified copy of the original tangnano20k_vdp_cartridge.v,
-//    placed under src/verilator/RTL/mod/ for Verilator-only integration.
-//  - Added debug/functional VRAM bus ports (dbg_vram_*) that mirror the internal
-//    VDP VRAM bus. These ports are intended to be consumed by the C++ wrapper
-//    (vdp_cartridge_wrapper.cpp) as a functional VRAM model, without changing the
-//    synthesizable SDRAM connection for the original design.
-//  - Exported raw video (display_*) from the VDP core.
-//  - Original license and copyright statements are preserved.
-//
 
 module tangnano20k_vdp_cartridge (
 	input			clk,			//	PIN04		(27MHz)
@@ -78,9 +51,6 @@ module tangnano20k_vdp_cartridge (
 	
 	// --------------------------------------------------------------------
 	// [MOD] Debug/functional VRAM bus exported from VDP core.
-	// These ports mirror the internal VRAM bus between the VDP and SDRAM
-	// controller. They are intended for Verilator/C++ functional modeling
-	// and are not required for synthesis on real hardware.
 	// --------------------------------------------------------------------
 	output	[17:0]	dbg_vram_address,
 	output	[31:0]	dbg_vram_wdata,
@@ -244,7 +214,7 @@ module tangnano20k_vdp_cartridge (
 		.vram_write			( w_vram_write				),
 		.vram_valid			( w_vram_valid				),
 		.vram_wdata			( w_vram_wdata				),
-		.vram_wdata_mask	( w_sdram_wdata_mask		),	// mask ‚Í‚»‚Ì‚Ü‚Ü SDRAM ‘¤‚Æ‹¤—L
+		.vram_wdata_mask	( w_sdram_wdata_mask		),	// mask shared with SDRAM model
 		.vram_rdata			( w_vram_rdata				),
 		.vram_rdata_en		( w_vram_rdata_en			),
 		.vram_refresh		( w_sdram_refresh			),
@@ -270,7 +240,7 @@ module tangnano20k_vdp_cartridge (
 	// --------------------------------------------------------------------
 	//	VRAM bus mapping
 	// --------------------------------------------------------------------
-	// [MOD] Map VDP VRAM bus to SDRAM bus (original hardware behavior)
+	// Map VDP VRAM bus to SDRAM bus (original hardware behavior)
 	// SDRAM address is 22:2, VDP provides 17:0 word address. Upper bits fixed to 0.
 	assign w_sdram_address[22:18]	= 5'd0;
 	assign w_sdram_address[17:2]	= w_vram_address;
@@ -278,11 +248,12 @@ module tangnano20k_vdp_cartridge (
 	assign w_sdram_wdata			= w_vram_wdata;
 	assign w_sdram_valid			= w_vram_valid;
 	assign w_sdram_write			= w_vram_write;
-	assign w_sdram_rdata_en			= w_vram_rdata_en;
+// NOTE: do NOT create a circular assign between w_sdram_rdata_en and w_vram_rdata_en.
+// The SDRAM model drives w_sdram_rdata_en; we expose that to the VDP by assigning
+// w_vram_rdata_en := w_sdram_rdata_en (or to dbg_vram_rdata_en when requested).
 
-
-// [MOD]Use dbg_vram_* only when explicitly requested during Verilator runs.
-// Default (including Verilator) uses the SDRAM model (w_sdram_rdata).
+// Use dbg_vram_* only when explicitly requested during Verilator runs.
+// Default uses the SDRAM model (w_sdram_rdata).
 `ifdef VERILATOR_DBGVRAM
   assign w_vram_rdata = dbg_vram_rdata;
   assign w_vram_rdata_en = dbg_vram_rdata_en;
@@ -345,7 +316,7 @@ module tangnano20k_vdp_cartridge (
 	);
 
 	// --------------------------------------------------------------------
-	//	Debug—p LED
+	//	Debug LED / Debugger (unchanged)
 	// --------------------------------------------------------------------
 	ip_ws2812_led u_led (
 		.reset_n			( reset_n					),
@@ -358,9 +329,6 @@ module tangnano20k_vdp_cartridge (
 		.ws2812_led			( ws2812_led				)
 	);
 
-	// --------------------------------------------------------------------
-	//	Debugger
-	// --------------------------------------------------------------------
 	ip_debugger u_debugger (
 		.reset_n			( reset_n					),
 		.clk				( clk85m					),
@@ -398,4 +366,27 @@ module tangnano20k_vdp_cartridge (
     assign display_g  = w_video_g;
     assign display_b  = w_video_b;
 	
+// --------------------------------------------------------------------
+// Debug monitors (Verilator only)
+//
+// These prints help confirm the rdata_en path:
+//  - SDRAM model asserts w_sdram_rdata_en
+//  - top should observe w_sdram_rdata_en
+//  - vdp_vram_interface should see vram_rdata_en (which is driven from w_sdram_rdata_en)
+// Guarded by `ifdef VERILATOR to avoid synthesis impacts.
+// --------------------------------------------------------------------
+`ifdef VERILATOR
+	reg prev_sdram_rdata_en;
+	reg prev_vram_rdata_en;
+	always @(posedge clk85m) begin
+		if (!reset_n) begin
+			prev_sdram_rdata_en <= 1'b0;
+			prev_vram_rdata_en  <= 1'b0;
+		end else begin
+			prev_sdram_rdata_en <= w_sdram_rdata_en;
+			prev_vram_rdata_en  <= w_vram_rdata_en;
+		end
+	end
+`endif
+
 endmodule

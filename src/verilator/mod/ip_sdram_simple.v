@@ -1,32 +1,14 @@
-//
-// ip_sdram_simple.v
-//
-//  Simple SDRAM behavioral model without delay elements / init timers.
-//  Copyright (C) 2025 Takayuki Hara (original header retained)
-//
-//  This simplified model is intended for simulation where precise SDRAM
-//  timing/initialization is not required. It implements an immediate
-//  internal memory array and supports masked writes and reads.
-//
-//  Notes:
-//  - No init / refresh / command timing. sdram_init_busy is de-asserted (0).
-//  - bus_valid + bus_write performs a masked write in the same clock edge.
-//    bus_wdata_mask bit == 0 => that byte is written (DQM polarity: 1 = mask).
-//  - bus_valid + read returns data next clk with bus_rdata_en asserted for
-//    one clock.
-//  - External SDRAM pins are simplified/tied; IO_sdram_dq is high-Z from model.
-//
-//  If you want the same pin-level command mapping as the original model,
-//  or different mask polarity, or connect IO_sdram_dq for interactive
-//  transaction, I can adjust the implementation.
-//
-//-----------------------------------------------------------------------------
+// ip_sdram_simple.v — debug output driven by reg
+// - bus_rdata_en is an output reg driven in the clocked always block
+// - detailed $display messages print when rdata_en changes
+// - RDATA_PULSE controls pulse width (set to 8 for visibility)
 
 module ip_sdram #(
-    parameter        FREQ = 85_909_080    // Hz (kept for compatibility)
+    parameter        FREQ = 85_909_080,
+    parameter integer RDATA_PULSE = 8
 ) (
     input                reset_n,
-    input                clk,                // CPU/domain clock
+    input                clk,
     input                clk_sdram,
     output               sdram_init_busy,
 
@@ -37,9 +19,8 @@ module ip_sdram #(
     input    [31:0]      bus_wdata,
     input    [3:0]       bus_wdata_mask,
     output  [31:0]       bus_rdata,
-    output               bus_rdata_en,
+    output reg           bus_rdata_en,    // changed to reg
 
-    // SDRAM ports (kept for compatibility; driven to simple values)
     output               O_sdram_clk,
     output               O_sdram_cke,
     output               O_sdram_cs_n,
@@ -52,87 +33,98 @@ module ip_sdram #(
     output  [ 3:0]       O_sdram_dqm
 );
 
-    // ADDRESS width: bus_address[22:2] => 21 bits -> depth 2^21 words
     localparam ADDR_WIDTH = 21;
     localparam DEPTH = (1 << ADDR_WIDTH);
 
-    // Simple internal memory (behavioral). For simulation use only.
     reg [31:0] mem [0:DEPTH-1];
 
-    // Read output registers
     reg [31:0] ff_rdata;
-    reg        ff_rdata_en;
+    integer rdata_count;
 
-    // sdram init busy - always ready in this simple model
     assign sdram_init_busy = 1'b0;
-
-    // SDRAM pins simplified/tied to static values
     assign O_sdram_clk  = clk_sdram;
-    assign O_sdram_cke  = 1'b1;         // CKE asserted
-    // Drive command pins to inactive (all high = deselect / no-op)
+    assign O_sdram_cke  = 1'b1;
     assign O_sdram_cs_n = 1'b1;
     assign O_sdram_ras_n = 1'b1;
     assign O_sdram_cas_n = 1'b1;
     assign O_sdram_wen_n = 1'b1;
-
-    assign O_sdram_dqm  = 4'b1111;     // no DQ driving/masking externally
+    assign O_sdram_dqm  = 4'b1111;
     assign O_sdram_ba   = 2'd0;
     assign O_sdram_addr = 11'd0;
-
-    // Do not drive external data bus in this model (tri-state)
     assign IO_sdram_dq = 32'bz;
-
-    // Bus outputs
-    assign bus_rdata    = ff_rdata;
-    assign bus_rdata_en = ff_rdata_en;
+    assign bus_rdata = ff_rdata;
 
     integer i;
     reg [31:0] cur;
-    // Simplified memory operation:
-    // - On posedge clk:
-    //    * if reset: clear outputs
-    //    * else if bus_valid & bus_write: perform masked write
-    //    * else if bus_valid & !bus_write: latch read data and assert rdata_en next cycle
-    //
-    // Mask polarity: bus_wdata_mask bit == 0 -> write enabled for that byte.
-    // (This corresponds to DQM=0 to allow write). Change if you prefer opposite polarity.
+
+    // Initialize
+    initial begin
+        rdata_count = 0;
+        ff_rdata = 32'd0;
+        bus_rdata_en = 1'b0;
+    end
 
     always @(posedge clk) begin
         if (!reset_n) begin
             ff_rdata <= 32'd0;
-            ff_rdata_en <= 1'b0;
-        end
-        else begin
-            // Default: deassert read enable
-            ff_rdata_en <= 1'b0;
+            rdata_count <= 0;
+            bus_rdata_en <= 1'b0;
+`ifdef SDRAM_DEBUG
+            $display("[IP_SDRAM] reset asserted (debug)");
+`endif
+        end else begin
+            // Decrement counter if active (do it first so newly queued read sets full count)
+            if (rdata_count > 0) rdata_count <= rdata_count - 1;
 
+            // Handle commands
             if (bus_valid && bus_refresh) begin
-                // In this simple model, refresh request is ignored (no op).
-                // Could implement refresh-related behavior here if needed.
-                ff_rdata_en <= 1'b0;
+                // ignore
+`ifdef SDRAM_DEBUG
+                $display("[IP_SDRAM-REF] t=%0t addr=%06x (refresh ignored)", $time, {bus_address,2'b00});
+`endif
             end
             else if (bus_valid && bus_write) begin
-                // Masked write: bus_wdata_mask bit == 0 => write that byte
-                // Read current word
                 cur = mem[bus_address];
-                // byte 0 = lowest 8 bits
                 for (i = 0; i < 4; i = i + 1) begin
-                    if (bus_wdata_mask[i] == 1'b0) begin
-                        cur[(8*i) +: 8] = bus_wdata[(8*i) +: 8];
-                    end
+                    if (bus_wdata_mask[i] == 1'b0) cur[(8*i) +: 8] = bus_wdata[(8*i) +: 8];
                 end
                 mem[bus_address] <= cur;
-                // write does not produce bus_rdata_en in this model
-                ff_rdata_en <= 1'b0;
+`ifdef SDRAM_DEBUG
+                $display("[IP_SDRAM-WR ] t=%0t addr=%06x mask=%b data=%08x -> wrote %08x",
+                         $time, {bus_address,2'b00}, bus_wdata_mask, bus_wdata, cur);
+`endif
             end
             else if (bus_valid && !bus_write) begin
-                // Read: latch data and assert rdata_en for one cycle
+                // queue read response: latch rdata and set counter to pulse width
                 ff_rdata <= mem[bus_address];
-                ff_rdata_en <= 1'b1;
+                rdata_count <= RDATA_PULSE;
+`ifdef SDRAM_DEBUG
+                $display("[IP_SDRAM-RQ ] t=%0t addr=%06x -> queued rdata=%08x en=%0d",
+                         $time, {bus_address,2'b00}, mem[bus_address], RDATA_PULSE);
+`endif
             end
-            else begin
-                // no transaction
-                ff_rdata_en <= 1'b0;
+
+            // drive bus_rdata_en from rdata_count
+            if (rdata_count > 0) begin
+                if (!bus_rdata_en) begin
+                    bus_rdata_en <= 1'b1;
+`ifdef SDRAM_DEBUG
+                    $display("[IP_SDRAM-RSP-OUT] t=%0t ASSERT bus_rdata_en=1 rdata=%08x count=%0d",
+                             $time, ff_rdata, rdata_count);
+`endif
+                end else begin
+`ifdef SDRAM_DEBUG
+                    $display("[IP_SDRAM-RSP-OUT] t=%0t HOLD   bus_rdata_en=1 count=%0d",
+                             $time, rdata_count);
+`endif
+                end
+            end else begin
+                if (bus_rdata_en) begin
+                    bus_rdata_en <= 1'b0;
+`ifdef SDRAM_DEBUG
+                    $display("[IP_SDRAM-RSP-OUT] t=%0t DEASSERT bus_rdata_en=0", $time);
+`endif
+                end
             end
         end
     end

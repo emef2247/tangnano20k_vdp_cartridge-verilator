@@ -345,10 +345,6 @@ module vdp_vram_interface (
             case (ff_vram_rdata_sel_d1)
             c_bg: begin
                 ff_screen_mode_vram_rdata <= ff_vram_rdata_q;
-`ifdef VERILATOR
-                $display("[VRAM-BG-LATCH] t=%0t addr=%05x data=%08x",
-                         $time, ff_vram_address, ff_vram_rdata_q);
-`endif
             end
             c_sprite: begin
                 ff_sprite_vram_rdata  <= ff_vram_rdata_q;
@@ -387,44 +383,5 @@ module vdp_vram_interface (
     assign vram_wdata             = ff_vram_wdata;
     assign vram_wdata_mask        = ff_vram_wdata_mask;
     assign vram_refresh           = ff_vram_refresh_pulse;
-
-    // --------------------------------------------------------------------
-    // [VERILATOR] Debug logging
-    // --------------------------------------------------------------------
-`ifdef VERILATOR
-    integer dbg_cnt_if;
-    integer dbg_cnt_scr;
-
-    initial begin
-        dbg_cnt_if  = 0;
-        dbg_cnt_scr = 0;
-    end
-
-    // screen_mode 用の rdata をキャプチャしたタイミング
-    always @(posedge clk) begin
-        if (vram_rdata_en && (ff_vram_rdata_sel_d1 == c_bg)) begin
-            if (dbg_cnt_scr < 256) begin
-                $display("[VRAM-SCR] t=%0t addr=%05x rdata=%08x",
-                         $time, ff_vram_address, ff_vram_rdata_q);
-                dbg_cnt_scr = dbg_cnt_scr + 1;
-            end
-        end
-    end
-
-    // vram_interface 全体での最終 rdata セレクト状況
-    always @(posedge clk) begin
-        if (vram_rdata_en) begin
-            if (dbg_cnt_if < 256) begin
-                $display("[VRAM-IF] t=%0t sel=%0d byte_sel=%0d addr=%05x rdata=%08x",
-                         $time,
-                         ff_vram_rdata_sel_d1,
-                         ff_vram_byte_sel,
-                         ff_vram_address,
-                         ff_vram_rdata_q);
-                dbg_cnt_if = dbg_cnt_if + 1;
-            end
-        end
-    end
-`endif
 
 endmodule
