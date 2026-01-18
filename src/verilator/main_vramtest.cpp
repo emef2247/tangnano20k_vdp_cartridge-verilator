@@ -548,11 +548,109 @@ int main(int argc, char** argv)
 
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP.csv");
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN7_VRAM.csv");
-	run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP_tb.csv");
+	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP_tb.csv");
 	//run_testpattern_csv("./tests/csv/fs_a1_10s.csv");
 
+	// Short test range for quick checks (change to 0x40000 when ready)
+	const uint32_t TEST_LEN = 0x10;
 
-	step_cycles(1433664);  // 追加
+	// 1) VDP register initialization (mirror your Verilog)
+	//	SCREEN7
+	//	VDP R#0 = 0x0A
+	vdp_cartridge_write_io(vdp_io1, 0x0A);
+	vdp_cartridge_write_io(vdp_io1, 0x80);
+	//	VDP R#1 = 0x43
+	vdp_cartridge_write_io(vdp_io1, 0x43);
+	vdp_cartridge_write_io(vdp_io1, 0x81);
+	//	VDP R#2 = 0x1F Pattern name table = 0x0000
+	vdp_cartridge_write_io(vdp_io1, 0x1F);
+	vdp_cartridge_write_io(vdp_io1, 0x82);
+	//	VDP R#5 = Sprite attribute table
+	vdp_cartridge_write_io(vdp_io1, 0xF7);
+	vdp_cartridge_write_io(vdp_io1, 0x85);
+	//	VDP R#6 = Sprite pattern generator table
+	vdp_cartridge_write_io(vdp_io1, 0x1E);
+	vdp_cartridge_write_io(vdp_io1, 0x86);
+	//	VDP R#7 = 0xF4 Background color
+	vdp_cartridge_write_io(vdp_io1, 0x07);
+	vdp_cartridge_write_io(vdp_io1, 0x87);
+	//	VDP R#8 = 0x08
+	vdp_cartridge_write_io(vdp_io1, 0x08);
+	vdp_cartridge_write_io(vdp_io1, 0x88);
+	//	VDP R#9 = 0x80 212lines
+	vdp_cartridge_write_io(vdp_io1, 0x80);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 9));
+	//	VDP R#11 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x01);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 11));
+	//	VDP R#18 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 18));
+	//	VDP R#19 = 0
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 19));
+	//	VDP R#20 = 0x01
+	vdp_cartridge_write_io(vdp_io1, 0x01);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 20));
+	//	VDP R#21 = 0x01
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 21));
+	//	VDP R#23 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 23));
+	//	VDP R#25 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 25));
+	//	VDP R#25 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 26));
+	//	VDP R#27 = 0x00
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, static_cast<uint8_t>(0x80 + 27));
+
+	// 2) Fill VRAM: set VRAM write address then stream data into data port
+	std::fprintf(stderr, "[TEST] Fill VRAM (len=0x%X)\n", TEST_LEN);
+	// set VRAM address (four writes as in tb.v)
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, 0x8E);
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, 0x40);
+
+	// write data sequentially to vdp_io0 (data port)
+	for (uint32_t i = 0; i < TEST_LEN; ++i) {
+		uint8_t value = static_cast<uint8_t>(i & 0xFF);
+		vdp_cartridge_write_io(vdp_io0, value);
+		if ((i & 0xFF) == 0) { // small progress indicator occasionally
+			std::fprintf(stderr, "[TEST] wrote addr idx=0x%X value=0x%02x\n", i, value);
+		}
+	}
+
+	// 3) Read back & check: set read address, then read sequentially and compare
+	std::fprintf(stderr, "[TEST] Read and Check VRAM (len=0x%X)\n", TEST_LEN);
+	// read back from the same base address we filled
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, 0x8E);
+	vdp_cartridge_write_io(vdp_io1, 0x00);
+	vdp_cartridge_write_io(vdp_io1, 0x40);
+
+	bool ok = true;
+	for (uint32_t i = 0; i < TEST_LEN; ++i) {
+		uint8_t read_data = vdp_cartridge_read_io(vdp_io0);
+		uint8_t expect = static_cast<uint8_t>(i & 0xFF);
+		if (read_data != expect) {
+			std::fprintf(stderr, "[MISMATCH] idx=0x%X got=0x%02x expected=0x%02x time=%" PRIu64 "ps\n",
+						 i, read_data, expect, vdp_cartridge_get_sim_time());
+			ok = false;
+			//break; // stop on first mismatch (or continue to log all if you prefer)
+		}
+	}
+	if (ok) {
+		std::fprintf(stderr, "[TEST] VRAM read-check OK (len=0x%X)\n", TEST_LEN);
+	} else {
+		std::fprintf(stderr, "[TEST] VRAM read-check FAILED\n");
+	}
+
+	//step_cycles(1433664);  // 追加
     // --------------------------------------------------------------------
     // Let the display run and dump VRAM / RGB frames
     // --------------------------------------------------------------------
@@ -560,7 +658,7 @@ int main(int argc, char** argv)
 
 	char vram_ppm[64];
 	char vram_screen5_pages[64];
-	std::snprintf(vram_ppm, sizeof(vram_ppm), "vram_%03d.ppm", vdp_cartridge_get_frame_no());
+	std::snprintf(vram_ppm, sizeof(vram_ppm), "vram_%03d.ppm", (int)vdp_cartridge_get_frame_no());
 	dump_vram_as_ppm(vram_ppm);
 	//dump_vram_screen5_pages(vram_screen5_pages);
 

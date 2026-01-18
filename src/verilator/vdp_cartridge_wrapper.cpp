@@ -168,12 +168,6 @@ void vdp_cartridge_vram_bus_eval(void)
     uint8_t  valid  = g_top->dbg_vram_valid ? 1 : 0;
     uint8_t  write  = g_top->dbg_vram_write ? 1 : 0;
 
-    if (g_debug_enabled) {
-        fprintf(stderr,
-                "[VRAM-BUS-MON] t=%" PRIu64 "ps valid=%d write=%d addr=%05x data=%08x\n",
-                g_time_ps, valid, write, addr18, wdata);
-    }
-
     if (valid) {
         uint32_t word_addr = addr18;
         if (write) {

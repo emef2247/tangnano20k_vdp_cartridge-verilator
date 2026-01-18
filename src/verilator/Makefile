@@ -6,7 +6,7 @@ MOD   = ./mod
 RTL   = ./RTL
 
 # Verilator共通オプション
-VERILATOR_FLAGS = -Wno-fatal -I$(VPATH)
+VERILATOR_FLAGS = -Wno-fatal -I$(VPATH) -DSDRAM_DEBUG
 
 # RTLファイルリスト（mod優先で頭に並べる！）
 # wrapper_top.sv をトップに追加し、その下に DUT 一式を列挙
@@ -42,7 +42,7 @@ VERILOG_SRCS = \
 	./mod/tangnano20k_vdp_cartridge.v
 
 # C++ソース
-C_SRCS = vdp_cartridge_wrapper.cpp main.cpp
+C_SRCS = vdp_cartridge_wrapper.cpp main_vramtest.cpp
 
 # ----------------
 all: sim
@@ -51,7 +51,8 @@ all: sim
 SIM_BIN = obj_dir/Vwrapper_top
 
 sim: $(SIM_BIN)
-	./$(SIM_BIN) --dump-screen
+	./$(SIM_BIN) 
+#	./$(SIM_BIN) --dump-screen
 
 $(SIM_BIN): $(VERILOG_SRCS) $(C_SRCS)
 	verilator --cc --exe --build --trace $(VERILATOR_FLAGS) \

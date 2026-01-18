@@ -1,9 +1,28 @@
 // -----------------------------------------------------------------------------
 //	tangnano20k_vdp_cartridge.v
 //	Copyright (C)2025 Takayuki Hara (HRA!)
-//	Modified 2026-01-02 by @emef2247 (Verilator integration)
-//	Updated: restored proper rdata_en wiring and added guarded debug monitors
+//	
+//	 Permission is hereby granted, free of charge, to any person obtaining a 
+//	copy of this software and associated documentation files (the "Software"), 
+//	to deal in the Software without restriction, including without limitation 
+//	the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+//	and/or sell copies of the Software, and to permit persons to whom the 
+//	Software is furnished to do so, subject to the following conditions:
+//	
+//	The above copyright notice and this permission notice shall be included in 
+//	all copies or substantial portions of the Software.
+//	
+//	The Software is provided "as is", without warranty of any kind, express or 
+//	implied, including but not limited to the warranties of merchantability, 
+//	fitness for a particular purpose and noninfringement. In no event shall the 
+//	authors or copyright holders be liable for any claim, damages or other 
+//	liability, whether in an action of contract, tort or otherwise, arising 
+//	from, out of or in connection with the Software or the use or other dealings 
+//	in the Software.
 // -----------------------------------------------------------------------------
+
+//	Modified 2026-01-18 by @emef2247 (Verilator integration)
+//	Updated: restored proper rdata_en wiring and added guarded debug monitors
 
 module tangnano20k_vdp_cartridge (
 	input			clk,			//	PIN04		(27MHz)
@@ -38,7 +57,6 @@ module tangnano20k_vdp_cartridge (
 	output	[10:0]	O_sdram_addr,	// 11 bit multiplexed address bus
 	output	[ 1:0]	O_sdram_ba,		// two banks
 	output	[ 3:0]	O_sdram_dqm,	// data mask
-
 	// --------------------------------------------------------------------
 	// [MOD] Raw video output from VDP core (for Verilator / openMSX)
 	// --------------------------------------------------------------------
@@ -87,7 +105,6 @@ module tangnano20k_vdp_cartridge (
 
 	wire			w_sdram_init_busy;
 
-	// VDP <-> SDRAM VRAM bus
 	wire	[22:2]	w_sdram_address;
 	wire			w_sdram_write;
 	wire			w_sdram_valid;
@@ -96,14 +113,6 @@ module tangnano20k_vdp_cartridge (
 	wire	[3:0]	w_sdram_wdata_mask;
 	wire	[31:0]	w_sdram_rdata;
 	wire			w_sdram_rdata_en;
-
-	// [MOD] Local wires for VDP VRAM bus (word address 17:0)
-	wire	[17:0]	w_vram_address;
-	wire	[31:0]	w_vram_wdata;
-	wire	[31:0]	w_vram_rdata;
-	wire			w_vram_valid;
-	wire			w_vram_write;
-	wire			w_vram_rdata_en;
 
 	wire			w_video_de;
 	wire			w_video_hs;
@@ -126,7 +135,15 @@ module tangnano20k_vdp_cartridge (
 	wire	[7:0]	w_green;
 	wire	[7:0]	w_blue;
 	wire			w_int_n;
-
+	
+	// [MOD] Local wires for VDP VRAM bus (word address 17:0)
+	wire	[17:0]	w_vram_address;
+	wire	[31:0]	w_vram_wdata;
+	wire	[31:0]	w_vram_rdata;
+	wire			w_vram_valid;
+	wire			w_vram_write;
+	wire			w_vram_rdata_en;
+	
 	assign slot_wait		= w_sdram_init_busy;
 	assign oe_n				= 1'b0;
 
@@ -208,17 +225,14 @@ module tangnano20k_vdp_cartridge (
 		.bus_rdata			( w_bus_vdp_rdata			),
 		.bus_rdata_en		( w_bus_vdp_rdata_en		),
 		.int_n				( w_int_n					),
-
-		// [MOD] connect VDP VRAM bus to local wires
-		.vram_address		( w_vram_address			),	// WORD address [17:0]
-		.vram_write			( w_vram_write				),
-		.vram_valid			( w_vram_valid				),
-		.vram_wdata			( w_vram_wdata				),
-		.vram_wdata_mask	( w_sdram_wdata_mask		),	// mask shared with SDRAM model
-		.vram_rdata			( w_vram_rdata				),
-		.vram_rdata_en		( w_vram_rdata_en			),
+		.vram_address		( w_sdram_address[17:2]		),
+		.vram_write			( w_sdram_write				),
+		.vram_valid			( w_sdram_valid				),
+		.vram_wdata			( w_sdram_wdata				),
+		.vram_wdata_mask	( w_sdram_wdata_mask		),
+		.vram_rdata			( w_sdram_rdata				),
+		.vram_rdata_en		( w_sdram_rdata_en			),
 		.vram_refresh		( w_sdram_refresh			),
-
 		.display_hs			( w_video_hs				),
 		.display_vs			( w_video_vs				),
 		.display_en			( w_video_de				),
@@ -237,31 +251,7 @@ module tangnano20k_vdp_cartridge (
 		.pulse7				( w_pulse7					)
 	);
 
-	// --------------------------------------------------------------------
-	//	VRAM bus mapping
-	// --------------------------------------------------------------------
-	// Map VDP VRAM bus to SDRAM bus (original hardware behavior)
-	// SDRAM address is 22:2, VDP provides 17:0 word address. Upper bits fixed to 0.
 	assign w_sdram_address[22:18]	= 5'd0;
-	assign w_sdram_address[17:2]	= w_vram_address;
-
-	assign w_sdram_wdata			= w_vram_wdata;
-	assign w_sdram_valid			= w_vram_valid;
-	assign w_sdram_write			= w_vram_write;
-// NOTE: do NOT create a circular assign between w_sdram_rdata_en and w_vram_rdata_en.
-// The SDRAM model drives w_sdram_rdata_en; we expose that to the VDP by assigning
-// w_vram_rdata_en := w_sdram_rdata_en (or to dbg_vram_rdata_en when requested).
-
-// Use dbg_vram_* only when explicitly requested during Verilator runs.
-// Default uses the SDRAM model (w_sdram_rdata).
-`ifdef VERILATOR_DBGVRAM
-  assign w_vram_rdata = dbg_vram_rdata;
-  assign w_vram_rdata_en = dbg_vram_rdata_en;
-`else
-  assign w_vram_rdata = w_sdram_rdata;
-  assign w_vram_rdata_en = w_sdram_rdata_en;
-`endif
-
 
 	// --------------------------------------------------------------------
 	//	HDMI
@@ -292,8 +282,6 @@ module tangnano20k_vdp_cartridge (
 		.clk				( clk85m					),		//	85.90908MHz
 		.clk_sdram			( clk85m_n					),
 		.sdram_init_busy	( w_sdram_init_busy			),
-
-		// [MOD] Use w_sdram_* signals that are already driven from VDP VRAM bus
 		.bus_address		( w_sdram_address			),
 		.bus_valid			( w_sdram_valid				),
 		.bus_write			( w_sdram_write				),
@@ -302,7 +290,6 @@ module tangnano20k_vdp_cartridge (
 		.bus_wdata_mask		( w_sdram_wdata_mask		),
 		.bus_rdata			( w_sdram_rdata				),
 		.bus_rdata_en		( w_sdram_rdata_en			),
-
 		.O_sdram_clk		( O_sdram_clk				),
 		.O_sdram_cke		( O_sdram_cke				),
 		.O_sdram_cs_n		( O_sdram_cs_n				),		// chip select
@@ -316,7 +303,7 @@ module tangnano20k_vdp_cartridge (
 	);
 
 	// --------------------------------------------------------------------
-	//	Debug LED / Debugger (unchanged)
+	//	Debug—p LED
 	// --------------------------------------------------------------------
 	ip_ws2812_led u_led (
 		.reset_n			( reset_n					),
@@ -329,6 +316,9 @@ module tangnano20k_vdp_cartridge (
 		.ws2812_led			( ws2812_led				)
 	);
 
+	// --------------------------------------------------------------------
+	//	Debugger
+	// --------------------------------------------------------------------
 	ip_debugger u_debugger (
 		.reset_n			( reset_n					),
 		.clk				( clk85m					),
@@ -365,28 +355,56 @@ module tangnano20k_vdp_cartridge (
     assign display_r  = w_video_r;
     assign display_g  = w_video_g;
     assign display_b  = w_video_b;
-	
-// --------------------------------------------------------------------
-// Debug monitors (Verilator only)
-//
-// These prints help confirm the rdata_en path:
-//  - SDRAM model asserts w_sdram_rdata_en
-//  - top should observe w_sdram_rdata_en
-//  - vdp_vram_interface should see vram_rdata_en (which is driven from w_sdram_rdata_en)
-// Guarded by `ifdef VERILATOR to avoid synthesis impacts.
-// --------------------------------------------------------------------
-`ifdef VERILATOR
-	reg prev_sdram_rdata_en;
-	reg prev_vram_rdata_en;
-	always @(posedge clk85m) begin
-		if (!reset_n) begin
-			prev_sdram_rdata_en <= 1'b0;
-			prev_vram_rdata_en  <= 1'b0;
-		end else begin
-			prev_sdram_rdata_en <= w_sdram_rdata_en;
-			prev_vram_rdata_en  <= w_vram_rdata_en;
+
+	// --------------------------------------------------------------------
+	// Debug monitors (Verilator only)
+	//
+	// These prints help confirm the rdata_en path:
+	//  - SDRAM model asserts w_sdram_rdata_en
+	//  - top should observe w_sdram_rdata_en
+	//  - vdp_vram_interface should see vram_rdata_en (which is driven from w_sdram_rdata_en)
+	// Guarded by `ifdef VERILATOR to avoid synthesis impacts.
+	// --------------------------------------------------------------------
+	`ifdef VERILATOR
+		reg prev_sdram_rdata_en;
+		reg prev_vram_rdata_en;
+		always @(posedge clk85m) begin
+			if (!reset_n) begin
+				prev_sdram_rdata_en <= 1'b0;
+				prev_vram_rdata_en  <= 1'b0;
+			end else begin
+				prev_sdram_rdata_en <= w_sdram_rdata_en;
+				prev_vram_rdata_en  <= w_vram_rdata_en;
+			end
 		end
-	end
-`endif
+	`endif
+
+	`ifdef SDRAM_DEBUG
+	  // Print VDP VRAM bus writes as soon as they are driven
+	  always @(posedge clk85m) begin
+		if (w_vram_valid && w_vram_write) begin
+		  $display("[TOP-VRAM-WR] t=%0t vram_addr=%06x vram_wdata=%08x",
+				   $time, w_vram_address, w_vram_wdata);
+		end
+		if (w_sdram_valid && w_sdram_write) begin
+		  $display("[TOP-SDRAM-WR] t=%0t sdram_addr=%06x sdram_wdata=%08x",
+				   $time, w_sdram_address[17:2], w_sdram_wdata);
+		end
+	  end
+	`endif
+
+	`ifdef SDRAM_DEBUG
+	  always @(posedge clk85m) begin
+		if (w_vram_valid) begin
+		  $display("[DBG-ADDR] t=%0t w_vram_address=%06x w_sdram_address_full=%06x sdram_addr_word=%06x w_vram_wdata=%08x mask=%b",
+				   $time,
+				   w_vram_address,                // 18-bit word address (print as hex)
+				   {w_sdram_address, 2'b00},      // full addr (bits[22:2] plus two zero bits -> byte addr)
+				   w_sdram_address[17:2],         // the word index actually passed to SDRAM (as we print elsewhere)
+				   w_vram_wdata,
+				   w_sdram_wdata_mask);
+		end
+	  end
+	`endif
 
 endmodule
