@@ -42,7 +42,7 @@ VERILOG_SRCS = \
 	./mod/tangnano20k_vdp_cartridge.v
 
 # C++ソース
-C_SRCS = vdp_cartridge_wrapper.cpp main.cpp
+C_SRCS = vdp_cartridge_wrapper.cpp main_vramtest.cpp
 
 # ----------------
 all: sim

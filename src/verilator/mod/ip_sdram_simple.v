@@ -1,12 +1,13 @@
 // ip_sdram_simple.v — Simplified clk-only SDRAM-like model (EN_DELAY supported)
 // - Single outstanding read model, pipeline + counter based.
-// - All behavior driven by posedge clk (clk_sdram is accepted but unused).
+// - All behavior driven by posedge clk (clk_sdram port retained for interface compatibility but unused).
 // - Parameters:
 //    RESPONSE_DELAY : base cycles until rdata is produced (count compare uses RESPONSE_DELAY-1)
 //    EN_DELAY       : additional cycles to delay rdata_en after rdata timing
 //    RDATA_PULSE    : bus_rdata_en pulse width in clk cycles (default 1)
 //    CAS_LAT        : pipeline depth (CAS latency), read injection uses pipeline
 // - Note: No bank/row/col/burst/refresh semantics. Minimal, Verilator-friendly.
+
 module ip_sdram #(
     parameter        FREQ = 85_909_080,
     parameter integer RDATA_PULSE    = 1,
@@ -18,7 +19,7 @@ module ip_sdram #(
 ) (
     input                reset_n,
     input                clk,            // main clock (all logic driven here)
-    input                clk_sdram,      // kept for compatibility but not used in clk-only mode
+    input                clk_sdram,      // retained in port list for compatibility but NOT used in clk-only model
     output               sdram_init_busy,
 
     input    [22:2]      bus_address,
@@ -59,11 +60,11 @@ module ip_sdram #(
 
     reg [31:0] mem [0:DEPTH-1];
 
-    // pipeline registers for CAS latency (0..CAS_LAT-1)
-    reg pipeline_valid [0:63];
-    reg [22:2] pipeline_addr [0:63];
-    reg next_pipeline_valid [0:63];
-    reg [22:2] next_pipeline_addr [0:63];
+    // pipeline registers sized by CAS_LAT (smaller, parameterized)
+    reg pipeline_valid [0:CAS_LAT-1];
+    reg [22:2] pipeline_addr [0:CAS_LAT-1];
+    reg next_pipeline_valid [0:CAS_LAT-1];
+    reg [22:2] next_pipeline_addr [0:CAS_LAT-1];
 
     // bus output register
     reg [31:0] ff_rdata;
@@ -75,8 +76,8 @@ module ip_sdram #(
 
     // assignments for static pins
     assign sdram_init_busy = 1'b0;
-    // keep clk_sdram visible for traces but not used for ff_rdata in clk-only mode
-    assign O_sdram_clk  = clk_sdram;
+    // keep O_sdram_clk available for traces; drive from main clk (clk-only model)
+    assign O_sdram_clk  = clk;
     assign O_sdram_cke  = 1'b1;
     assign O_sdram_cs_n = 1'b1;
     assign O_sdram_ras_n = 1'b1;
@@ -88,7 +89,7 @@ module ip_sdram #(
     assign IO_sdram_dq = 32'bz;
     assign bus_rdata = ff_rdata;
 
-    // byte-swap helper
+    // byte-swap helper (kept, guarded by parameter)
     function [31:0] byteswap32(input [31:0] v);
         begin
             byteswap32 = {v[7:0], v[15:8], v[23:16], v[31:24]};
@@ -104,7 +105,7 @@ module ip_sdram #(
         pending_data = 32'd0;
         counter = 0;
         bus_rdata_en = 1'b0;
-        for (st = 0; st < 64; st = st + 1) begin
+        for (st = 0; st < CAS_LAT; st = st + 1) begin
             pipeline_valid[st] = 1'b0;
             pipeline_addr[st]  = {21{1'b0}};
         end
@@ -113,7 +114,7 @@ module ip_sdram #(
     // main pipeline & counter (all in clk domain)
     always @(posedge clk) begin
         if (!reset_n) begin
-            for (st = 0; st < 64; st = st + 1) begin
+            for (st = 0; st < CAS_LAT; st = st + 1) begin
                 pipeline_valid[st] <= 1'b0;
                 pipeline_addr[st]  <= {21{1'b0}};
             end
@@ -130,6 +131,7 @@ module ip_sdram #(
             if (bus_valid && bus_write) begin
                 reg [31:0] cur;
                 cur = mem[bus_address];
+                // preserve byte-mask write semantics
                 for (i = 0; i < 4; i = i + 1) begin
                     if (bus_wdata_mask[i] == 1'b0) begin
                         cur[(8*i) +: 8] = bus_wdata[(8*i) +: 8];
@@ -142,7 +144,7 @@ module ip_sdram #(
 `endif
             end
 
-            // 2) shift CAS pipeline: simple left-shift
+            // 2) shift CAS pipeline: simple left-shift sized by CAS_LAT
             for (st = 0; st < CAS_LAT-1; st = st + 1) begin
                 next_pipeline_valid[st] = pipeline_valid[st+1];
                 next_pipeline_addr[st]  = pipeline_addr[st+1];
@@ -191,7 +193,7 @@ module ip_sdram #(
                     end
                     else begin
                         // reached target: assert en on this posedge and clear pending
-                        // We also load ff_rdata here (clk-only model: ff_rdata and en are in same clk domain)
+                        // In clk-only model: load ff_rdata and assert en on same clk edge
                         ff_rdata <= pending_data;
                         bus_rdata_en <= 1'b1;
                         pending <= 1'b0;
@@ -206,4 +208,3 @@ module ip_sdram #(
     end
 
 endmodule
-
