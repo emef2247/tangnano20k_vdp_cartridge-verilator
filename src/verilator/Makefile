@@ -42,7 +42,7 @@ VERILOG_SRCS = \
 	./mod/tangnano20k_vdp_cartridge.v
 
 # C++ソース
-C_SRCS = vdp_cartridge_wrapper.cpp main_vramtest.cpp
+C_SRCS = vdp_cartridge_wrapper.cpp main.cpp
 
 # ----------------
 all: sim
@@ -51,8 +51,8 @@ all: sim
 SIM_BIN = obj_dir/Vwrapper_top
 
 sim: $(SIM_BIN)
-	./$(SIM_BIN) 
-#	./$(SIM_BIN) --dump-screen
+	./$(SIM_BIN) --dump-screen
+#	./$(SIM_BIN) 
 
 $(SIM_BIN): $(VERILOG_SRCS) $(C_SRCS)
 	verilator --cc --exe --build --trace $(VERILATOR_FLAGS) \

@@ -306,6 +306,18 @@ module vdp_vram_interface (
 		end
 	end
 
+	`ifdef VERILATOR
+	  always @(posedge clk) begin
+		if (vram_rdata_en) begin
+		  $display("[VDP-RDATA] t=%0t sel=%0d sel_d1=%0d byte_sel=%0d addr=%06x vram_rdata=%08x selected_byte=%02x",
+				   $time,
+				   ff_vram_rdata_sel, ff_vram_rdata_sel_d1, ff_vram_byte_sel, ff_vram_address,
+				   vram_rdata,
+				   func_rdata_sel(ff_vram_byte_sel, vram_rdata));
+		end
+	  end
+	`endif
+
 	assign screen_mode_vram_rdata	= ff_screen_mode_vram_rdata;
 	assign sprite_vram_rdata		= ff_sprite_vram_rdata;
 	assign sprite_vram_rdata8		= ff_sprite_vram_rdata8;

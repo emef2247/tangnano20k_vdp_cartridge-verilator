@@ -494,7 +494,7 @@ int main(int argc, char** argv)
     vdp_cartridge_set_debug(0);
     vdp_cartridge_set_write_on_posedge(1);  // use tb.sv-like write_io
     vdp_cartridge_set_end_align(0);         // we handle phase in write_io
-    vdp_cartridge_set_vcd_enabled(1, "dump.vcd"); // VCD is disabled at the beginning of the simualtion 
+    vdp_cartridge_set_vcd_enabled(0, "dump.vcd"); // VCD is disabled at the beginning of the simualtion 
 
     // Inputs
     vdp_cartridge_set_button(0);
@@ -548,8 +548,8 @@ int main(int argc, char** argv)
 
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP.csv");
 	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN7_VRAM.csv");
-	run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP_tb.csv");
-	//run_testpattern_csv("./tests/csv/fs_a1_10s.csv");
+	//run_testpattern_csv("./tests/csv/test_vdp_SCREEN1_SP_tb.csv");
+	run_testpattern_csv("./tests/csv/fs_a1_10s.csv");
 
 
 	step_cycles(1433664);  // 追加

@@ -634,6 +634,8 @@ int main(int argc, char** argv)
 	vdp_cartridge_write_io(vdp_io1, 0x40);
 
 	bool ok = true;
+	// after setting VRAM read address
+	uint8_t dummy = vdp_cartridge_read_io(vdp_io0); // discar
 	for (uint32_t i = 0; i < TEST_LEN; ++i) {
 		uint8_t read_data = vdp_cartridge_read_io(vdp_io0);
 		uint8_t expect = static_cast<uint8_t>(i & 0xFF);
