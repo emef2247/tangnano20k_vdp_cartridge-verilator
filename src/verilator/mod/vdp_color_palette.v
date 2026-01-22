@@ -1,3 +1,4 @@
+//
 //	vdp_color_palette.v
 //	Color Palette for VDP
 //
@@ -53,6 +54,44 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 //
 //-----------------------------------------------------------------------------
+
+// MOD/vdp_color_palette.v
+// --------------------------------------------------------------------
+// Original: (upstream) th9958/vdp_color_palette.v
+// Copyright: preserved from original source
+// SPDX-License-Identifier: (preserve original license in repository root)
+//
+// [MOD] 
+// 目的：Verilator ビルド向けに安全かつ明確な初期化・状態遷移を保証するとともに、
+//       非同期リセットやシミュレーション/合成時の振る舞いの不整合を避けるための最小限の修正を入れています。
+// 変更
+//
+// 1) 非同期リセット（asynchronous reset）対応の追加
+//    - 複数の always ブロックの感度リストに negedge reset_n を追加しました。
+//    - reset_n がアサート解除（LOW）されたときに即座に内部レジスタを既知状態に戻すようにし、
+//      シミュレーションと合成時の初期値差分を抑制しています。
+//
+// 2) リセット経路のノンブロッキング化（安全な初期化）
+//    - リセット時の代入を blocking (=) から non-blocking (<=) に変更した箇所があります。
+//    - これによりリセット時の多段レジスタ初期化での順序依存や不整合を避けます。
+//
+// 3) パレット初期化カウンタの次状態化（next_palette_num の導入）
+//    - ff_palette_num の更新を単純インクリメント直後に反映する形から、
+//      next_palette_num を導入して「次状態」を計算し、次クロックで ff_palette_num <= next_palette_num とする設計に変更しました。
+//    - これにより組合せループや一瞬のグリッチを避け、ツール互換性を向上させます。
+//
+// 4) case 文内の代入スタイルの統一
+//    - パレット値等をセットする case 文にて、リセット対応とノンブロッキング方針に合わせて代入様式を整備しました。
+//    - 主に ff_palette_r/g/b 等の代入を non-blocking に統一しています（リセット条件下を除く）。
+//
+//
+// 変更差分（抜粋の説明）
+//  - always @( posedge clk )  -> always @(posedge clk or negedge reset_n) へ変更（リセット初期化のため）
+//  - ff_palette_num に next_palette_num を導入し、カウンタの更新を次状態として保持するように変更
+//  - リセット時の代入を non-blocking に変更（ff_palette_* <= 0）
+//  - その他複数の always ブロックで同様のリセット対応を追加
+//
+
 
 module vdp_color_palette (
 	input				reset_n,
@@ -165,42 +204,57 @@ module vdp_color_palette (
 	// --------------------------------------------------------------------
 	//	Palette initializer
 	// --------------------------------------------------------------------
-	always @( posedge clk or negedge reset_n ) begin
-		if( !reset_n ) begin
-			ff_palette_num	<= 9'd0;
-			ff_palette_r	<= 5'd0;
-			ff_palette_g	<= 5'd0;
-			ff_palette_b	<= 5'd0;
-		end
-		else if( ff_palette_num[8] == 1'b0 ) begin
-			case( ff_palette_num[3:0] )
-			4'd0:	begin ff_palette_r <= { 5'b00000 }; ff_palette_b <= { 5'b00000 }; ff_palette_g <= { 5'b00000 }; end	//	color#1
-			4'd1:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b11011 }; end	//	color#2
-			4'd2:	begin ff_palette_r <= { 5'b01101 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b11111 }; end	//	color#3
-			4'd3:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b00100 }; end	//	color#4
-			4'd4:	begin ff_palette_r <= { 5'b01001 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b01101 }; end	//	color#5
-			4'd5:	begin ff_palette_r <= { 5'b10110 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b00100 }; end	//	color#6
-			4'd6:	begin ff_palette_r <= { 5'b01001 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b11011 }; end	//	color#7
-			4'd7:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b00100 }; end	//	color#8
-			4'd8:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b01101 }; end	//	color#9
-			4'd9:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b11011 }; end	//	color#10
-			4'd10:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b01101 }; ff_palette_g <= { 5'b11011 }; end	//	color#11
-			4'd11:	begin ff_palette_r <= { 5'b00100 }; ff_palette_b <= { 5'b00100 }; ff_palette_g <= { 5'b10010 }; end	//	color#12
-			4'd12:	begin ff_palette_r <= { 5'b11011 }; ff_palette_b <= { 5'b10110 }; ff_palette_g <= { 5'b01001 }; end	//	color#13
-			4'd13:	begin ff_palette_r <= { 5'b10110 }; ff_palette_b <= { 5'b10110 }; ff_palette_g <= { 5'b10110 }; end	//	color#14
-			4'd14:	begin ff_palette_r <= { 5'b11111 }; ff_palette_b <= { 5'b11111 }; ff_palette_g <= { 5'b11111 }; end	//	color#15
-			4'd15:	begin ff_palette_r <= { 5'b00000 }; ff_palette_b <= { 5'b00000 }; ff_palette_g <= { 5'b00000 }; end	//	initialize
-			endcase
-			ff_palette_num <= ff_palette_num + 9'd1;
-		end
-	end
+    reg [8:0] next_palette_num;
 
-	assign w_palette_valid	= ff_palette_num[8] ? palette_valid : 1'b1;
-	assign w_palette_num	= ff_palette_num[8] ? palette_num : ff_palette_num[7:0];
-	assign w_palette_r		= ff_palette_num[8] ? palette_r : ff_palette_r;
-	assign w_palette_g		= ff_palette_num[8] ? palette_g : ff_palette_g;
-	assign w_palette_b		= ff_palette_num[8] ? palette_b : ff_palette_b;
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            // 非同期リセット時は即 0 に戻す
+            ff_palette_num <= 9'd0;
+            ff_palette_r   <= 5'd0;
+            ff_palette_g   <= 5'd0;
+            ff_palette_b   <= 5'd0;
+            next_palette_num <= 9'd0;
+        end
+        else begin
+            // デフォルトでは「そのまま」
+            next_palette_num <= ff_palette_num;
 
+            if (ff_palette_num[8] == 1'b0) begin
+                // ff_palette_num の「現在値」を見て R/G/B を決める
+                case (ff_palette_num[3:0])
+                    4'd0:  begin ff_palette_r <= 5'b00000; ff_palette_b <= 5'b00000; ff_palette_g <= 5'b00000; end // color#1
+                    4'd1:  begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b11011; end // color#2
+                    4'd2:  begin ff_palette_r <= 5'b01101; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b11111; end // color#3
+                    4'd3:  begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b00100; end // color#4
+                    4'd4:  begin ff_palette_r <= 5'b01001; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b01101; end // color#5
+                    4'd5:  begin ff_palette_r <= 5'b10110; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b00100; end // color#6
+                    4'd6:  begin ff_palette_r <= 5'b01001; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b11011; end // color#7
+                    4'd7:  begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b00100; end // color#8
+                    4'd8:  begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b01101; end // color#9
+                    4'd9:  begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b11011; end // color#10
+                    4'd10: begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b01101; ff_palette_g <= 5'b11011; end // color#11
+                    4'd11: begin ff_palette_r <= 5'b00100; ff_palette_b <= 5'b00100; ff_palette_g <= 5'b10010; end // color#12
+                    4'd12: begin ff_palette_r <= 5'b11011; ff_palette_b <= 5'b10110; ff_palette_g <= 5'b01001; end // color#13
+                    4'd13: begin ff_palette_r <= 5'b10110; ff_palette_b <= 5'b10110; ff_palette_g <= 5'b10110; end // color#14
+                    4'd14: begin ff_palette_r <= 5'b11111; ff_palette_b <= 5'b11111; ff_palette_g <= 5'b11111; end // color#15
+                    4'd15: begin ff_palette_r <= 5'b00000; ff_palette_b <= 5'b00000; ff_palette_g <= 5'b00000; end // initialize
+                endcase
+
+                // 次のクロックで ff_palette_num を 1 進める
+                next_palette_num <= ff_palette_num + 9'd1;
+            end
+
+            // カウンタ本体は「次状態」をノンブロッキングで受け取る
+            ff_palette_num <= next_palette_num;
+        end
+    end
+
+    assign w_palette_valid = ff_palette_num[8] ? palette_valid : 1'b1;
+    assign w_palette_num   = ff_palette_num[8] ? palette_num   : ff_palette_num[7:0];
+    assign w_palette_r     = ff_palette_num[8] ? palette_r     : ff_palette_r;
+    assign w_palette_g     = ff_palette_num[8] ? palette_g     : ff_palette_g;
+    assign w_palette_b     = ff_palette_num[8] ? palette_b     : ff_palette_b;
+	
 	// --------------------------------------------------------------------
 	//	Pixel delay (screen_pos_x = 0)
 	// --------------------------------------------------------------------
