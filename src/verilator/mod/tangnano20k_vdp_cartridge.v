@@ -1,7 +1,81 @@
 // -----------------------------------------------------------------------------
 //	tangnano20k_vdp_cartridge.v
-//	Modified (test hooks): expose internal SDRAM rdata/en and internal clk85m
+//	Copyright (C)2025 Takayuki Hara (HRA!)
+//	
+//	 Permission is hereby granted, free of charge, to any person obtaining a 
+//	copy of this software and associated documentation files (the "Software"), 
+//	to deal in the Software without restriction, including without limitation 
+//	the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+//	and/or sell copies of the Software, and to permit persons to whom the 
+//	Software is furnished to do so, subject to the following conditions:
+//	
+//	The above copyright notice and this permission notice shall be included in 
+//	all copies or substantial portions of the Software.
+//	
+//	The Software is provided "as is", without warranty of any kind, express or 
+//	implied, including but not limited to the warranties of merchantability, 
+//	fitness for a particular purpose and noninfringement. In no event shall the 
+//	authors or copyright holders be liable for any claim, damages or other 
+//	liability, whether in an action of contract, tort or otherwise, arising 
+//	from, out of or in connection with the Software or the use or other dealings 
+//	in the Software.
 // -----------------------------------------------------------------------------
+
+// [MOD] Summary of modifications applied in mod/tangnano20k_vdp_cartridge.v
+//
+// The following is a high-level summary (in English) of the changes made to the
+// upstream tangnano20k_vdp_cartridge.v to produce the Verilator-friendly version
+// kept under mod/.  The edits are intentionally minimal and focused on making
+// the top-level easier to drive/observe from the C++ testbench wrapper and to
+// avoid simulator vs. synthesis mismatches (reset/clock-driven state).
+//
+// Goal
+// - Keep original functionality intact while exposing a small set of internal
+//   signals to the Verilator/C++ harness and improving simulator robustness.
+// - Only make the smallest, well-scoped changes needed for reliable Verilator
+//   builds and for the wrapper to drive/observe internal signals used by tests.
+//
+// Summary of key modifications
+// 1) Exposed debug/functional VRAM and SDRAM signals to the C++ wrapper
+//    - Added/kept top-level ports to export the VDP VRAM bus for the wrapper:
+//        * dbg_vram_address (output)
+//        * dbg_vram_wdata   (output)
+//        * dbg_vram_rdata   (input)  <-- wrapper may drive read-data override
+//        * dbg_vram_valid   (output)
+//        * dbg_vram_write   (output)
+//    - Added test-only SDRAM outputs to ease deterministic capture in the testbench:
+//        * dbg_sdram_rdata_out    (output)  -- internal SDRAM rdata
+//        * dbg_sdram_rdata_en_out (output)  -- internal SDRAM rdata_en
+//        * clk85m_out             (output)  -- internal high-speed clock for wrapper sampling
+//    - Rationale: exporting these nets makes it possible for the C++ harness to
+//      sample/override VRAM read data and to latch SDRAM outputs reliably for
+//      validation and visual dumps (PPM/PGM).
+//
+// 2) Make dbg_vram_rdata_en driven by the wrapper (input)
+//    - The top-level now treats dbg_vram_rdata_en as an input so the wrapper can
+//      control whether the wrapper-driven dbg_vram_rdata is used by the DUT.
+//    - Rationale: this enables the test harness to inject read-data at the exact
+//      cycle it expects, which simplifies building deterministic tests and
+//      comparing results against known patterns.
+//
+// 3) Verilator-friendly debug instrumentation (conditional)
+//    - Kept `ifdef VERILATOR` and `ifdef SDRAM_DEBUG` instrumentation blocks
+//      but ensured they are safe for simulation (no synthesis assumptions).
+//    - These debug prints are gated off by default and enabled via compile-time
+//      flags when needed.
+//    - Rationale: helpful debug output during development without affecting
+//      normal sim performance when disabled.
+//
+// 4) Minimal wiring/instantiation adjustments for wrapper compatibility
+//    - Small connectivity adjustments so ip_sdram / ip_sdram_simple can be
+//      instantiated and the wrapper can drive/observe the signals listed above.
+//    - No algorithmic changes to the VDP or SDRAM behavior were made.
+//
+// 5) Reset/synchronization and simulator stability
+//    - Ensured reset sampling and synchronous flops are stable under simulation.
+//    - Changes favor deterministic simulator behavior (e.g., clear reset
+//      synchronization path, avoid transient combinational feedback used only
+//      for test harness visibility).
 
 module tangnano20k_vdp_cartridge (
 	input			clk,			//	PIN04		(27MHz)
@@ -266,7 +340,7 @@ module tangnano20k_vdp_cartridge (
 	);
 
 	// --------------------------------------------------------------------
-	//	Debug LED, Debugger, etc. (unchanged)
+	//	Debug—p LED
 	// --------------------------------------------------------------------
 	ip_ws2812_led u_led (
 		.reset_n			( reset_n					),
@@ -279,6 +353,9 @@ module tangnano20k_vdp_cartridge (
 		.ws2812_led			( ws2812_led				)
 	);
 
+	// --------------------------------------------------------------------
+	//	Debugger
+	// --------------------------------------------------------------------
 	ip_debugger u_debugger (
 		.reset_n			( reset_n					),
 		.clk				( clk85m					),

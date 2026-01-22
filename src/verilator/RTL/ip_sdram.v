@@ -1,11 +1,24 @@
-// ip_sdram_simple.v — SDRAM simple model (v23-based, EN_DELAY added)
+// ip_sdram.v — SDRAM simple model for V9968 RTL
+// Copyright (c) 2026 emef2247
+// SPDX-License-Identifier: MIT
+//
+// Simple SDRAM behavioral model used for V9968 RTL testing.
+// - Single-outstanding-read model with configurable CAS latency, response delay, and EN_DELAY.
+// - Supports byte-mask writes, optional byte-swap, and a pending/counter mechanism to model read latency.
+// - Intended as a functionally useful, simulation-friendly model (not a transistor-accurate device model).
+// - Timing parameters (default values) are tuned to match the VDP's expected read timing; adjust
+//   RESPONSE_DELAY, CAS_LAT and EN_DELAY to match your testbench/top-level timing.
+// See LICENSE in the repository root for full text.
+// Contact: emef2247 (project repository)
+
+// ip_sdram.v — SDRAM simple model (EN_DELAY added)
 // - Single outstanding read (sufficient for this design)
 // - Timing:
 //    * ff_rdata updated on posedge clk_sdram when counter == RESPONSE_DELAY-1
 //    * bus_rdata_en asserted for 1 clk cycle on posedge clk when counter == RESPONSE_DELAY-1 + EN_DELAY
 //      (ff_rdata is loaded earlier on clk_sdram giving the ~0.5 cycle lead when EN_DELAY=0)
 // - EN_DELAY introduced: internal shift offset (in clock cycles) between rdata load and en assertion
-// - Defaults tuned to match ModelSim / v23 behavior: RESPONSE_DELAY=7, RDATA_PULSE=1
+// - Defaults tuned to match the VDP timing used in this project: RESPONSE_DELAY=5, RDATA_PULSE=1
 module ip_sdram #(
     parameter        FREQ = 85_909_080,
     parameter integer RDATA_PULSE    = 1,        // should be 1 to match ModelSim

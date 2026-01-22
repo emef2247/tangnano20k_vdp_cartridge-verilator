@@ -1,3 +1,4 @@
+//
 //	vdp_color_palette.v
 //	Color Palette for VDP
 //
@@ -53,6 +54,44 @@
 //	POSSIBILITY OF SUCH DAMAGE.
 //
 //-----------------------------------------------------------------------------
+
+// MOD/vdp_color_palette.v
+// --------------------------------------------------------------------
+// Original: (upstream) th9958/vdp_color_palette.v
+// Copyright: preserved from original source
+// SPDX-License-Identifier: (preserve original license in repository root)
+//
+// [MOD] 
+// 目的：Verilator ビルド向けに安全かつ明確な初期化・状態遷移を保証するとともに、
+//       非同期リセットやシミュレーション/合成時の振る舞いの不整合を避けるための最小限の修正を入れています。
+// 変更
+//
+// 1) 非同期リセット（asynchronous reset）対応の追加
+//    - 複数の always ブロックの感度リストに negedge reset_n を追加しました。
+//    - reset_n がアサート解除（LOW）されたときに即座に内部レジスタを既知状態に戻すようにし、
+//      シミュレーションと合成時の初期値差分を抑制しています。
+//
+// 2) リセット経路のノンブロッキング化（安全な初期化）
+//    - リセット時の代入を blocking (=) から non-blocking (<=) に変更した箇所があります。
+//    - これによりリセット時の多段レジスタ初期化での順序依存や不整合を避けます。
+//
+// 3) パレット初期化カウンタの次状態化（next_palette_num の導入）
+//    - ff_palette_num の更新を単純インクリメント直後に反映する形から、
+//      next_palette_num を導入して「次状態」を計算し、次クロックで ff_palette_num <= next_palette_num とする設計に変更しました。
+//    - これにより組合せループや一瞬のグリッチを避け、ツール互換性を向上させます。
+//
+// 4) case 文内の代入スタイルの統一
+//    - パレット値等をセットする case 文にて、リセット対応とノンブロッキング方針に合わせて代入様式を整備しました。
+//    - 主に ff_palette_r/g/b 等の代入を non-blocking に統一しています（リセット条件下を除く）。
+//
+//
+// 変更差分（抜粋の説明）
+//  - always @( posedge clk )  -> always @(posedge clk or negedge reset_n) へ変更（リセット初期化のため）
+//  - ff_palette_num に next_palette_num を導入し、カウンタの更新を次状態として保持するように変更
+//  - リセット時の代入を non-blocking に変更（ff_palette_* <= 0）
+//  - その他複数の always ブロックで同様のリセット対応を追加
+//
+
 
 module vdp_color_palette (
 	input				reset_n,
@@ -162,9 +201,9 @@ module vdp_color_palette (
 	reg					ff_display_color_sprite_en;
 	reg					ff_display_color_screen_mode_en;
 
-    // --------------------------------------------------------------------
-    //  Palette initializer
-    // --------------------------------------------------------------------
+	// --------------------------------------------------------------------
+	//	Palette initializer
+	// --------------------------------------------------------------------
     reg [8:0] next_palette_num;
 
     always @(posedge clk or negedge reset_n) begin
