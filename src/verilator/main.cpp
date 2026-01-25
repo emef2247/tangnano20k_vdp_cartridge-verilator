@@ -206,6 +206,44 @@ void run_testpattern_csv(const char* csv_path)
                         line_no, static_cast<int>(orig_port & 0xFF), static_cast<int>(mapped_port & 0xFF), val);
             continue;
         }
+		
+		if (cmd == "VCD_OPEN") {
+            // VCD_OPEN,<path>  -> open trace using given path or default "dump.vcd"
+            std::string path = "dump.vcd";
+            if (fields.size() >= 2 && !fields[1].empty()) path = fields[1];
+            if (vdp_cartridge_set_vcd_enabled(1, path.c_str()) == 0) {
+                std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OPEN -> %s\n", line_no, path.c_str());
+            } else {
+                std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OPEN failed for %s\n", line_no, path.c_str());
+            }
+            continue;
+        }
+
+        if (cmd == "VCD_CLOSE") {
+            // close trace (physically close); keeps dump disabled implicitly
+            vdp_cartridge_set_vcd_enabled(0, "");
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_CLOSE\n", line_no);
+            continue;
+        }
+
+        if (cmd == "VCD_ON") {
+            // VCD_ON,<0|1?> enable dump (if trace is open)
+            int enable = 1;
+            if (fields.size() >= 2) {
+                uint64_t v = 0;
+                if (parse_uint64_from_token(fields[1], v)) enable = (v != 0);
+            }
+            vdp_cartridge_set_vcd_dump(enable);
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_ON -> %d\n", line_no, enable);
+            continue;
+        }
+
+        if (cmd == "VCD_OFF") {
+            // disable dump (do not close file)
+            vdp_cartridge_set_vcd_dump(0);
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OFF\n", line_no);
+            continue;
+        }
 
         std::fprintf(stderr, "[CSV] line %" PRIu64 ": unknown cmd '%s'\n", line_no, cmd.c_str());
     }
@@ -408,9 +446,11 @@ int main(int argc, char** argv)
 
     // configure VCD based on parsed --vcd option (or vramtest implied behavior)
     if (vcd_enabled || vramtest_mode) {
+		vdp_cartridge_set_vcd_depth(0);
         vdp_cartridge_set_vcd_enabled(1, vcd_path.c_str());
         std::fprintf(stderr, "[main] VCD enabled path=%s\n", vcd_path.c_str());
     } else {
+		vdp_cartridge_set_vcd_depth(0);
         vdp_cartridge_set_vcd_enabled(0, vcd_path.c_str());
     }
 	
@@ -446,7 +486,7 @@ int main(int argc, char** argv)
     const uint16_t vdp_io1 = vdp_io0 + 0x01;
 
 	// ----------------------------------
-	// Scenario
+	// S
 	// ----------------------------------
     if (vramtest_mode) {
         // --- VRAM TEST SCENARIO (from main_vramtest.cpp) ---

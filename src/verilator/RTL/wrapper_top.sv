@@ -70,13 +70,14 @@ module wrapper_top (
     input  [7:0]     cpu_ff_slot_data,
     input            cpu_drive_en,
 
-	// Raw video output from VDP core (for Verilator / openMSX)
-    output           display_hs,
-    output           display_vs,
-    output           display_en,
-    output [7:0]     display_r,
-    output [7:0]     display_g,
-    output [7:0]     display_b,
+	// for openMSX interface
+	output [ 8:0]	pixel_pos_x,	//	unsigned (Coordinates affected by scroll register)
+	output [ 7:0]	pixel_pos_y,	//	unsigned (Coordinates affected by scroll register)
+	output			screen_in_active,
+	output			intr_frame,		//	pulse
+	output [7:0]	vdp_r,
+	output [7:0]	vdp_g,
+	output [7:0]	vdp_b,
 	
     // Debug VRAM bus exported to C++ wrapper
     output [17:0] dbg_vram_address,
@@ -87,6 +88,7 @@ module wrapper_top (
     output        dbg_vram_rdata_en
 );
 
+	
     // Instantiate original DUT (connect slot_d to the same inout)
     // NOTE: Do NOT modify internal DUT ports here unless you are sure they exist.
     // If the DUT has a slot_clk input and you want to pass this top-level slot_clk
@@ -125,21 +127,22 @@ module wrapper_top (
         .O_sdram_ba         (O_sdram_ba),
         .O_sdram_dqm        (O_sdram_dqm),
 
-        // new video taps
-        .display_hs   (display_hs),
-        .display_vs   (display_vs),
-        .display_en   (display_en),
-        .display_r    (display_r),
-        .display_g    (display_g),
-        .display_b    (display_b),
+		// for openMSX interface
+		.pixel_pos_x					(pixel_pos_x),
+		.pixel_pos_y					(pixel_pos_y),
+		.screen_in_active				(screen_in_active),
+		.intr_frame						(intr_frame),
+		.vdp_r							(vdp_r),
+		.vdp_g							(vdp_g),
+		.vdp_b							(vdp_b),
 		
         // debug VRAM ports
-        .dbg_vram_address   (dbg_vram_address),
-        .dbg_vram_wdata     (dbg_vram_wdata),
-        .dbg_vram_rdata     (dbg_vram_rdata),
-        .dbg_vram_valid     (dbg_vram_valid),
-        .dbg_vram_write     (dbg_vram_write),
-        .dbg_vram_rdata_en  (dbg_vram_rdata_en)
+        .dbg_vram_address				(dbg_vram_address),
+        .dbg_vram_wdata					(dbg_vram_wdata),
+        .dbg_vram_rdata					(dbg_vram_rdata),
+        .dbg_vram_valid					(dbg_vram_valid),
+        .dbg_vram_write					(dbg_vram_write),
+        .dbg_vram_rdata_en				(dbg_vram_rdata_en)
     );
 
     // Instantiate the bridge that drives slot_d when cpu_drive_en is asserted.
@@ -157,5 +160,5 @@ module wrapper_top (
     //   slot_clk, modify the instantiation above to include:
     //     .slot_clk(slot_clk)
     //   Be sure to re-run Verilator so the generated model matches the RTL.
-
+	
 endmodule

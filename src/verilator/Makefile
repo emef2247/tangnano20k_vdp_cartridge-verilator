@@ -17,10 +17,10 @@ RTL   = ./RTL
 # Control debug flags (override on make command-line)
 DEBUG_BUILD ?= 0
 SCREEN_DUMP ?= 1
-VCD_DUMP    ?= 1
+VCD_DUMP    ?= 0
 
 ifeq ($(DEBUG_BUILD),1)
-  VERILATOR_FLAGS = -Wno-fatal -I$(VPATH) -DSDRAM_DEBUG
+  VERILATOR_FLAGS = -Wno-fatal -I$(VPATH) -DSDRAM_DEBUG -DVM_TRACE
 else
   VERILATOR_FLAGS = -Wno-fatal -I$(VPATH)
 endif
@@ -42,6 +42,8 @@ VERILOG_SRCS = \
 	$(RTL)/wrapper_top.sv \
 	$(RTL)/ip_sdram_simple.v \
 	$(MOD)/vdp_color_palette.v \
+	$(MOD)/vdp_timing_control_screen_mode.v \
+	$(MOD)/vdp_timing_control.v \
 	$(MOD)/tangnano20k_vdp_cartridge.v \
 	$(MOD)/vdp.v \
 	$(VPATH)/test_top_SCREEN5_SP2/dummy.v \
@@ -58,9 +60,7 @@ VERILOG_SRCS = \
 	$(VPATH)/th9958/vdp_sprite_select_visible_planes.v \
 	$(VPATH)/th9958/vdp_sprite_divide_table.v \
 	$(VPATH)/th9958/vdp_timing_control_ssg.v \
-	$(VPATH)/th9958/vdp_timing_control_screen_mode.v \
 	$(VPATH)/th9958/vdp_timing_control_sprite.v \
-	$(VPATH)/th9958/vdp_timing_control.v \
 	$(VPATH)/th9958/vdp_cpu_interface.v \
 	$(VPATH)/th9958/vdp_color_palette_ram.v \
 	$(VPATH)/th9958/vdp_command_cache.v \

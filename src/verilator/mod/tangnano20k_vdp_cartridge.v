@@ -21,20 +21,13 @@
 //	in the Software.
 // -----------------------------------------------------------------------------
 
+// MOD/tangnano20k_vdp_cartridge.v
+// --------------------------------------------------------------------
+// Original: (upstream) tangnano20k_vdp_cartridge.v
+// Copyright: preserved from original source
+// SPDX-License-Identifier: (preserve original license in repository root)
+//
 // [MOD] Summary of modifications applied in mod/tangnano20k_vdp_cartridge.v
-//
-// The following is a high-level summary (in English) of the changes made to the
-// upstream tangnano20k_vdp_cartridge.v to produce the Verilator-friendly version
-// kept under mod/.  The edits are intentionally minimal and focused on making
-// the top-level easier to drive/observe from the C++ testbench wrapper and to
-// avoid simulator vs. synthesis mismatches (reset/clock-driven state).
-//
-// Goal
-// - Keep original functionality intact while exposing a small set of internal
-//   signals to the Verilator/C++ harness and improving simulator robustness.
-// - Only make the smallest, well-scoped changes needed for reliable Verilator
-//   builds and for the wrapper to drive/observe internal signals used by tests.
-//
 // Summary of key modifications
 // 1) Exposed debug/functional VRAM and SDRAM signals to the C++ wrapper
 //    - Added/kept top-level ports to export the VDP VRAM bus for the wrapper:
@@ -58,24 +51,12 @@
 //      cycle it expects, which simplifies building deterministic tests and
 //      comparing results against known patterns.
 //
-// 3) Verilator-friendly debug instrumentation (conditional)
-//    - Kept `ifdef VERILATOR` and `ifdef SDRAM_DEBUG` instrumentation blocks
-//      but ensured they are safe for simulation (no synthesis assumptions).
-//    - These debug prints are gated off by default and enabled via compile-time
-//      flags when needed.
-//    - Rationale: helpful debug output during development without affecting
-//      normal sim performance when disabled.
-//
-// 4) Minimal wiring/instantiation adjustments for wrapper compatibility
-//    - Small connectivity adjustments so ip_sdram / ip_sdram_simple can be
-//      instantiated and the wrapper can drive/observe the signals listed above.
-//    - No algorithmic changes to the VDP or SDRAM behavior were made.
-//
-// 5) Reset/synchronization and simulator stability
-//    - Ensured reset sampling and synchronous flops are stable under simulation.
-//    - Changes favor deterministic simulator behavior (e.g., clear reset
-//      synchronization path, avoid transient combinational feedback used only
-//      for test harness visibility).
+// 3) Expose Raw pixel output from VDP for OpenMSX Interface
+//    - Logical x         : screen_pos_x
+//    - Logical y         : screen_pos_y
+//    - RGB               : vdp_r / vdp_g / vdp_b
+//	  - Enable screen     : screen_mode_display_color_en
+//	  - Boundary of frame : intr_frame
 
 module tangnano20k_vdp_cartridge (
 	input			clk,			//	PIN04		(27MHz)
@@ -110,14 +91,15 @@ module tangnano20k_vdp_cartridge (
 	output	[10:0]	O_sdram_addr,	// 11 bit multiplexed address bus
 	output	[ 1:0]	O_sdram_ba,		// two banks
 	output	[ 3:0]	O_sdram_dqm,	// data mask
-
-	// Raw video output from VDP core (for Verilator / openMSX)
-    output          display_hs,
-    output          display_vs,
-    output          display_en,
-    output  [7:0]   display_r,
-    output  [7:0]   display_g,
-    output  [7:0]   display_b,
+	
+	// for openMSX interface
+	output	[ 8:0]	pixel_pos_x,	//	unsigned (Coordinates affected by scroll register)
+	output	[ 7:0]	pixel_pos_y,	//	unsigned (Coordinates affected by scroll register)
+	output			screen_in_active,
+	output			intr_frame,		//	pulse
+	output	[7:0]	vdp_r,
+	output	[7:0]	vdp_g,
+	output	[7:0]	vdp_b,
 	
 	// Debug/functional VRAM bus exported from VDP core.
 	output	[17:0]	dbg_vram_address,
@@ -295,6 +277,13 @@ module tangnano20k_vdp_cartridge (
 		.display_r			( w_video_r					),
 		.display_g			( w_video_g					),
 		.display_b			( w_video_b					),
+		.pixel_pos_x		( pixel_pos_x				),
+		.pixel_pos_y		( pixel_pos_y				),
+		.screen_in_active	( screen_in_active			),
+		.intr_frame			( intr_frame				),
+		.vdp_r				( vdp_r						),
+		.vdp_g				( vdp_g						),
+		.vdp_b				( vdp_b						),
 		.force_highspeed	( dipsw[1]					),
 		.button				( button					),
 		.pulse0				( w_pulse0					),
@@ -373,61 +362,4 @@ module tangnano20k_vdp_cartridge (
 		.green				( w_green					),
 		.blue				( w_blue					)
 	);
-
-	// --------------------------------------------------------------------
-	// Export VRAM bus for Verilator/C++ wrapper
-	// --------------------------------------------------------------------
-	assign dbg_vram_address	= w_vram_address;
-	assign dbg_vram_wdata	= w_vram_wdata;
-	assign dbg_vram_valid	= w_vram_valid;
-	assign dbg_vram_write	= w_vram_write;
-	// dbg_vram_rdata is an input now (wrapper may drive it), so do not assign dbg_vram_rdata_en here
-
-	// --------------------------------------------------------------------
-	// Expose internal SDRAM outputs and internal clock for wrapper latching (TEST ONLY)
-	// --------------------------------------------------------------------
-	assign dbg_sdram_rdata_out    = w_sdram_rdata;
-	assign dbg_sdram_rdata_en_out = w_sdram_rdata_en;
-	assign clk85m_out             = clk85m;
-
-	// --------------------------------------------------------------------
-	// Export VIDEO Out for Verilator/C++ wrapper
-	// --------------------------------------------------------------------
-    assign display_hs = w_video_hs;
-    assign display_vs = w_video_vs;
-    assign display_en = w_video_de;
-    assign display_r  = w_video_r;
-    assign display_g  = w_video_g;
-    assign display_b  = w_video_b;
-
-	// --------------------------------------------------------------------
-	// Debug monitors (Verilator only) (unchanged)
-	// --------------------------------------------------------------------
-	`ifdef VERILATOR
-		reg prev_sdram_rdata_en;
-		reg prev_vram_rdata_en;
-		always @(posedge clk85m) begin
-			if (!reset_n) begin
-				prev_sdram_rdata_en <= 1'b0;
-				prev_vram_rdata_en  <= 1'b0;
-			end else begin
-				prev_sdram_rdata_en <= w_sdram_rdata_en;
-				prev_vram_rdata_en  <= w_vram_rdata_en;
-			end
-		end
-	`endif
-
-	`ifdef SDRAM_DEBUG
-	  always @(posedge clk85m) begin
-		if (w_vram_valid && w_vram_write) begin
-		  $display("[TOP-VRAM-WR] t=%0t vram_addr=%06x vram_wdata=%08x",
-				   $time, w_vram_address, w_vram_wdata);
-		end
-		if (w_sdram_valid && w_sdram_write) begin
-		  $display("[TOP-SDRAM-WR] t=%0t sdram_addr=%06x sdram_wdata=%08x",
-				   $time, w_sdram_address[17:2], w_sdram_wdata);
-		end
-	  end
-	`endif
-
 endmodule
