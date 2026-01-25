@@ -206,6 +206,44 @@ void run_testpattern_csv(const char* csv_path)
                         line_no, static_cast<int>(orig_port & 0xFF), static_cast<int>(mapped_port & 0xFF), val);
             continue;
         }
+		
+		if (cmd == "VCD_OPEN") {
+            // VCD_OPEN,<path>  -> open trace using given path or default "dump.vcd"
+            std::string path = "dump.vcd";
+            if (fields.size() >= 2 && !fields[1].empty()) path = fields[1];
+            if (vdp_cartridge_set_vcd_enabled(1, path.c_str()) == 0) {
+                std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OPEN -> %s\n", line_no, path.c_str());
+            } else {
+                std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OPEN failed for %s\n", line_no, path.c_str());
+            }
+            continue;
+        }
+
+        if (cmd == "VCD_CLOSE") {
+            // close trace (physically close); keeps dump disabled implicitly
+            vdp_cartridge_set_vcd_enabled(0, "");
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_CLOSE\n", line_no);
+            continue;
+        }
+
+        if (cmd == "VCD_ON") {
+            // VCD_ON,<0|1?> enable dump (if trace is open)
+            int enable = 1;
+            if (fields.size() >= 2) {
+                uint64_t v = 0;
+                if (parse_uint64_from_token(fields[1], v)) enable = (v != 0);
+            }
+            vdp_cartridge_set_vcd_dump(enable);
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_ON -> %d\n", line_no, enable);
+            continue;
+        }
+
+        if (cmd == "VCD_OFF") {
+            // disable dump (do not close file)
+            vdp_cartridge_set_vcd_dump(0);
+            std::fprintf(stderr, "[CSV] line %" PRIu64 ": VCD_OFF\n", line_no);
+            continue;
+        }
 
         std::fprintf(stderr, "[CSV] line %" PRIu64 ": unknown cmd '%s'\n", line_no, cmd.c_str());
     }
@@ -328,44 +366,97 @@ static void dump_vram_screen5_pages(const char* basename)
 // ----------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-    // parse minimal command-line options
+    // parse minimal command-line options (robust: accepts "--csv file" and "--csv=file")
     bool vramtest_mode = false;
     int requested_dump_screen = -1; // -1: not specified, else 0/1
     std::string csv_path;
-    for (int ai = 1; ai < argc; ++ai) {
-        const char* a = argv[ai];
-        if (std::strcmp(a, "--vramtest") == 0) {
-            vramtest_mode = true;
-        } else if (std::strcmp(a, "--dump-screen") == 0 || std::strcmp(a, "--dump_screen") == 0) {
-            requested_dump_screen = 1;
-        } else if (std::strncmp(a, "--dump-screen=", 14) == 0) {
-            requested_dump_screen = std::atoi(a + 14) ? 1 : 0;
-        } else if (std::strncmp(a, "--csv=", 6) == 0) {
-            csv_path = std::string(a + 6);
-        } else if (std::strncmp(a, "--dump_screen=", 14) == 0) {
-            requested_dump_screen = std::atoi(a + 14) ? 1 : 0;
-        }
-    }
+    bool vcd_enabled = false;
+    std::string vcd_path = "dump.vcd";
 
     // Init wrapper
     vdp_cartridge_init();
+	
+	// default configuration
+	vdp_cartridge_set_debug(0);
+    vdp_cartridge_set_write_on_posedge(1);
+
+	// command argurments
+    for (int ai = 1; ai < argc; ++ai) {
+        const char* a = argv[ai];
+
+        // --debug
+        if (std::strcmp(a, "--debug") == 0) {
+            vdp_cartridge_set_debug(1);
+            continue;
+        }
+		
+        // --vramtest
+        if (std::strcmp(a, "--vramtest") == 0) {
+            vramtest_mode = true;
+            continue;
+        }
+
+        // --vcd  or --vcd=path
+        if (std::strcmp(a, "--vcd") == 0) {
+            vcd_enabled = true;
+            // if next token exists and doesn't start with '-', use it as path
+            if (ai + 1 < argc && argv[ai+1][0] != '-') {
+                vcd_path = argv[++ai];
+            }
+            continue;
+        }
+        if (std::strncmp(a, "--vcd=", 6) == 0) {
+            vcd_enabled = true;
+            vcd_path = std::string(a + 6);
+            continue;
+        }
+
+        // --csv <path>  or --csv=<path>
+        if (std::strcmp(a, "--csv") == 0) {
+            if (ai + 1 < argc && argv[ai+1][0] != '-') {
+                csv_path = std::string(argv[++ai]);
+            } else {
+                std::fprintf(stderr, "Option --csv requires a path argument\n");
+            }
+            continue;
+        }
+        if (std::strncmp(a, "--csv=", 6) == 0) {
+            csv_path = std::string(a + 6);
+            continue;
+        }
+
+        // --dump-screen  or --dump-screen=<0|1>
+        if (std::strcmp(a, "--dump-screen") == 0 || std::strcmp(a, "--dump_screen") == 0) {
+            requested_dump_screen = 1;
+            continue;
+        }
+        if (std::strncmp(a, "--dump-screen=", 14) == 0 || std::strncmp(a, "--dump_screen=", 14) == 0) {
+            requested_dump_screen = std::atoi(a + 14) ? 1 : 0;
+            continue;
+        }
+
+        // unknown: print warning and continue
+        std::fprintf(stderr, "Warning: unknown option '%s'\n", a);
+    }
 
     if (requested_dump_screen != -1) {
         vdp_cartridge_set_dump_screen(requested_dump_screen);
         std::fprintf(stderr, "[main] dump_screen set to %d via command-line\n", requested_dump_screen);
     }
 
-    vdp_cartridge_set_debug(0);
-    vdp_cartridge_set_write_on_posedge(1);
-    vdp_cartridge_set_end_align(0);
-
-    // Select VCD behaviour similar to original files:
-    if (vramtest_mode) {
-        vdp_cartridge_set_vcd_enabled(1, "dump.vcd");
+    // configure VCD based on parsed --vcd option (or vramtest implied behavior)
+    if (vcd_enabled || vramtest_mode) {
+		vdp_cartridge_set_vcd_depth(0);
+        vdp_cartridge_set_vcd_enabled(1, vcd_path.c_str());
+        std::fprintf(stderr, "[main] VCD enabled path=%s\n", vcd_path.c_str());
     } else {
-        vdp_cartridge_set_vcd_enabled(0, "dump.vcd");
+		vdp_cartridge_set_vcd_depth(0);
+        vdp_cartridge_set_vcd_enabled(0, vcd_path.c_str());
     }
-
+	
+	// ----------------------------------
+	// Initial sequence
+	// ----------------------------------
     // Inputs
     vdp_cartridge_set_button(0);
     vdp_cartridge_set_dipsw(0);
@@ -394,6 +485,9 @@ int main(int argc, char** argv)
     const uint16_t vdp_io0 = 0x88;
     const uint16_t vdp_io1 = vdp_io0 + 0x01;
 
+	// ----------------------------------
+	// S
+	// ----------------------------------
     if (vramtest_mode) {
         // --- VRAM TEST SCENARIO (from main_vramtest.cpp) ---
         std::cout << "[test] Test Scenario Start\n";

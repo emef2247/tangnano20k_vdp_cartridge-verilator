@@ -47,10 +47,13 @@ void vdp_cartridge_set_debug(int enable);
 void vdp_cartridge_set_end_align(int enable);
 
 /* VCD トレース制御 */
+void vdp_cartridge_set_vcd_depth(int depth);
 int  vdp_cartridge_trace_open(const char* path); /* returns 0 on success, -1 on failure */
 void vdp_cartridge_trace_close(void);
 int vdp_cartridge_set_vcd_enabled(int enable, const char* path);
 int vdp_cartridge_is_vcd_enabled(void);
+/* 新規: VCD のダンプ有効／無効（open のまま dump を抑止したい場合に使う） */
+void vdp_cartridge_set_vcd_dump(int enable);
 
 /* シミュレーション時刻取得 (ps 単位) */
 uint64_t vdp_cartridge_get_sim_time(void);

@@ -16,13 +16,25 @@ RTL   = ./RTL
 
 # Control debug flags (override on make command-line)
 DEBUG_BUILD ?= 0
+SCREEN_DUMP ?= 1
+VCD_DUMP    ?= 0
 
 ifeq ($(DEBUG_BUILD),1)
-  VERILATOR_FLAGS = -Wno-fatal -I$(VPATH) -DSDRAM_DEBUG
-  DUMP_FLAG = --dump-screen
+  VERILATOR_FLAGS = -Wno-fatal -I$(VPATH) -DSDRAM_DEBUG -DVM_TRACE
 else
   VERILATOR_FLAGS = -Wno-fatal -I$(VPATH)
+endif
+
+ifeq ($(SCREEN_DUMP),1)
+  DUMP_FLAG = --dump-screen
+else
   DUMP_FLAG =
+endif
+
+ifeq ($(VCD_DUMP),1)
+  VCD_FLAG = --vcd dump.vcd
+else
+  VCD_FLAG =
 endif
 
 # RTL　file list 
@@ -30,7 +42,10 @@ VERILOG_SRCS = \
 	$(RTL)/wrapper_top.sv \
 	$(RTL)/ip_sdram_simple.v \
 	$(MOD)/vdp_color_palette.v \
+	$(MOD)/vdp_timing_control_screen_mode.v \
+	$(MOD)/vdp_timing_control.v \
 	$(MOD)/tangnano20k_vdp_cartridge.v \
+	$(MOD)/vdp.v \
 	$(VPATH)/test_top_SCREEN5_SP2/dummy.v \
 	$(VPATH)/msx_slot/msx_slot.v \
 	$(VPATH)/th9958/vdp_upscan_line_buffer.v \
@@ -45,14 +60,11 @@ VERILOG_SRCS = \
 	$(VPATH)/th9958/vdp_sprite_select_visible_planes.v \
 	$(VPATH)/th9958/vdp_sprite_divide_table.v \
 	$(VPATH)/th9958/vdp_timing_control_ssg.v \
-	$(VPATH)/th9958/vdp_timing_control_screen_mode.v \
 	$(VPATH)/th9958/vdp_timing_control_sprite.v \
-	$(VPATH)/th9958/vdp_timing_control.v \
 	$(VPATH)/th9958/vdp_cpu_interface.v \
 	$(VPATH)/th9958/vdp_color_palette_ram.v \
 	$(VPATH)/th9958/vdp_command_cache.v \
 	$(VPATH)/th9958/vdp_command.v \
-	$(VPATH)/th9958/vdp.v \
 	$(VPATH)/ws2812_led/ip_ws2812_led.v \
 	$(VPATH)/debugger/ip_debugger.v 
 
@@ -66,22 +78,22 @@ all: sim
 SIM_BIN = obj_dir/Vwrapper_top
 
 sim: $(SIM_BIN)
-	./$(SIM_BIN) $(DUMP_FLAG)
+	./$(SIM_BIN) $(DUMP_FLAG) $(VCD_FLAG)
 
 vramtest: $(SIM_BIN)
-	./$(SIM_BIN) --vramtest $(DUMP_FLAG)
+	./$(SIM_BIN) --vramtest $(DUMP_FLAG) $(VCD_FLAG)
 
 screen1sp: $(SIM_BIN)
-	./$(SIM_BIN) --csv tests/csv/test_vdp_SCREEN1_SP.csv $(DUMP_FLAG)
+	./$(SIM_BIN) --csv tests/csv/test_vdp_SCREEN1_SP.csv $(DUMP_FLAG) $(VCD_FLAG)
 
 screen7vram: $(SIM_BIN)
-	./$(SIM_BIN) --csv tests/csv/test_vdp_SCREEN7_VRAM.csv $(DUMP_FLAG)
+	./$(SIM_BIN) --csv tests/csv/test_vdp_SCREEN7_VRAM.csv $(DUMP_FLAG) $(VCD_FLAG)
 
 deskpack: $(SIM_BIN)
-	./$(SIM_BIN) --csv tests/csv/fsa1_deskpack.csv $(DUMP_FLAG)
+	./$(SIM_BIN) --csv tests/csv/fsa1_deskpack.csv $(DUMP_FLAG) $(VCD_FLAG)
 
 msx2logo: $(SIM_BIN)
-	./$(SIM_BIN) --csv tests/csv/msx2_logo.csv $(DUMP_FLAG)
+	./$(SIM_BIN) --csv tests/csv/msx2_logo.csv $(DUMP_FLAG) $(VCD_FLAG)
 
 $(SIM_BIN): $(VERILOG_SRCS) $(C_SRCS)
 	verilator --cc --exe --build --trace $(VERILATOR_FLAGS) \

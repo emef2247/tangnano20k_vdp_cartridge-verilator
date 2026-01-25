@@ -15,6 +15,14 @@
 //   SDRAM model must be used in the simulation (ip_sdram_simple.v) to
 //   produce vram_rdata_en and vram_rdata for vdp_vram_interface to latch.
 
+// MOD/vdp_cartridge_wrapper.v
+// --------------------------------------------------------------------
+// Original: (upstream) vdp_cartridge_wrapper.v
+// Copyright: preserved from original source
+// SPDX-License-Identifier: (preserve original license in repository root)
+//
+// [MOD] 
+
 #include "vdp_cartridge_wrapper.h"
 #include "Vwrapper_top.h"
 #include "verilated.h"
@@ -28,7 +36,10 @@
 #include <inttypes.h>
 #include <vector>
 #include <algorithm>
+
 #include <stdlib.h>
+#include <cstdio>
+#include <cstdint>
 
 #ifdef __cplusplus
 extern "C" {
@@ -76,36 +87,19 @@ static int g_write_on_posedge = 0;
 /* end-align control (currently unused) */
 static int g_end_align_enabled = 0;
 
-/* -------------------------------------------------------------------------
- * Capture / frame buffer state (NEW)
- * -------------------------------------------------------------------------*/
-typedef struct {
-    uint32_t x;
-    uint32_t y;
-    uint8_t  r;
-    uint8_t  g;
-    uint8_t  b;
-} CapturedPixel;
+/* trace depth of vcd */
+static int g_vcd_dump_enabled = 1; // 1 = actually call g_tfp->dump(), 0 = suppress dump even if trace open
+static int g_vcd_trace_depth = 1;
 
-static std::vector<CapturedPixel> g_captured_pixels;
-static uint32_t g_cur_x = 0;
-static uint32_t g_cur_y = 0;
-static uint32_t g_max_x = 0;
-static uint32_t g_max_y = 0;
-static uint8_t  g_prev_vs = 1;  // init conservatively to 1 to avoid immediate finalize
-static uint8_t  g_prev_hs = 0;
-static uint8_t  g_prev_en = 0;
-static uint64_t g_frame_no = 0;
-static int g_dump_screen = 0;   // if 1, dump each finished frame as display_<frame_no>.ppm
-
-/* Sampling phase counter: sample only when g_sample_phase == 0 (0..3) */
-static int g_sample_phase = 0;
+static int g_dump_screen = 0;   // if 1, dump each finished frame as .ppm
 
 /* Setter to toggle dump_screen at runtime */
 void vdp_cartridge_set_dump_screen(int enable)
 {
     g_dump_screen = enable ? 1 : 0;
 }
+
+static uint64_t g_frame_no = 0;
 
 void vdp_cartridge_set_dump_frame_no(uint64_t frame_no)
 {
@@ -131,6 +125,122 @@ static uint32_t vram_read_word_monitored(uint32_t addr)
     if (addr >= VRAM_WORD_COUNT) return 0;
     return g_vram[addr];
 }
+
+void writePPM(
+    const std::string& filename,
+    unsigned width,
+    unsigned height,
+    const std::vector<uint32_t>& pixels
+) {
+    FILE* fp = fopen(filename.c_str(), "wb");
+    if (!fp) return;
+
+    // P6 header
+    fprintf(fp, "P6\n%d %d\n255\n", width, height);
+
+    for (unsigned y = 0; y < height; ++y) {
+        for (unsigned x = 0; x < width; ++x) {
+            uint32_t argb = pixels[y * width + x];
+            uint8_t r = (argb >> 16) & 0xFF;
+            uint8_t g = (argb >> 8 ) & 0xFF;
+            uint8_t b = (argb      ) & 0xFF;
+            fputc(r, fp);
+            fputc(g, fp);
+            fputc(b, fp);
+        }
+    }
+
+    fclose(fp);
+}
+
+// -----------------------
+//  VDP raw pixel capture
+// -----------------------
+struct FrameState {
+    uint32_t logical_x = 0;
+    uint32_t logical_y = 0;
+
+    uint32_t width  = 0;
+    uint32_t height = 0;
+
+    uint32_t prev_pixel_x = 0xFFFFFFFF;
+    uint32_t prev_pixel_y = 0xFFFFFFFF;
+};
+
+static FrameState g_frame;
+static std::vector<uint32_t> g_framebuffer;
+
+uint32_t packPixel(uint8_t r, uint8_t g, uint8_t b)
+{
+    return (0xFFu << 24) | (r << 16) | (g << 8) | b;
+}
+
+void vdp_cartridge_screen_pixel_sample(void)
+{
+    if (!g_top) return;
+
+    const uint32_t x = g_top->pixel_pos_x;
+    const uint32_t y = g_top->pixel_pos_y;
+
+    const bool screen_in_active = g_top->screen_in_active;
+    const bool intr_frame       = g_top->intr_frame;
+
+    const uint8_t r = g_top->vdp_r;
+    const uint8_t g = g_top->vdp_g;
+    const uint8_t b = g_top->vdp_b;
+
+    /* ===== Pixel tick detection (1 pixel == x changes) ===== */
+    const bool pixel_tick = (x != g_frame.prev_pixel_x);
+    g_frame.prev_pixel_x = x;
+
+    /* ===== Capture pixel ===== */
+    if (screen_in_active && pixel_tick) {
+
+        /* --- New logical line --- */
+        if (g_frame.prev_pixel_y != 0xFFFFFFFF &&
+            y != g_frame.prev_pixel_y)
+        {
+            if (g_frame.width == 0) {
+                // First completed line defines width
+                g_frame.width = g_frame.logical_x;
+            }
+            g_frame.logical_x = 0;
+            g_frame.logical_y++;
+        }
+
+        g_framebuffer.push_back(packPixel(r, g, b));
+        g_frame.logical_x++;
+
+        g_frame.prev_pixel_y = y;
+    }
+
+    /* ===== Frame end (intr_frame is last pixel!) ===== */
+    if (intr_frame) {
+
+        if (g_frame.width == 0) {
+            g_frame.width = g_frame.logical_x;
+        }
+        g_frame.height = g_frame.logical_y + 1;
+
+		if (g_dump_screen) {
+			char name[64];
+			sprintf(name, "frame_%06llu.ppm", (unsigned long long)g_frame_no);
+
+			writePPM(
+				name,
+				g_frame.width,
+				g_frame.height,
+				g_framebuffer
+			);
+		}
+
+        /* ---- Reset for next frame ---- */
+        g_framebuffer.clear();
+        g_frame = FrameState{};
+        g_frame_no++;
+    }
+}
+
 
 /* -------------------------------------------------------------------------
  * Centralized eval + trace dump at current g_time_ps (no time advance)
@@ -190,73 +300,6 @@ void vdp_cartridge_vram_bus_eval(void)
 }
 
 /* -------------------------------------------------------------------------
- * Frame finalization & capture
- * -------------------------------------------------------------------------*/
-static void vdp_finalize_frame_and_maybe_dump(void)
-{
-    if (g_captured_pixels.empty()) {
-        g_captured_pixels.clear();
-        g_cur_x = g_cur_y = 0;
-        g_max_x = g_max_y = 0;
-        return;
-    }
-
-    const uint32_t W = g_max_x + 1;
-    const uint32_t H = g_max_y + 1;
-
-    if (W == 0 || H == 0) {
-        g_captured_pixels.clear();
-        g_cur_x = g_cur_y = 0;
-        g_max_x = g_max_y = 0;
-        return;
-    }
-
-    size_t img_size = static_cast<size_t>(W) * static_cast<size_t>(H) * 3;
-    std::vector<uint8_t> img;
-    try {
-        img.resize(img_size);
-    } catch (...) {
-        fprintf(stderr, "[dump] Failed to allocate image buffer %" PRIu32 "x%" PRIu32 "\n", W, H);
-        g_captured_pixels.clear();
-        g_cur_x = g_cur_y = 0;
-        g_max_x = g_max_y = 0;
-        return;
-    }
-    std::fill(img.begin(), img.end(), 0);
-
-    for (const auto &p : g_captured_pixels) {
-        if (p.x < W && p.y < H) {
-            size_t idx = (static_cast<size_t>(p.y) * W + p.x) * 3;
-            img[idx + 0] = p.r;
-            img[idx + 1] = p.g;
-            img[idx + 2] = p.b;
-        }
-    }
-
-    if (g_dump_screen) {
-        char fname[128];
-        std::snprintf(fname, sizeof(fname), "display_%06" PRIu64 ".ppm", g_frame_no);
-        FILE* fp = std::fopen(fname, "wb");
-        if (fp) {
-            std::fprintf(fp, "P6\n%u %u\n255\n", W, H);
-            std::fwrite(img.data(), 1, img_size, fp);
-            std::fclose(fp);
-            std::fprintf(stderr, "[dump] wrote %s (w=%u h=%u) at t=%" PRIu64 "ps\n",
-                        fname, W, H, g_time_ps);
-        } else {
-            std::fprintf(stderr, "[dump] failed to open %s for write\n", fname);
-        }
-    }
-
-    g_frame_no++;
-    g_captured_pixels.clear();
-    g_cur_x = 0;
-    g_cur_y = 0;
-    g_max_x = 0;
-    g_max_y = 0;
-}
-
-/* -------------------------------------------------------------------------
  * Half-cycle step: single source of time / clock progression
  * - IMPORTANT: we evaluate DUT first (eval_and_dump_current_time) so
  *   DUT outputs (including dbg_vram_*) are stable when we monitor them.
@@ -294,45 +337,10 @@ static inline void step_halfcycle(int level)
     // 2) Monitor VRAM bus outputs from DUT (post-eval)
     vdp_cartridge_vram_bus_eval();
 
-    // 3) Video sampling (sample after eval). sample phase at 1/4 rate
+    // 3) Video sampling (sample after eval). 
     if (new_clk == 1) {
         if (g_top) {
-            if (g_sample_phase == 0) {
-                uint8_t cur_vs = g_top->display_vs ? 1 : 0;
-                uint8_t cur_hs = g_top->display_hs ? 1 : 0;
-                uint8_t cur_en = g_top->display_en ? 1 : 0;
-                uint8_t cur_r  = static_cast<uint8_t>(g_top->display_r);
-                uint8_t cur_g  = static_cast<uint8_t>(g_top->display_g);
-                uint8_t cur_b  = static_cast<uint8_t>(g_top->display_b);
-
-                if (cur_vs == 0 && g_prev_vs == 1) {
-                    vdp_finalize_frame_and_maybe_dump();
-                }
-
-                if (cur_hs && cur_en) {
-                    CapturedPixel px;
-                    px.x = g_cur_x;
-                    px.y = g_cur_y;
-                    px.r = cur_r;
-                    px.g = cur_g;
-                    px.b = cur_b;
-                    g_captured_pixels.push_back(px);
-                    if (g_cur_x > g_max_x) g_max_x = g_cur_x;
-                    if (g_cur_y > g_max_y) g_max_y = g_cur_y;
-                    g_cur_x++;
-                }
-
-                if ((g_prev_hs && g_prev_en) && !(cur_hs && cur_en)) {
-                    g_cur_x = 0;
-                    g_cur_y++;
-                }
-
-                g_prev_vs = cur_vs;
-                g_prev_hs = cur_hs;
-                g_prev_en = cur_en;
-            }
-
-            g_sample_phase = (g_sample_phase + 1) & 3;
+			vdp_cartridge_screen_pixel_sample();   // VDP native
         }
     }
 
@@ -415,16 +423,6 @@ void vdp_cartridge_init(void)
     g_end_align_enabled = 0;
 
     memset(g_vram, 0, sizeof(g_vram));
-
-    // capture defaults
-    g_captured_pixels.clear();
-    g_cur_x = g_cur_y = 0;
-    g_max_x = g_max_y = 0;
-    g_prev_vs = 1; // assume initially out of VBLANK
-    g_prev_hs = 0;
-    g_prev_en = 0;
-    g_frame_no = 0;
-    g_sample_phase = 0; // start sampling phase aligned to 0
 
     const char* env = getenv("DUMP_SCREEN");
     if (env) {
@@ -679,6 +677,16 @@ void vdp_cartridge_write_io(uint16_t address, uint8_t wdata)
 /* -------------------------------------------------------------------------
  * Trace control & sim-time getters
  * -------------------------------------------------------------------------*/
+void vdp_cartridge_set_vcd_dump(int enable)
+{
+    g_vcd_dump_enabled = enable ? 1 : 0;
+}
+
+void vdp_cartridge_set_vcd_depth(int depth) {
+    if (depth < 0) depth = 0;
+    g_vcd_trace_depth = depth;
+}
+
 int vdp_cartridge_trace_open(const char* path)
 {
     if (!g_top) return -1;
@@ -687,8 +695,10 @@ int vdp_cartridge_trace_open(const char* path)
     Verilated::traceEverOn(true);
     g_tfp = new VerilatedVcdC;
 
+	fprintf(stderr, "[VCD] VCD is enabled. Name:\"%s\"=, depth:%d\n", path ? path : "dump.vcd", g_vcd_trace_depth);
 #ifdef VM_TRACE
-    g_top->trace(g_tfp, 99);
+	// Use configured trace depth so we can limit to top-level (wrapper_top)
+    g_top->trace(g_tfp, g_vcd_trace_depth);
     g_tfp->open(path ? path : "dump.vcd");
     return 0;
 #else
@@ -737,47 +747,6 @@ void vdp_get_video_mode(VdpVideoMode* out)
 /* -------------------------------------------------------------------------
  * Video frame capture
  * -------------------------------------------------------------------------*/
-void vdp_render_frame_rgb(uint8_t* dst, int pitch)
-{
-    if (!g_top || !dst) return;
-
-    VdpVideoMode mode;
-    vdp_get_video_mode(&mode);
-    const int W = mode.width;
-    const int H = mode.height;
-
-    int x = 0;
-    int y = 0;
-
-    bool logged = false;
-
-    while (y < H) {
-        // 1 main cycle = posedge + negedge
-        vdp_cartridge_step_clk_posedge();
-        vdp_cartridge_step_clk_negedge();
-
-        if (!g_top->display_en) continue;
-
-        uint8_t r = g_top->display_r;
-        uint8_t g = g_top->display_g;
-        uint8_t b = g_top->display_b;
-
-        if (!logged && y < 4 && x < 16) {
-            fprintf(stderr, "[PIX] y=%3d x=%3d rgb=%02x%02x%02x\n", y, x, r, g, b);
-            if (y == 3 && x == 15) logged = true;
-        }
-
-        uint8_t* p = dst + y * pitch + x * 3;
-        p[0] = r;
-        p[1] = g;
-        p[2] = b;
-
-        if (++x >= W) {
-            x = 0;
-            ++y;
-        }
-    }
-}
 
 #ifdef __cplusplus
 } // extern "C"
